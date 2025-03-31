@@ -5,9 +5,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isAgree: true,
+    showPhonePopup: false,
+    phoneList: []
+  },
+  // 勾选协议变化
+  handleAgreeChange(e) {
+    this.setData({
+      isAgree: e.detail.value
+    });
   },
 
+  // 处理登录点击
+  handleLogin() {
+    if (!this.data.isAgree) {
+      wx.showToast({
+        title: '请先同意用户协议和隐私政策',
+        icon: 'none'
+      });
+      return;
+    }
+
+    // 模拟获取手机号
+    this.getPhoneNumber();
+  },
+
+  // 模拟获取手机号
+  getPhoneNumber() {
+    wx.showLoading({ title: '获取手机号中...' });
+    // 实际开发中使用 wx.getUserProfile + wx.getPhoneNumber
+    setTimeout(() => {
+      wx.hideLoading();
+      this.setData({
+        showPhonePopup: true,
+        phoneList: ['138****1234', '139****5678'] // 模拟手机号列表
+      });
+    }, 1000);
+  },
+
+  // 选择手机号登录
+  handleSelectPhone(e) {
+    const phone = e.currentTarget.dataset.phone;
+    wx.showToast({
+      title: `使用${phone}登录成功`,
+      icon: 'success'
+    });
+    // 实际开发中发送登录请求
+    console.log('选择的手机号：', phone);
+  },
   /**
    * 生命周期函数--监听页面加载
    */

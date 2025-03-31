@@ -9,7 +9,7 @@
       "list": [
         {
           "name": "db guide",
-          "pathName": "pages/takeout/takeout",
+          "pathName": "pages/login/login",
           "query": "",
           "launchMode": "default",
           "scene": null

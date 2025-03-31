@@ -1,2 +1,29 @@
-<!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<!-- pages/login/login.wxml -->
+<view class="container">
+  <view class="header">
+    <text class="title">Hello, 欢迎使用</text>
+    <view class="login-type">账号登录</view>
+  </view>
+
+  <view class="login-box">
+    <view class="login-title">用户登录</view>
+    
+    <view class="login-btn" bindtap="handleLogin">手机号快捷登录</view>
+    
+    <view class="agreement">
+      <checkbox checked="{{isAgree}}" bindchange="handleAgreeChange" />
+      <text>我已阅读并同意</text>
+      <text class="link">《用户协议》</text>
+      <text>和</text>
+      <text class="link">《隐私政策》</text>
+    </view>
+
+    <!-- 手机号弹出层 -->
+    <view class="phone-popup" wx:if="{{showPhonePopup}}">
+      <view class="popup-header">选择手机号</view>
+      <view class="phone-list">
+        <view class="phone-item" wx:for="{{phoneList}}" wx:key="index" bindtap="handleSelectPhone">{{item}}</view>
+      </view>
+    </view>
+  </view>
+</view>

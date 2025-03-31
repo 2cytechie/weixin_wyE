@@ -1,5 +1,4 @@
 // pages/takeout/takeout.js
-wx.cloud.init()
 const db = wx.cloud.database()
 Page({
 

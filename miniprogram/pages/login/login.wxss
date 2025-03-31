@@ -1,1 +1,96 @@
 /* pages/login/login.wxss */
+.container {
+  background: linear-gradient(180deg, #F8FFBD 0%, #FFFFFF 100%);
+  min-height: 100vh;
+  padding: 40rpx 30rpx;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.login-type {
+  margin-left:240rpx;
+  background: #B9F6CA;
+  color: #000;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  height: 1250rpx;
+  background: white;
+  padding: 40rpx;
+  border-radius: 30rpx;
+}
+
+.login-title {
+  font-size: 32rpx;
+  color: #66BB6A;
+  margin-bottom: 20rpx;
+}
+
+
+.login-btn {
+  background: #333;
+  color: #FFEB3B;
+  padding: 20rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  margin-bottom: 40rpx;
+  margin-top: 80rpx;
+  text-align: center;
+}
+
+.agreement {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.link {
+  color: #66BB6A;
+}
+
+.phone-popup {
+  position: fixed;
+  bottom: 0;
+  left: 25rpx;
+  right: 25rpx;
+  background: white;
+  padding: 20rpx;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  box-shadow: 0 -2rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.popup-header {
+  font-size: 32rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.phone-list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.phone-item {
+  padding: 20rpx;
+  font-size: 32rpx;
+  border-bottom: 1rpx solid #eee;
+}

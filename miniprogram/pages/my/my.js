@@ -6,7 +6,10 @@ Page({
    */
   data: {
     image:"/images/1.png",
-    is_login:false
+    is_login:false,
+    userInfo:"",
+
+    test:""
   },
 
   /**
@@ -27,7 +30,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // if(!this.data.is_login){
+    //   wx.showModal({
+    //     title: '登录提示',
+    //     content: '你还没有授权登录哟！',
+    //     complete: (res) => {
+    //       if (res.cancel) {
+            
+    //       }
+      
+    //       if (res.confirm) {
+    //         wx.navigateTo({
+    //           url: '/pages/login/login',
+    //         })
+    //       }
+    //     }
+    //   })
+    // }
   },
 
   /**
