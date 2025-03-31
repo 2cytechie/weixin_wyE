@@ -1,36 +1,13 @@
-// pages/start/start.js
+// pages/banner1/banner1.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    image:"/images/1.png"
-  },
-  showpage(){
 
   },
-  showpage1(ev){
-    wx.navigateTo({
-      url: '/pages/banner1/banner1',
-      
-    })
-    
-  },
-  showpage2(ev){
-    wx.navigateTo({
-      url: '/pages/banner2/banner2',
-      
-    })
-    
-  },
-  showpage3(ev){
-    wx.navigateTo({
-      url: '/pages/banner3/banner3',
-      
-    })
-    
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -37,7 +37,7 @@
   height: 300rpx;
   margin: 20rpx 0;
 }
-.form-item {
+orm-item {
   background: #fff;
   padding: 30rpx;
   margin: 20rpx 0;
@@ -99,7 +99,7 @@
   bottom: 0;
   background: rgba(0,0,0,0.5);
   z-index: 999;
-}
+}.f
 .textarea-item {
   font-size: 30rpx;
   flex-direction: column;

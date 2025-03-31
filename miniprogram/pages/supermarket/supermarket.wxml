@@ -1,2 +1,137 @@
 <!--pages/supermarket/supermarket.wxml-->
-<text>pages/supermarket/supermarket.wxml</text>
+<!--pages/canteen/canteen.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <navigator class="back-btn" url="/pages/start/start">
+  </navigator>
+  <!-- 取快递图片 -->
+    <image src="/images/4.jpg" mode="aspectFill" class="top-image"/>
+  <!--地址-->
+  <view class="form-item">
+    <image src="/images/home.png" class="item-icon" />
+    <input bindinput="set_message_data"
+    data-takeout_type = "takeout_pick_location"
+    placeholder="超市位置"
+    confirm-type="done"
+    class="item-input" />
+
+    <!-- 打开地图 -->  
+
+
+  </view>
+  <!-- 收快递地址 -->
+  <view class="form-item">
+    <image src="/images/takeout/send_location.png" class="item-icon" />
+    <input bindinput="set_message_data"
+    data-takeout_type = "takeout_send_location"
+    placeholder="输入宿舍地址及门牌号"
+    confirm-type="done"
+    class="item-input" />
+  </view>
+<!-- 时间展示区域 -->
+  <view class="form-item" bindtap="showTimePicker">
+    <image src="/images/takeout/time.png" class="item-icon" />
+    <view class="item-input">{{takeout_data.takeout_time || "点击选择送达时间"}}</view>
+  </view>
+
+  <!-- 自定义时间选择弹窗 -->
+  <view class="time-picker-modal" wx:if="{{showPicker}}">
+    <view class="picker-header">
+      <text bindtap="hideTimePicker">取消</text>
+      <text bindtap="confirmTime">确定</text>
+    </view>
+    
+    <!-- 时间选择器 -->
+    <picker-view 
+      value="{{timeIndex}}" 
+      bindchange="timeChange" 
+      indicator-style="height: 50px;"
+      class="time-picker"
+    >
+      <!-- 小时列 -->
+<picker-view-column>
+  <view wx:for="{{hours}}" wx:key="*this" class="picker-item">
+    {{item < 10 ? '0' + item : item}}
+  </view>
+</picker-view-column>
+
+<!-- 分钟列 -->
+<picker-view-column>
+  <view wx:for="{{minutes}}" wx:key="*this" class="picker-item">
+    {{item < 10 ? '0' + item : item}}
+  </view>
+</picker-view-column>    
+    </picker-view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view 
+    class="mask" 
+    wx:if="{{showPicker}}" 
+    bindtap="hideTimePicker"
+  ></view>
+
+  <!-- 取餐信息 -->
+  <view class="form-item textarea-item">
+    <view>
+      <image src="/images/takeout/images.png" class="item-icon" />
+      <text class="item-label">代买内容</text>
+    </view>
+    <textarea bindinput="set_message_data"
+    data-takeout_type = "takeout_message"
+    placeholder="请输入代买内容"
+    class="textarea" />
+
+    <!-- 取餐图片 -->
+    <view class="zuoyou">
+      <text class="item-label">代买图片({{takeout_data.takeout_images.length}}/6)</text>
+      <text class="text-xuanze">选填</text>
+    </view>
+
+    <view class="upload-container">
+      <view class="image-list">
+        <block wx:for="{{takeout_data.takeout_images}}" wx:key="*this">
+          <view class="image-item">
+            <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
+            <text class="delete-icon" bindtap="deleteImage" data-index="{{index}}">×</text>
+          </view>
+        </block>
+        <view class="upload-box uploaded-image" wx:if="{{takeout_data.takeout_images.length < 6}}" bindtap="chooseImage">
+          <text class="plus-sign">+</text>
+        </view>
+      </view>
+    </view>    
+
+    <!-- 取餐份数 -->
+    <!-- 左侧图标和文字 -->
+  <view class="qvcan">
+    <view class="left-section">
+      <image src="/images/takeout/count.png" class="item-icon" />
+      <text class="textarea-item">代买份数</text>
+    </view>
+      <!-- 右侧加减操作 -->
+  <view class="right-section">
+    <view class="btn shadow" bindtap="handleDecrease">
+      <text class="btn-text">-</text>
+    </view>
+    <text class="count">{{takeout_data.takeout_count}}</text>
+    <view class="btn shadow" bindtap="handleIncrease">
+      <text class="btn-text">+</text>
+    </view>
+  </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="qvcan">
+    <image src="/images/takeout/notes.png" class="item-icon" />
+    <input bindinput="set_message_data"
+    data-takeout_type = "takeout_notes"
+    placeholder="备注"
+    confirm-type="done"
+    class="item-input" />
+  </view>
+  </view>
+
+  <!-- 立即下单按钮 -->
+  <view class="xiadan" bind:tap="order">立即下单</view>
+</view>>
