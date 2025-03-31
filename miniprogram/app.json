@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/order/order",
+    "pages/my/my",
+    "pages/takeout/takeout",
+    "pages/express/express",
+    "pages/canteen/canteen",
+    "pages/supermarket/supermarket",
+    "pages/replace/replace",
+    "pages/shop/shop",
+    "pages/game/game",
+    "pages/more/more",
+    "pages/login/login",
+    "pages/taker/taker",
+    "pages/promotion/promation",
+    "pages/benefit/benefit",
+    "pages/invite/invite",
+    "pages/myorder/myorder",
+    "pages/location/location",
+    "pages/coupons/coupons",
+    "pages/cards/cards",
+    "pages/describe/describe",
+    "pages/message/message",
+    "pages/service/service",
+    "pages/map/map",
+
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundColor": "#B9FFD3",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#B9FFD3",
+    "navigationBarTitleText": "芜院e站",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "selectedColor": "#b4282b",
+    "position": "bottom",
+    "list": [{
+      "pagePath": "pages/start/start",
+      "text": "首页",
+      "iconPath": "/images/首页.png",
+      "selectedIconPath": "/images/首页sel.png"
+    },
+    {
+      "pagePath": "pages/order/order",
+      "text": "订单",
+      "iconPath": "/images/订单.png",
+      "selectedIconPath": "/images/订单sel.png"
+    },
+    {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "/images/我的.png",
+      "selectedIconPath": "/images/我的sel.png"
+    }
+  ]
+  },
+
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

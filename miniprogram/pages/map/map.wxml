@@ -1,0 +1,3 @@
+<map longitude="{{my_location.longitude}}" latitude="{{my_location.latitude}}"
+bindtap="get_location"
+class="map"/>

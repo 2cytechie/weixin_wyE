@@ -1,0 +1,130 @@
+.container {
+  background: #f5f5f5;
+  padding: 25rpx;
+}
+
+/* 轮播图样式 */
+.banner-swiper {
+  height: 400rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.banner-image {
+  margin-left: 25rpx;  /* 左边距 */
+  margin-right: 25rpx; /* 右边距 */
+  border-radius: 20rpx;
+  width: 700rpx;
+  height: 100%;
+}
+
+/* 公告栏样式 */
+.notice-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 15rpx 20rpx;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+.notice-icon {
+  margin-right: 10rpx;
+  font-size: 28rpx;
+}
+.notice-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 功能图标网格 */
+.function-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40rpx;
+  margin-bottom: 20rpx;
+}
+.function-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+.item-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+.item-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 优惠券样式 */
+.coupon-section {
+  display: flex;
+  gap: 80rpx;
+  margin: 20rpx 0;
+}
+.coupon-item {
+  background: #fff;
+  width: 30%;
+  border-radius: 10rpx;
+}
+.coupon-upper {
+  color: red;
+  font-size: 32rpx;
+  padding: 10rpx;
+}
+.coupon-middle {
+  font-size: 28rpx;
+  padding: 0 10rpx 10rpx;
+}
+.coupon-lower {
+  background: #ff4d4f;
+  color: white;
+  padding: 10rpx;
+  text-align: center;
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+/* 图片展示区 */
+.image-section {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+.section-image {
+  width: 50%;
+  height: 300rpx;
+  border-radius: 10rpx;
+}
+
+/* 底部导航 */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10rpx 0;
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tab-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-bottom: 5rpx;
+}
+.tab-text {
+  font-size: 24rpx;
+  color: #666;
+}
+.active .tab-text {
+  color: #ff4d4f;
+}

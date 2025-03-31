@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <view class="title">
+      任务大厅
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <image src="{{image}}" class="search-icon" />
+    <input type="text" placeholder="输入关键词搜索订单" />
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tags">
+    <view class="tag">服务 ▼</view>
+    <view class="tag">状态 ▼</view>
+    <view class="tag">地点 ▼</view>
+    <view class="tag">性别 ▼</view>
+  </view>
+
+  <!-- 任务列表 -->
+  <view class="task-list">
+    <block wx:for="{{taskList}}" wx:key="id">
+      <view class="task-item">
+        <!-- 任务头部信息 -->
+        <view class="task-header">
+          <image src="{{item.avatar}}" class="task-avatar" />
+          <view class="task-type">{{item.type}}</view>
+          <image src="{{image}}" class="task-imageclock"/>
+          <view class="task-time">{{item.deadline}}</view>
+          <view class="{{item.status ? 'task-status1' : 'task-status0'}}">{{item.status ? '进行中' : '待接单'}}</view>
+        </view>
+
+        <!-- 任务详情 -->
+        <view class="task-content">
+          <text>{{item.content}}</text>
+          <view class="task-location">
+            <image src="{{image}}" class="location-icon" />
+            {{item.location}}
+          </view>
+          <view class="reward">
+            <image src="{{image}}" class="reward-icon" />
+            {{item.reward}}元
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

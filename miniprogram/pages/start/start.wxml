@@ -1,0 +1,91 @@
+  <!-- 轮播图区域 -->
+  <swiper class="banner-swiper" indicator-dots autoplay circular>
+    <swiper-item>
+      <image src="/images/2.png" class="banner-image" mode="aspectFill"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/3.png" class="banner-image" mode="aspectFill"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/4.jpg" class="banner-image" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+<view class="container">
+  <!-- 公告栏 -->
+  <view class="notice-bar">
+    <text class="notice-icon">📢</text>
+    <text class="notice-text">公告：提现或反馈请添加微信16678331135</text>
+  </view>
+
+  <!-- 功能图标区 -->
+  <!-- 取外卖 -->
+  <view class="function-grid">
+    <navigator url="/pages/takeout/takeout" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">取外卖</text>
+    </navigator>
+    <!-- 取快递 -->
+    <navigator url="/pages/express/express" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">取快递</text>
+    </navigator>
+    <!-- 食堂 -->
+    <navigator url="/pages/canteen/canteen" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">食堂</text>
+    </navigator>
+    <!-- 超市 -->
+    <navigator url="/pages/supermarket/supermarket" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">超市</text>
+    </navigator>
+    <!-- 代替服务 -->
+    <navigator url="/pages/replace/replace" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">代替服务</text>
+    </navigator>
+    <!-- 代买 -->
+    <navigator url="/pages/shop/shop" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">代买</text>
+    </navigator>
+    <!-- 游戏开黑 -->
+    <navigator url="/pages/game/game" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">游戏开黑</text>
+    </navigator>
+    <!-- 更多帮助 -->
+    <navigator url="/pages/more/more" class="function-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <text class="item-text">更多帮助</text>
+    </navigator>
+  </view>
+
+  <!-- 优惠券区域 -->
+  <view class="coupon-section">
+    <view class="coupon-item">
+      <view class="coupon-upper">¥1</view>
+      <view class="coupon-middle">满3可用</view>
+      <view class="coupon-lower">立即领取</view>
+    </view>
+    <!-- 重复优惠券项 -->
+    <view class="coupon-item">
+      <view class="coupon-upper">¥1</view>
+      <view class="coupon-middle">满3可用</view>
+      <view class="coupon-lower">立即领取</view>
+    </view>
+    <view class="coupon-item">
+      <view class="coupon-upper">¥1</view>
+      <view class="coupon-middle">满3可用</view>
+      <view class="coupon-lower">立即领取</view>
+    </view>
+  </view>
+
+  <!-- 图片展示区 -->
+  <view class="image-section">
+    <image src="{{iamge}}" class="section-image" mode="aspectFill"></image>
+    <image src="{{iamge}}" class="section-image" mode="aspectFill"></image>
+  </view>
+
+</view>

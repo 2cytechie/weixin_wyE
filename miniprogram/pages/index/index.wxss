@@ -1,0 +1,51 @@
+/* index.wxss */
+.time-display {
+  padding: 20rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  text-align: center;
+  margin: 40rpx;
+  color: #666;
+}
+
+.time-picker-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 600rpx;
+  background: #fff;
+  z-index: 1000;
+}
+
+.picker-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.picker-header text {
+  color: #007AFF;
+  font-size: 32rpx;
+}
+
+.time-picker {
+  height: 500rpx;
+  margin-top: 20rpx;
+}
+
+.picker-item {
+  line-height: 50px;
+  text-align: center;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}

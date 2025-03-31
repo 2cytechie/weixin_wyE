@@ -1,0 +1,230 @@
+/* 全局样式 */
+.container {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #B9FFD3, #FFFFFF);
+  padding: 25rpx;
+}
+
+/* 头部用户信息区域 */
+.header-section {
+  display: flex;
+  margin-bottom: 20rpx;
+  justify-content: flex-start;
+}
+.user-info{
+  margin-left: 20rpx;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.welcome-text {
+  font-size: 35rpx;
+  font-weight: bold;
+}
+.login-btn {
+  height: 50rpx;
+  width: 150rpx;
+  background: #000;
+  color: #B9FFD3;
+  border-radius: 50rpx;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}    
+.invite-img {
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: auto; /* 邀请图标靠右对齐 */
+}
+
+/* 接单员申请模块 */
+.order-section {
+  background: white;
+  border-radius: 30rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.order-banner {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #333;
+  color: white;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.banner-tip {
+  margin-left: 10rpx;
+  font-size: 28rpx;
+}
+.banner-character {
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: -40rpx;
+}
+.order-content {
+  display: flex;
+  padding: 40rpx 20rpx 20rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+.test-left{
+  margin-left: 10rpx;
+}
+.order-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.order-desc {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+.button_center{
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  margin-left: auto;
+}
+.apply-btn {
+  background: rgb(44, 44, 44);
+  color: #B9FFD3;
+  padding: 10rpx 30rpx;
+  border-radius: 50rpx;
+  border: none;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 推广员模块 */
+.promoter-section {
+  background: #F5FFF9;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.section-desc {
+  font-size: 28rpx;
+  color: #666;
+}
+ .green-btn {
+  background: #B9FFD3;
+  color: rgb(44, 44, 44);
+  padding: 10rpx 30rpx;
+  border-radius: 50rpx;
+  border: none;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 福利中心+邀请有礼 */
+.welfare-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+.welfare-item {
+  background: white;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.item-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 10rpx;
+}
+.item-title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.tag {
+  background: #66CCFF;
+  color: white;
+  padding: 5rpx 15rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+  font-size: 24rpx;
+}
+.item-desc {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 其他功能模块 */
+.other-functions {
+  background: white;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+.module-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  margin-left: 10rpx;
+}
+.function-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+.function-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.function-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+.function-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 联系客服 */
+.contact-section {
+  margin-left: 10rpx;
+  background: white;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.contact-icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+.contact-text {
+  margin-left: 10rpx;
+  font-size: 32rpx;
+}
+.text-right{
+  margin-left: auto;
+}
+
+/* 版本号 */
+.version-section {
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}

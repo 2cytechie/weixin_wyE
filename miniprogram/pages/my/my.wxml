@@ -1,0 +1,119 @@
+<view class="container">
+  <!-- 头部用户信息区域 -->
+  <view class="header-section">
+    <image src="{{image}}" class="avatar"></image>
+    <view class="user-info">
+      <text class="welcome-text">Hi,未登录用户</text>
+      <navigator url="/pages/login/login">
+        <view class="login-btn">登录</view>
+      </navigator>
+    </view>
+    <image src="{{image}}" class="invite-img"></image>
+  </view>
+
+  <!-- 接单员申请模块 -->
+  <view class="order-section">
+    <view class="order-banner">
+      <text class="banner-tip">什么是接单员？点击了解</text>
+    </view>
+    <view class="order-content">
+      <view class="test-left">
+        <view class="order-title">接单员 · 校园</view>
+        <view class="order-desc">课余时间也有收益！</view>
+      </view>
+      <navigator url="/pages/taker/taker">
+        <view class="apply-btn">立即申请></view>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 推广员模块 -->
+  <view class="promoter-section">
+    <view class="test-left">
+      <view class="section-title">推广员</view>
+      <view class="section-desc">成为推广员，赚取收益！</view>
+    </view>
+    <navigator url="/pages/promotion/promation">
+      <view class="green-btn">立即申请</view>
+    </navigator>
+  </view>
+
+  <!-- 福利中心+邀请有礼 -->
+  <view class="welfare-section">
+  <navigator url="/pages/benefit/benefit">
+    <view class="welfare-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <view class="item-text">
+        <view class="item-title">福利中心</view>
+        <view class="item-desc">任务签到领好礼</view>
+      </view>
+    </view>
+  </navigator>
+  <navigator url="/pages/invite/invite">
+    <view class="welfare-item">
+      <image src="{{image}}" class="item-icon"></image>
+      <view class="item-text">
+        <view class="item-title">邀请有礼</view>
+        <view class="item-desc">邀请好友赚佣金</view>
+      </view>
+    </view>
+  </navigator>
+  </view>
+
+  <!-- 其他功能模块 -->
+  <view class="other-functions">
+    <text class="module-title">其他功能</text>
+    <view class="function-grid">
+      <navigator url="/pages/myorder/myorder">
+        <view class="function-item">
+          <image src="{{image}}" class="function-icon"></image>
+          <text class="function-text">我的订单</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/location/location">
+        <view class="function-item">
+        <image src="{{image}}" class="function-icon"></image>
+        <text class="function-text">我的地址</text>
+      </view>
+      </navigator>
+      <navigator url="/pages/coupons/coupons">
+        <view class="function-item">
+        <image src="{{image}}" class="function-icon"></image>
+        <text class="function-text">优惠券</text>
+      </view>
+      </navigator>
+      <navigator url="/pages/cards/cards">
+        <view class="function-item">
+        <image src="{{image}}" class="function-icon"></image>
+        <text class="function-text">我的卡包</text>
+      </view>
+      </navigator>
+      <navigator url="/pages/describe/describe">
+        <view class="function-item">
+        <image src="{{image}}" class="function-icon"></image>
+        <text class="function-text">用户指南</text>
+      </view>
+      </navigator>
+      <navigator url="/pages/message/message">
+        <view class="function-item">
+        <image src="{{image}}" class="function-icon"></image>
+        <text class="function-text">我的消息</text>
+      </view>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 联系客服 -->
+  <navigator url="/pages/service/service">
+    <view class="contact-section">
+      <image src="{{image}}" class="contact-icon"></image>
+      <text class="contact-text">联系客服</text>
+      <text class="text-right">></text>
+  </view>
+  </navigator>
+
+  <!-- 版本号 -->
+  <view class="version-section">
+    <text class="version-text">版本号 0.0.1</text>
+  </view>
+</view>
