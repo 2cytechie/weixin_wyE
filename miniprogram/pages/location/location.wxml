@@ -1,2 +1,18 @@
-<!--pages/location/location.wxml-->
-<text>pages/location/location.wxml</text>
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="goBack">
+      <image src="/images/back.png" mode="widthFix" class="back-icon"></image>
+    </view>
+    <view class="nav-title">我的地址</view>
+  </view>
+
+  <!-- 无地址提示区域 -->
+  <view class="no-address-container">
+    <image src="/images/no-address.png" mode="widthFix" class="no-address-img"></image>
+    <view class="no-address-tip">暂无地址</view>
+  </view>
+
+  <!-- 添加新地址按钮 -->
+  <button class="add-address-btn" bindtap="navigateToAddAddress">添加新地址</button>
+</view>

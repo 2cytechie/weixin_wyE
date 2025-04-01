@@ -1,2 +1,21 @@
 <!--pages/describe/describe.wxml-->
-<text>pages/describe/describe.wxml</text>
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="goBack">
+      <image src="/images/back.png" mode="widthFix" class="back-icon"></image>
+    </view>
+    <view class="nav-title">用户指南</view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content">
+    <h1>用户指南 ：</h1>
+    <p>恭喜成为「亳院e站」平台的用户，在此我将向您介绍用户指南。平台的服务项目分为两种：</p>
+    <ol>
+      <li>平台自营服务项目：自营服务项目由平台自己配置的团队提供服务，质量高效且标准化。</li>
+      <li>开放服务项目：开放服务项目由校园接单员提供。校园接单员开放给所有用户，如果您想成为接单员，可向平台申请。您可以在平台上发布自己的订单，平台接受到接单后，将为您提供服务。</li>
+    </ol>
+    <p>平台将保证用户权益，营造优质良好的平台运营环境，旨在为全校师生提供便捷、高效的服务！</p>
+  </view>
+</view>

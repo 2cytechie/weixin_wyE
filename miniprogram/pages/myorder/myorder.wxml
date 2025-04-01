@@ -1,2 +1,54 @@
-<!--pages/myorder/myorder.wxml-->
-<text>pages/myorder/myorder.wxml</text>
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="goBack">
+      <image src="/images/back.png" mode="widthFix" class="back-icon"></image>
+    </view>
+    <view class="nav-title">我的订单</view>
+  </view>
+
+  <!-- 订单分类选项卡（模拟 tabBar 效果） -->
+  <view class="order-tab-bar">
+    <view 
+      class="order-tab-item {{activeTab === 'all' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="all"
+    >
+      全部
+    </view>
+    <view 
+      class="order-tab-item {{activeTab === 'toPay' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="toPay"
+    >
+      待支付
+    </view>
+    <view 
+      class="order-tab-item {{activeTab === 'toReceive' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="toReceive"
+    >
+      待接单
+    </view>
+    <view 
+      class="order-tab-item {{activeTab === 'toComplete' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="toComplete"
+    >
+      待完成
+    </view>
+    <view 
+      class="order-tab-item {{activeTab === 'completed' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="completed"
+    >
+      已完成
+    </view>
+  </view>
+
+  <!-- 无订单提示 -->
+  <view class="no-order-container">
+    <image src="/images/no-order.png" mode="widthFix" class="no-order-img"></image>
+    <view class="no-order-tip">你还没有订单哦!</view>
+  </view>
+</view>

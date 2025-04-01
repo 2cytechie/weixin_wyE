@@ -1,2 +1,16 @@
 <!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="goBack">
+      <image src="/images/back.png" mode="widthFix" class="back-icon"></image>
+    </view>
+    <view class="nav-title">我的消息</view>
+  </view>
+
+  <!-- 无消息提示区域 -->
+  <view class="no-message-container">
+    <image src="/images/message-icon.png" mode="widthFix" class="no-message-img"></image>
+    <view class="no-message-tip">暂无消息</view>
+  </view>
+</view>
