@@ -10,6 +10,11 @@
     
     <view class="login-btn" bindtap="handleLogin">手机号快捷登录</view>
     
+    <!-- 测试 -->
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号(测试)</button>
+
+
+
     <view class="agreement">
       <checkbox checked="{{isAgree}}" bindchange="handleAgreeChange" />
       <text>我已阅读并同意</text>

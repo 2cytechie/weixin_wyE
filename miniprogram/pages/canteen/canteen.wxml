@@ -71,7 +71,7 @@
   ></view>
 
   <!-- 取餐信息 -->
-  <view class="form-item textarea-item">
+  <view class="textarea-item">
     <view>
       <image src="/images/takeout/images.png" class="item-icon" />
       <text class="item-label">代买内容</text>
@@ -106,7 +106,7 @@
   <view class="qvcan">
     <view class="left-section">
       <image src="/images/takeout/count.png" class="item-icon" />
-      <text class="textarea-item">饭菜份数</text>
+      <text>饭菜份数</text>
     </view>
       <!-- 右侧加减操作 -->
   <view class="right-section">

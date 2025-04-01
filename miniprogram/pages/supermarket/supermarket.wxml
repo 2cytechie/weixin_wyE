@@ -72,19 +72,19 @@
   ></view>
 
   <!-- 取餐信息 -->
-  <view class="form-item textarea-item">
+  <view class="textarea-item">
     <view>
       <image src="/images/takeout/images.png" class="item-icon" />
       <text class="item-label">代买内容</text>
     </view>
     <textarea bindinput="set_message_data"
     data-takeout_type = "takeout_message"
-    placeholder="请输入代买内容"
+    placeholder="详细说明代买商品及数量，若说明不方便，可以在下方上传物品图片"
     class="textarea" />
 
     <!-- 取餐图片 -->
     <view class="zuoyou">
-      <text class="item-label">代买图片({{takeout_data.takeout_images.length}}/6)</text>
+      <text class="item-label">商品图片({{takeout_data.takeout_images.length}}/6)</text>
       <text class="text-xuanze">选填</text>
     </view>
 
@@ -100,36 +100,7 @@
           <text class="plus-sign">+</text>
         </view>
       </view>
-    </view>    
-
-    <!-- 取餐份数 -->
-    <!-- 左侧图标和文字 -->
-  <view class="qvcan">
-    <view class="left-section">
-      <image src="/images/takeout/count.png" class="item-icon" />
-      <text class="textarea-item">代买份数</text>
     </view>
-      <!-- 右侧加减操作 -->
-  <view class="right-section">
-    <view class="btn shadow" bindtap="handleDecrease">
-      <text class="btn-text">-</text>
-    </view>
-    <text class="count">{{takeout_data.takeout_count}}</text>
-    <view class="btn shadow" bindtap="handleIncrease">
-      <text class="btn-text">+</text>
-    </view>
-  </view>
-  </view>
-
-  <!-- 备注 -->
-  <view class="qvcan">
-    <image src="/images/takeout/notes.png" class="item-icon" />
-    <input bindinput="set_message_data"
-    data-takeout_type = "takeout_notes"
-    placeholder="备注"
-    confirm-type="done"
-    class="item-input" />
-  </view>
   </view>
 
   <!-- 立即下单按钮 -->

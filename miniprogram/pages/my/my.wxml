@@ -114,6 +114,6 @@
 
   <!-- 版本号 -->
   <view class="version-section">
-    <text class="version-text">版本号 0.0.1</text>
+    <text>版本号 0.0.1</text>
   </view>
 </view>

@@ -29,7 +29,7 @@
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
     <image src="/images/takeout/time.png" class="item-icon" />
-    <view class="item-input">{{takeout_data.takeout_time || "点击选择时间"}}</view>
+    <view class="item-input">{{takeout_data.takeout_time || "预计送达时间"}}</view>
   </view>
 
   <!-- 自定义时间选择弹窗 -->
@@ -70,7 +70,7 @@
   ></view>
 
   <!-- 取餐信息 -->
-  <view class="form-item textarea-item">
+  <view class="textarea-item">
     <view>
       <image src="/images/takeout/images.png" class="item-icon" />
       <text class="item-label">取餐信息</text>
@@ -105,7 +105,7 @@
   <view class="qvcan">
     <view class="left-section">
       <image src="/images/takeout/count.png" class="item-icon" />
-      <text class="textarea-item">取餐份数</text>
+      <text>取餐份数</text>
     </view>
       <!-- 右侧加减操作 -->
   <view class="right-section">

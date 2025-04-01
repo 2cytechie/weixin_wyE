@@ -5,7 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showPicker: false,      // 控制弹窗显示
+    hours: Array.from({length:24}, (_,i)=>i), // 0-23小时
+    minutes: Array.from({length:60}, (_,i)=>i), // 0-59分钟
+    timeIndex: [0, 0],       // 当前选中索引
 
+    takeout_data:{
+      takeout_pick_location:"",
+      takeout_send_location:"",
+      takeout_time:"",
+      takeout_message:"",
+      takeout_images:[],
+      takeout_count:1,
+      takeout_notes:""
+    }
   },
 
   /**

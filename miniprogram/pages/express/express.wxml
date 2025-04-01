@@ -4,32 +4,19 @@
   </navigator>
   <!-- 取快递图片 -->
     <image src="/images/2.png" mode="aspectFill" class="top-image"/>
-  <!--地址-->
-  <view class="form-item">
-    <image src="/images/home.png" class="item-icon" />
-    <input bindinput="set_message_data"
-    data-takeout_type = "takeout_pick_location"
-    placeholder="快递地址"
-    confirm-type="done"
-    class="item-input" />
-
-    <!-- 打开地图 -->  
-
-
-  </view>
   <!-- 收快递地址 -->
   <view class="form-item">
     <image src="/images/takeout/send_location.png" class="item-icon" />
     <input bindinput="set_message_data"
     data-takeout_type = "takeout_send_location"
-    placeholder="输入收快递地址"
+    placeholder="送到哪里"
     confirm-type="done"
     class="item-input" />
   </view>
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
     <image src="/images/takeout/time.png" class="item-icon" />
-    <view class="item-input">{{takeout_data.takeout_time || "点击选择时间"}}</view>
+    <view class="item-input">{{takeout_data.takeout_time || "预计送达时间"}}</view>
   </view>
 
   <!-- 自定义时间选择弹窗 -->
@@ -70,20 +57,12 @@
   ></view>
 
   <!-- 取餐信息 -->
-  <view class="form-item textarea-item">
-    <view>
-      <image src="/images/takeout/images.png" class="item-icon" />
-      <text class="item-label">快递种类</text>
-    </view>
-    <textarea bindinput="set_message_data"
-    data-takeout_type = "takeout_message"
-    placeholder="请输入快递种类"
-    class="textarea" />
+  <view class="textarea-item">
 
     <!-- 取餐图片 -->
     <view class="zuoyou">
-      <text class="item-label">快递图片({{takeout_data.takeout_images.length}}/6)</text>
-      <text class="text-xuanze">选填</text>
+      <text class="item-label">取件照片({{takeout_data.takeout_images.length}}/6)</text>
+      <text class="text-xuanze">请上传取件码</text>
     </view>
 
     <view class="upload-container">
@@ -105,7 +84,7 @@
   <view class="qvcan">
     <view class="left-section">
       <image src="/images/takeout/count.png" class="item-icon" />
-      <text class="textarea-item">快递份数</text>
+      <text>快递份数</text>
     </view>
       <!-- 右侧加减操作 -->
   <view class="right-section">
@@ -124,7 +103,7 @@
     <image src="/images/takeout/notes.png" class="item-icon" />
     <input bindinput="set_message_data"
     data-takeout_type = "takeout_notes"
-    placeholder="备注"
+    placeholder="备注  (取件码)"
     confirm-type="done"
     class="item-input" />
   </view>

@@ -30,10 +30,14 @@ Page({
     this.getPhoneNumber();
   },
 
+  getPhoneNumber(e){
+    console.log(e)
+  },
   // 模拟获取手机号
-  getPhoneNumber() {
+  _getPhoneNumber() {
     wx.showLoading({ title: '获取手机号中...' });
     // 实际开发中使用 wx.getUserProfile + wx.getPhoneNumber
+    wx.cloud.getPhoneNumber()
     setTimeout(() => {
       wx.hideLoading();
       this.setData({
