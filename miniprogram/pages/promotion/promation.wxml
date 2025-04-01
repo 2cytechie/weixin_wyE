@@ -1,2 +1,47 @@
 <!--pages/promotion/promation.wxml-->
-<text>pages/promotion/promation.wxml</text>
+<!-- wxml -->
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="header">
+    <view class="back-btn" bindtap="navBack">
+      <image src="/images/back-icon.png" class="back-icon"></image>
+    </view>
+    <view class="title">申请推广员</view>
+    <view class="header-ops">
+      <view class="dots">...</view>
+      <view class="icon">◎</view>
+    </view>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">
+        <image src="/images/nick-icon.png" class="form-icon"></image>
+        <text>昵称</text>
+      </view>
+      <input type="text" placeholder="请输入真实昵称" class="form-input" />
+    </view>
+    <view class="form-item">
+      <view class="form-label">
+        <image src="/images/phone-icon.png" class="form-icon"></image>
+        <text>手机号</text>
+      </view>
+      <input type="number" placeholder="请输入手机号" class="form-input" />
+    </view>
+  </view>
+
+  <!-- 规则说明 -->
+  <view class="rule-item" bindtap="navigateToRule">
+    <view class="rule-label">
+      <image src="/images/doc-icon.png" class="form-icon"></image>
+      <text>规则说明</text>
+    </view>
+    <view class="arrow-icon">›</view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submitApply">
+    <text class="btn-text">提交申请</text>
+  </button>
+</view>

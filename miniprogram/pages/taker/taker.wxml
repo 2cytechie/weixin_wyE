@@ -1,2 +1,62 @@
-<!--pages/taker/taker.wxml-->
-<text>pages/taker/taker.wxml</text>
+<!-- wxml -->
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="header">
+    <view class="back-btn" bindtap="navBack">
+      <image src="/images/back-icon.png" class="back-icon"></image>
+    </view>
+    <view class="title-container">
+      <text class="title">申请接单员</text>
+    </view>
+    <view class="header-ops">
+      <view class="dots">...</view>
+      <view class="icon">◎</view>
+    </view>
+  </view>
+
+  <!-- 上传区域 -->
+  <view class="upload-section">
+    <text class="required-mark">*</text>
+    <text class="upload-tip">点击图片上传学生证或学籍证明</text>
+    <view class="upload-box" bindtap="chooseImage">
+      <view class="upload-placeholder">
+        <image src="/images/student-card-placeholder.png" class="placeholder-img"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <view class="form-item">
+      <image src="/images/person-icon.png" class="form-icon"></image>
+      <text class="form-label">姓名</text>
+      <input type="text" placeholder="请输入真实姓名" class="form-input" />
+    </view>
+    <view class="form-item">
+      <image src="/images/id-icon.png" class="form-icon"></image>
+      <text class="form-label">证件号码</text>
+      <input type="text" placeholder="请输入证件号码" class="form-input" />
+    </view>
+    <view class="fee-section">
+      <image src="/images/question-icon.png" class="form-icon"></image>
+      <text class="form-label">手续费说明</text>
+      <picker-view class="fee-picker">
+        <picker-view-column>
+          <view>以下为本平台各项服务的手续费说明内容...</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+
+  <!-- 提交区域 -->
+  <view class="submit-section">
+    <button class="submit-btn" disabled="{{!isAgree}}">
+      <text class="btn-text">提交审核</text>
+    </button>
+    <view class="agreement-section">
+      <checkbox checked="{{isAgree}}" bindchange="handleAgreeChange" class="agree-checkbox" />
+      <text class="agree-text">我已同意并阅读</text>
+      <text class="link-text">《申请接单员协议》</text>
+    </view>
+  </view>
+</view>
