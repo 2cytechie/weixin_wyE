@@ -1,14 +1,14 @@
 <view class="container">
   <!-- 头部用户信息区域 -->
   <view class="header-section">
-    <image src="{{image}}" class="avatar"></image>
+    <image src="/images/用户.png" class="avatar"></image>
     <view class="user-info">
       <text class="welcome-text">Hi,未登录用户</text>
       <navigator url="/pages/login/login">
         <view class="login-btn">登录</view>
       </navigator>
     </view>
-    <image src="{{image}}" class="invite-img"></image>
+    <image src="/images/修改.png" class="invite-img"></image>
   </view>
 
   <!-- 接单员申请模块 -->
@@ -42,7 +42,7 @@
   <view class="welfare-section">
   <navigator url="/pages/benefit/benefit">
     <view class="welfare-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/福利中心.png" class="item-icon"></image>
       <view class="item-text">
         <view class="item-title">福利中心</view>
         <view class="item-desc">任务签到领好礼</view>
@@ -51,7 +51,7 @@
   </navigator>
   <navigator url="/pages/invite/invite">
     <view class="welfare-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/邀请有礼.png" class="item-icon"></image>
       <view class="item-text">
         <view class="item-title">邀请有礼</view>
         <view class="item-desc">邀请好友赚佣金</view>
@@ -66,37 +66,37 @@
     <view class="function-grid">
       <navigator url="/pages/myorder/myorder">
         <view class="function-item">
-          <image src="{{image}}" class="function-icon"></image>
+          <image src="/images/我的订单.png" class="function-icon"></image>
           <text class="function-text">我的订单</text>
         </view>
       </navigator>
       <navigator url="/pages/location/location">
         <view class="function-item">
-        <image src="{{image}}" class="function-icon"></image>
+        <image src="/images/我的地址.png" class="function-icon"></image>
         <text class="function-text">我的地址</text>
       </view>
       </navigator>
       <navigator url="/pages/coupons/coupons">
         <view class="function-item">
-        <image src="{{image}}" class="function-icon"></image>
+        <image src="/images/优惠券01.png" class="function-icon"></image>
         <text class="function-text">优惠券</text>
       </view>
       </navigator>
       <navigator url="/pages/cards/cards">
         <view class="function-item">
-        <image src="{{image}}" class="function-icon"></image>
+        <image src="/images/我的卡包.png" class="function-icon"></image>
         <text class="function-text">我的卡包</text>
       </view>
       </navigator>
       <navigator url="/pages/describe/describe">
         <view class="function-item">
-        <image src="{{image}}" class="function-icon"></image>
+        <image src="/images/用户指南.png" class="function-icon"></image>
         <text class="function-text">用户指南</text>
       </view>
       </navigator>
       <navigator url="/pages/message/message">
         <view class="function-item">
-        <image src="{{image}}" class="function-icon"></image>
+        <image src="/images/我的消息.png" class="function-icon"></image>
         <text class="function-text">我的消息</text>
       </view>
       </navigator>
@@ -106,7 +106,7 @@
   <!-- 联系客服 -->
   <navigator url="/pages/service/service">
     <view class="contact-section">
-      <image src="{{image}}" class="contact-icon"></image>
+      <image src="/images/客服.png" class="contact-icon"></image>
       <text class="contact-text">联系客服</text>
       <text class="text-right">></text>
   </view>

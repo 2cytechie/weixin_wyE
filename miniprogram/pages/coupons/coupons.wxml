@@ -3,7 +3,7 @@
   <!-- 顶部导航栏 -->
   <view class="nav-bar">
     <view class="nav-left" bindtap="goBack">
-      <image src="/images/back.png" mode="widthFix" class="back-icon"></image>
+      <image src="/images/优惠券01.png" mode="widthFix" class="back-icon"></image>
     </view>
     <view class="nav-title">我的优惠券</view>
   </view>
@@ -12,7 +12,7 @@
   <view class="coupon-list">
     <view class="coupon-card" wx:for="{{couponList}}" wx:key="id">
       <view class="coupon-header">
-        <image src="{{item.icon}}" mode="widthFix" class="coupon-icon"></image>
+        <image src="/images/红包.png" mode="widthFix" class="coupon-icon"></image>
         <view class="coupon-info">
           <view class="coupon-name">{{item.name}}</view>
           <view class="coupon-time">{{item.expireTime}}</view>

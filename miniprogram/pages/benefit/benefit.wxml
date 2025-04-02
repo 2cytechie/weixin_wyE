@@ -26,14 +26,14 @@
       <view class="sign-item" wx:for="{{weekDays}}" wx:key="index">
         <view class="day">{{item.day}}</view>
         <view class="sign-status">
-          <image wx:if="{{item.needbuqian}}" src="/images/takeout/time.png" class="buqian-icon"></image>
-          <image wx:else src="/images/takeout/time.png" class="sign-icon"></image>
+          <image wx:if="{{item.needbuqian}}" src="/images/未签到.png" class="buqian-icon"></image>
+          <image wx:else src="/images/签到.png" class="sign-icon"></image>
         </view>
       </view>
       <view class="continuous-sign">
         <text class="sign-count">已连续签到0天</text>
         <text class="sign-tip">连续签到七天领取豪礼</text>
-        <image src="/images/takeout/time.png" class="battery-icon"></image>
+        <image src="/images/签到 (1).png" class="battery-icon"></image>
       </view>
     </view>
   </view>
@@ -43,7 +43,7 @@
     <text class="section-title">积分兑换</text>
     <view class="exchange-item" wx:for="{{exchangeList}}" wx:key="index">
       <view class="item-left">
-        <image src="/images/takeout/time.png" class="item-icon"></image>
+        <image src="/images/红包.png" class="item-icon"></image>
         <view class="item-desc">
           <text class="item-title">{{item.title}}</text>
           <text class="item-tip">{{item.tip}}</text>

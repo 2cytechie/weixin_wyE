@@ -8,7 +8,7 @@
 
   <!-- 搜索栏 -->
   <view class="search-bar">
-    <image src="{{image}}" class="search-icon" />
+    <image src="/images/搜索.png" class="search-icon" />
     <input type="text" placeholder="输入关键词搜索订单" />
   </view>
 
@@ -26,9 +26,9 @@
       <view class="task-item">
         <!-- 任务头部信息 -->
         <view class="task-header">
-          <image src="{{item.avatar}}" class="task-avatar" />
+          <image src="/images/用户头像.png" class="task-avatar" />
           <view class="task-type">{{item.type}}</view>
-          <image src="{{image}}" class="task-imageclock"/>
+          <image src="/images/闹铃.png" class="task-imageclock"/>
           <view class="task-time">{{item.deadline}}</view>
           <view class="{{item.status ? 'task-status1' : 'task-status0'}}">{{item.status ? '进行中' : '待接单'}}</view>
         </view>
@@ -37,11 +37,11 @@
         <view class="task-content">
           <text>{{item.content}}</text>
           <view class="task-location">
-            <image src="{{image}}" class="location-icon" />
+            <image src="/images/我的地址.png" class="location-icon" />
             {{item.location}}
           </view>
           <view class="reward">
-            <image src="{{image}}" class="reward-icon" />
+            <image src="/images/价格.png" class="reward-icon" />
             {{item.reward}}元
           </view>
         </view>

@@ -38,7 +38,7 @@
 .sign-matrix {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  color:darkcyan;
+  color:black;
   gap: 20rpx;
 }
 
@@ -61,8 +61,8 @@
   grid-column: span 5;
   display: flex;
   align-items: center;
-  gap:  60rpx;
-  color:darkcyan;
+  gap:  6rpx;
+  color:black;
 }
 
 .exchange-section {

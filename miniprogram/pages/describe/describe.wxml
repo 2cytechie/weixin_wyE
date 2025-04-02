@@ -3,7 +3,7 @@
   <!-- 顶部导航栏 -->
   <view class="nav-bar">
     <view class="nav-left" bindtap="goBack">
-      <image src="/images/back.png" mode="widthFix" class="back-icon"></image>
+      <image src="/images/说明.png" mode="widthFix" class="back-icon"></image>
     </view>
     <view class="nav-title">用户指南</view>
   </view>

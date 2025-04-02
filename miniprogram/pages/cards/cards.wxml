@@ -3,14 +3,14 @@
   <!-- 顶部导航栏 -->
   <view class="nav-bar">
     <view class="nav-left" bindtap="goBack">
-      <image src="/images/back.png" mode="widthFix" class="back-icon"></image>
+      <image src="/images/我的卡包.png" mode="widthFix" class="back-icon"></image>
     </view>
     <view class="nav-title">我的卡包</view>
   </view>
 
   <!-- 无次卡提示区域 -->
   <view class="no-card-container">
-    <image src="/images/no-card.png" mode="widthFix" class="no-card-img"></image>
+    <image src="/images/卡包.png" mode="widthFix" class="no-card-img"></image>
     <view class="no-card-tip">暂无次卡!</view>
   </view>
 </view>

@@ -6,10 +6,10 @@
     <image src="/images/3.png" mode="aspectFill" class="top-image"/>
   <!-- 去哪里帮 -->
   <view class="form-item">
-    <image src="/images/takeout/pick_location.png" class="item-icon" />
+    <image src="/images/我的地址.png" class="item-icon" />
     <input bindinput="set_message_data"
     data-takeout_type = "takeout_pick_location"
-    placeholder="去哪里帮"
+    placeholder="帮助地点"
     confirm-type="done"
     class="item-input" />
 

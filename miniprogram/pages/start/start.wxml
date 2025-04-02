@@ -22,42 +22,42 @@
   <!-- 取外卖 -->
   <view class="function-grid">
     <navigator url="/pages/takeout/takeout" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/取外卖.png" class="item-icon"></image>
       <text class="item-text">取外卖</text>
     </navigator>
     <!-- 取快递 -->
     <navigator url="/pages/express/express" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/取快递.png" class="item-icon"></image>
       <text class="item-text">取快递</text>
     </navigator>
     <!-- 食堂 -->
     <navigator url="/pages/canteen/canteen" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/食堂.png" class="item-icon"></image>
       <text class="item-text">食堂</text>
     </navigator>
     <!-- 超市 -->
     <navigator url="/pages/supermarket/supermarket" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/超市.png" class="item-icon"></image>
       <text class="item-text">超市</text>
     </navigator>
     <!-- 代替服务 -->
     <navigator url="/pages/replace/replace" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/服务.png" class="item-icon"></image>
       <text class="item-text">代替服务</text>
     </navigator>
     <!-- 代买 -->
     <navigator url="/pages/shop/shop" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/取奶咖.png" class="item-icon"></image>
       <text class="item-text">取奶咖</text>
     </navigator>
     <!-- 游戏开黑 -->
     <navigator url="/pages/game/game" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/游戏.png" class="item-icon"></image>
       <text class="item-text">游戏开黑</text>
     </navigator>
     <!-- 更多帮助 -->
     <navigator url="/pages/more/more" class="function-item">
-      <image src="{{image}}" class="item-icon"></image>
+      <image src="/images/帮助.png" class="item-icon"></image>
       <text class="item-text">更多帮助</text>
     </navigator>
   </view>

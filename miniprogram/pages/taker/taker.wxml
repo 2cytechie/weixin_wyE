@@ -3,7 +3,7 @@
   <!-- 顶部导航 -->
   <view class="header">
     <view class="back-btn" bindtap="navBack">
-      <image src="/images/back-icon.png" class="back-icon"></image>
+      <image src="/images/申请.png" class="back-icon"></image>
     </view>
     <view class="title-container">
       <text class="title">申请接单员</text>
@@ -20,7 +20,7 @@
     <text class="upload-tip">点击图片上传学生证或学籍证明</text>
     <view class="upload-box" bindtap="chooseImage">
       <view class="upload-placeholder">
-        <image src="/images/student-card-placeholder.png" class="placeholder-img"></image>
+        <image src="/images/上传证件.png" class="placeholder-img"></image>
       </view>
     </view>
   </view>
@@ -28,17 +28,17 @@
   <!-- 表单区域 -->
   <view class="form-section">
     <view class="form-item">
-      <image src="/images/person-icon.png" class="form-icon"></image>
+      <image src="/images/姓名.png" class="form-icon"></image>
       <text class="form-label">姓名</text>
       <input type="text" placeholder="请输入真实姓名" class="form-input" />
     </view>
     <view class="form-item">
-      <image src="/images/id-icon.png" class="form-icon"></image>
+      <image src="/images/证件号码.png" class="form-icon"></image>
       <text class="form-label">证件号码</text>
       <input type="text" placeholder="请输入证件号码" class="form-input" />
     </view>
     <view class="fee-section">
-      <image src="/images/question-icon.png" class="form-icon"></image>
+      <image src="/images/说明.png" class="form-icon"></image>
       <text class="form-label">手续费说明</text>
       <picker-view class="fee-picker">
         <picker-view-column>
