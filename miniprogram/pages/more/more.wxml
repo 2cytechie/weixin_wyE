@@ -10,7 +10,7 @@
     <input bindinput="set_message_data"
     data-takeout_type = "takeout_pick_location"
     placeholder="帮助地点"
-    confirm-type="done"
+    confirm-type="done"                                                   
     class="item-input" />
 
     <!-- 打开地图 -->  
