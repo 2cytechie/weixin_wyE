@@ -7,7 +7,7 @@
       <image src="/images/3.png" class="banner-image" mode="aspectFill"></image>
     </swiper-item>
     <swiper-item data-navigatorUrl="{{item.navigatorUrl}}" bind:tap="showpage3">
-      <image src="/images/4.jpg" class="banner-image" mode="aspectFill"></image>
+      <image src="/images/4.png" class="banner-image" mode="aspectFill"></image>
     </swiper-item>
   </swiper>
 

@@ -8,11 +8,12 @@
   <view class="login-box">
     <view class="login-title">用户登录</view>
     
-    <view class="login-btn" bindtap="handleLogin">手机号快捷登录</view>
+    <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="handleGetPhoneNumber">获取用户手机号</button>
+    <!-- <view class="login-btn" bindtap="handleLogin">手机号快捷登录</view> -->
     
     <!-- 测试 -->
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号(测试)</button>
-
+  <view bind:tap="get_openid">获取用户openid--{{openid}}</view>
+  <view bind:tap="test">test------------{{test}}</view>
 
 
     <view class="agreement">
