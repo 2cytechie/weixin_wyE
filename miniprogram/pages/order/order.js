@@ -1,41 +1,136 @@
 // pages/order/order.js
-Page({
+const db = wx.cloud.database()
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
-    taskList: [
+    is_popup:false,
+    popup_type:'',
+    selectedInfo: {
+      service: '全部服务',
+      status: '全部状态',
+      location: '全部地点',
+      gender: '全部性别'
+    },
+    optionLists: {
+      service: ['全部服务','取外卖', '取快递', '食堂带饭','超市代买','代替服务','取奶咖','游戏开黑','更多帮助'],
+      status: ['全部状态', '待接单', '待完成','已完成','已取消'],
+      location: ['全部地点','地点1', '地点2', '地点3'],
+      gender: ['全部性别','男', '女']
+    },
+
+    pageSize: 5, // 每页加载的数据数量
+    currentPage: 1, // 当前页码
+    hasMoreData: true, // 是否还有更多数据
+    data_list: [
       {
-        id: 1,
         avatar: "/images/1.png",
-        type: "取外卖",
-        deadline: "17:46截止",
+        service: "取外卖",
+        time: "17:46",
         status:true,
-        content: "肯德基，聂女士，8604预计到校门时间:17：14备注:",
-        location: "亳州学院宿舍-8栋(*楼)-****",
+        message: "肯德基，聂女士，8604预计到校门时间:17：14备注:",
+        pick_location: "亳州学院宿舍-8栋(*楼)-****",
         reward: 3
       },
-      {
-        id: 1,
-        avatar: "/images/1.png",
-        type: "hhh",
-        deadline: "17:46截止",
-        status:false,
-        content: "肯德基，聂女士，8604预计到校门时间:16：14备注:",
-        location: "亳州学院宿舍-9栋(*楼)-****",
-        reward: 80
-      },
       // 其他任务数据...
-    ],
-    image:"/images/1.png"
+    ]
+  },
+
+  show_popup(e) {
+    const type = e.currentTarget.dataset.type;
+    if (!this.data.popup_type || type === this.data.popup_type) {
+        this.setData({
+            is_popup:!this.data.is_popup,
+            popup_type: this.data.is_popup? '' : type 
+        });
+    } else {
+        this.setData({
+            is_popup: true,
+            popup_type: type
+        });
+    }
+},
+  selectOption(e) {
+    const value = e.currentTarget.dataset.value;
+    const type = this.data.popup_type;
+    const selectedInfo = this.data.selectedInfo;
+    if (selectedInfo[type] === value) {
+      selectedInfo[type] = '';
+    } else {
+      selectedInfo[type] = value;
+    }
+    this.setData({
+      selectedInfo: selectedInfo
+    });
+  },
+  resetOptions() {
+    this.setData({
+      selectedInfo: {
+        service: '全部服务',
+        status: '全部状态',
+        location: '全部地点',
+        gender: '全部性别'
+      },
+      is_popup: false
+    });
+  },
+  confirmOptions() {
+    this.setData({
+      is_popup: false
+      // 请求数据库  刷新页面
+    });
+  },
+
+  loadData: function () {
+    const { pageSize, currentPage } = this.data;
+    const skip = (currentPage - 1) * pageSize;
+
+    // 构建查询条件
+    let queryCondition = {};
+    if (this.data.selectedInfo.service!== '全部服务') {
+        queryCondition.data_type = this.data.selectedInfo.service;
+    }
+
+    db.collection('takeout_data')
+      // .where(queryCondition)
+      .skip(skip)
+      .limit(pageSize)
+      .get()
+      .then(res => {
+            const newData = res.data;
+            if (newData.length < pageSize) {
+                // 如果返回的数据数量小于每页加载的数量，说明没有更多数据了
+                this.setData({
+                    hasMoreData: false
+                });
+            }
+            this.setData({
+                data_list: this.data.data_list.concat(newData),
+                currentPage: currentPage + 1
+            });
+        })
+      .catch(err => {
+            console.error('数据加载失败', err);
+            // 给用户显示加载失败的提示
+            wx.showToast({
+                title: '数据加载失败，请稍后重试',
+                icon: 'none'
+            });
+        });
+},
+
+   /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+    // 页面加载时加载第一页数据
+    this.loadData();
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.loadData();
   },
 
   /**
@@ -70,13 +165,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
 
   },
 

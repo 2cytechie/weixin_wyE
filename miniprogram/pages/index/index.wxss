@@ -1,51 +1,68 @@
-/* index.wxss */
-.time-display {
+.container {
   padding: 20rpx;
-  border: 1rpx solid #ddd;
-  border-radius: 8rpx;
-  text-align: center;
-  margin: 40rpx;
-  color: #666;
 }
 
-.time-picker-modal {
+.info-item {
+  padding: 15rpx;
+  border: 1rpx solid #ccc;
+  margin-bottom: 15rpx;
+  border-radius: 10rpx;
+  background-color: #f9f9f9;
+}
+
+.popup {
   position: fixed;
-  bottom: 0;
+  top: 50%;
   left: 0;
   width: 100%;
-  height: 600rpx;
-  background: #fff;
+  height: 50%;
+  background-color: #fff;
   z-index: 1000;
+  transform: translateY(-50%);
 }
 
-.picker-header {
+.popup-content {
+  padding: 20rpx;
+}
+
+.popup-header {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.option-list {
+  overflow-y: auto;
+  max-height: 70%;
+}
+
+.option {
   display: flex;
   justify-content: space-between;
-  padding: 30rpx;
-  border-bottom: 1rpx solid #eee;
+  align-items: center;
+  padding: 15rpx;
+  border-bottom: 1rpx solid #ccc;
 }
 
-.picker-header text {
-  color: #007AFF;
-  font-size: 32rpx;
-}
-
-.time-picker {
-  height: 500rpx;
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
   margin-top: 20rpx;
 }
 
-.picker-item {
-  line-height: 50px;
-  text-align: center;
+.reset-button,
+.confirm-button {
+  padding: 15rpx 30rpx;
+  border-radius: 10rpx;
 }
 
-.mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 999;
+.reset-button {
+  background-color: #f9f9f9;
+  border: 1rpx solid #ccc;
+}
+
+.confirm-button {
+  background-color: #1aad19;
+  color: #fff;
 }

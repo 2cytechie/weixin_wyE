@@ -3,12 +3,23 @@
   padding: 25rpx;
 }
 
+.top{
+  top: -1rpx;
+  background-color: #f0fff0;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+.task-list{
+  margin-top: 240rpx;
+}
+
 /* 顶部标题栏样式 */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20rpx;
+  margin: 30rpx 10rpx;
 }
 .title {
   margin-left: 25rpx;
@@ -28,9 +39,7 @@
   background: #fff;
   padding: 15rpx;
   border-radius: 50rpx;
-  margin-bottom: 20rpx;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  margin: 20rpx 0;
 }
 .search-icon {
   width: 30rpx;
@@ -41,6 +50,45 @@
 input {
   flex: 1;
   font-size: 28rpx;
+}
+
+/* 弹窗样式 */
+.top-button{
+  display: flex;
+  margin-top: 10rpx;
+  justify-content: space-between;
+}
+.text{
+  margin-left: 10rpx;
+}
+.checkBox{
+  margin-right: 50rpx;
+}
+.reset-button,
+.confirm-button {
+  /* 通用样式 */
+  padding: 15rpx 30rpx; /* 增加内边距，让按钮有足够的点击区域 */
+  margin-bottom: 20rpx;
+  font-size: 28rpx; /* 调整字体大小 */
+  font-weight: 500; /* 调整字体粗细 */
+  text-align: center;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.reset-button {
+  width: 100rpx;
+  margin-left: 10rpx;
+  background-color: #6c757d; /* 使用更柔和的灰色 */
+  color: white;
+  border-radius: 15rpx; /* 调整圆角 */
+}
+
+.confirm-button {
+  margin-right: 60rpx;
+  width: 450rpx;
+  background-color: #28a745; /* 使用绿色表示确认，更符合常见设计习惯 */
+  color: white;
+  border-radius: 15rpx; /* 调整圆角 */
 }
 
 /* 筛选标签样式 */

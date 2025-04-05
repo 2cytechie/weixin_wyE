@@ -16,9 +16,11 @@ Page({
       images:[],
       count:1,
       notes:"",
+      tip:null,
 
       upload_time:"",
-      data_type:"取外卖"
+      service:"取外卖",
+      status:"待接单",
     }
   },
   set_message_data(e) {
