@@ -1,19 +1,24 @@
+// pages/order/order.js
 Page({
   data: {
-    activeTab: 'all'
+    currentTab: 0,
+    tabList: [
+      { title: '全部' },
+      { title: '待支付' },
+      { title: '待接单' },
+      { title: '待完成' },
+      { title: '已完成' }
+    ]
   },
 
-  // 切换订单分类
+  // 标签点击切换
   switchTab(e) {
-    const tab = e.currentTarget.dataset.tab;
-    this.setData({ activeTab: tab });
-    // 这里可扩展对应分类订单数据的加载逻辑
+    const current = e.currentTarget.dataset.index
+    this.setData({ currentTab: current })
   },
 
-  // 返回上一页
-  goBack() {
-    wx.navigateBack({
-      delta: 1
-    });
+  // 滑动切换
+  handleSwiperChange(e) {
+    this.setData({ currentTab: e.detail.current })
   }
 })
