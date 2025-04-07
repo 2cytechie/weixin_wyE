@@ -9,8 +9,8 @@
   <!--地址-->
   <view class="form-item">
     <image src="/images/home.png" class="item-icon" />
-    <input bindinput="set_message_data"
-    data-takeout_type = "takeout_pick_location"
+    <input bindblur="set_message_data"
+    data-takeout_type = "pick_location"
     placeholder="超市位置"
     confirm-type="done"
     class="item-input" />
@@ -22,8 +22,8 @@
   <!-- 收快递地址 -->
   <view class="form-item">
     <image src="/images/takeout/send_location.png" class="item-icon" />
-    <input bindinput="set_message_data"
-    data-takeout_type = "takeout_send_location"
+    <input bindblur="set_message_data"
+    data-takeout_type = "send_location"
     placeholder="输入宿舍地址及门牌号"
     confirm-type="done"
     class="item-input" />
@@ -31,7 +31,7 @@
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
     <image src="/images/takeout/time.png" class="item-icon" />
-    <view class="item-input">{{takeout_data.takeout_time || "点击选择送达时间"}}</view>
+    <view class="item-input">{{takeout_data.time || "点击选择送达时间"}}</view>
   </view>
 
   <!-- 自定义时间选择弹窗 -->
@@ -77,26 +77,26 @@
       <image src="/images/takeout/images.png" class="item-icon" />
       <text class="item-label">代买内容</text>
     </view>
-    <textarea bindinput="set_message_data"
-    data-takeout_type = "takeout_message"
+    <textarea bindblur="set_message_data"
+    data-takeout_type = "message"
     placeholder="详细说明代买商品及数量，若说明不方便，可以在下方上传物品图片"
     class="textarea" />
 
     <!-- 取餐图片 -->
     <view class="zuoyou">
-      <text class="item-label">商品图片({{takeout_data.takeout_images.length}}/6)</text>
+      <text class="item-label">商品图片({{tmp_images.length}}/6)</text>
       <text class="text-xuanze">选填</text>
     </view>
 
     <view class="upload-container">
       <view class="image-list">
-        <block wx:for="{{takeout_data.takeout_images}}" wx:key="*this">
+        <block wx:for="{{tmp_images}}" wx:key="*this">
           <view class="image-item">
             <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
             <text class="delete-icon" bindtap="deleteImage" data-index="{{index}}">×</text>
           </view>
         </block>
-        <view class="upload-box uploaded-image" wx:if="{{takeout_data.takeout_images.length < 6}}" bindtap="chooseImage">
+        <view class="upload-box uploaded-image" wx:if="{{tmp_images.length < 6}}" bindtap="chooseImage">
           <text class="plus-sign">+</text>
         </view>
       </view>

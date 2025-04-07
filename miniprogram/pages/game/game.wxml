@@ -9,30 +9,56 @@
       <image src="/images/takeout/images.png" class="item-icon" />
       <text class="item-label">游戏信息</text>
     </view>
-    <textarea bindinput="set_message_data"
-    data-takeout_type = "takeout_message"
-    placeholder="请输入游戏信息"
+    <textarea bindblur="set_message_data"
+    data-takeout_type = "message"
+    placeholder="请输入游戏信息（希望陪玩什么样子）"
     class="textarea" />
   </view>
 
   <!-- 游戏类型 -->
   <view class="form-item">
     <image src="/images/游戏.png" class="item-icon" />
-    <input bindinput="set_message_data"
-    data-takeout_type = "takeout_pick_location"
-    placeholder="游戏类型"
+    <input bindblur="set_message_data"
+    data-takeout_type = "notes"
+    placeholder="游戏类型（王者荣耀、和平精英...）"
     confirm-type="done"
     class="item-input" />
   </view>
-  <!-- 时长 -->
-  <view class="form-item">
-    <image src="/images/时间.png" class="item-icon" />
-    <input bindinput="set_message_data"
-    data-takeout_type = "takeout_send_location"
-    placeholder="游戏时长"
-    confirm-type="done"
-    class="item-input" />
+  <!-- 时间展示区域 -->
+  <view class="form-item" bindtap="showTimePicker">
+    <image src="/images/takeout/time.png" class="item-icon" />
+    <view class="item-input">{{takeout_data.time || "游戏时长"}}<text>(小时)</text></view>
   </view>
+
+  <!-- 自定义时间选择弹窗 -->
+  <view class="time-picker-modal" wx:if="{{showPicker}}">
+    <view class="picker-header">
+      <text bindtap="hideTimePicker">取消</text>
+      <text bindtap="confirmTime">确定</text>
+    </view>
+    
+    <!-- 时间选择器 -->
+    <picker-view 
+      value="{{timeIndex}}" 
+      bindchange="timeChange" 
+      indicator-style="height: 50px;"
+      class="time-picker"
+    >
+      <!-- 小时列 -->
+<picker-view-column>
+  <view wx:for="{{hours}}" wx:key="*this" class="picker-item">
+    {{item < 10 ? '0' + item : item}}
+  </view>
+</picker-view-column>  
+    </picker-view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view 
+    class="mask" 
+    wx:if="{{showPicker}}" 
+    bindtap="hideTimePicker"
+  ></view>
   <!-- 性别 -->
   <view>--------性别（测试）-------</view>
 

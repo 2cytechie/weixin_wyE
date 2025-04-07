@@ -128,15 +128,6 @@
     confirm-type="done"
     class="item-input" />
   </view>
-  <view class="qvcan">
-    <image src="/images/takeout/notes.png" class="item-icon" />
-    <input bindblur="set_message_data"
-    type="number"
-    data-takeout_type = "tip"
-    placeholder="打赏金额"
-    confirm-type="done"
-    class="item-input" />
-  </view>
   </view>
 
   <!-- 立即下单按钮 -->
