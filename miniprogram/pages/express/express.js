@@ -15,7 +15,7 @@ Page({
       send_location:"",
       time:"",
       images:[],
-      notes:"",
+      message:"",
       count:1,
       tip:null,
 
@@ -129,7 +129,7 @@ Page({
     const requiredFields = {
       send_location:"收货地址",
       time:"送达时间",
-      notes:"取件码"
+      message:"取件码"
     }; // 需要检查的字段
     for (const field in requiredFields) {
       if (!this.data.express_data[field]) {

@@ -26,10 +26,11 @@ Page({
         avatar: "/images/1.png",
         service: "取外卖",
         time: "17:46",
-        status:true,
-        message: "肯德基，聂女士，8604预计到校门时间:17：14备注:",
+        status:"已完成",
+        message: "test肯德基，聂女士，8604预计到校门时间:17：14备注:",
         pick_location: "亳州学院宿舍-8栋(*楼)-****",
-        reward: 3
+        tip: 3,
+        count:1
       },
       // 其他任务数据...
     ]
@@ -74,11 +75,17 @@ Page({
     });
   },
   confirmOptions() {
+    let that = this;
     this.setData({
-      is_popup: false
-      // 请求数据库  刷新页面
+        is_popup: false,
+        currentPage:1,
+        hasMoreData:true,
+        popup_type:'',
+        data_list: []
+    }, () => {
+        that.loadData();
     });
-  },
+},
 
   loadData: function () {
     const { pageSize, currentPage } = this.data;
@@ -86,36 +93,39 @@ Page({
 
     // 构建查询条件
     let queryCondition = {};
-    if (this.data.selectedInfo.service!== '全部服务') {
-        queryCondition.data_type = this.data.selectedInfo.service;
+    let _SelectedInfo = this.data.selectedInfo
+    for(let key in _SelectedInfo){
+      if(_SelectedInfo[key] != this.data.optionLists[key][0]){
+        queryCondition[key] = this.data.selectedInfo[key];
+      }
     }
 
     db.collection('takeout_data')
-      // .where(queryCondition)
+      .where(queryCondition)
       .skip(skip)
       .limit(pageSize)
       .get()
       .then(res => {
-            const newData = res.data;
-            if (newData.length < pageSize) {
-                // 如果返回的数据数量小于每页加载的数量，说明没有更多数据了
-                this.setData({
-                    hasMoreData: false
-                });
-            }
+        const newData = res.data;
+        if (newData.length < pageSize) {
+            // 如果返回的数据数量小于每页加载的数量，说明没有更多数据了
             this.setData({
-                data_list: this.data.data_list.concat(newData),
-                currentPage: currentPage + 1
+                hasMoreData: false
             });
-        })
-      .catch(err => {
-            console.error('数据加载失败', err);
-            // 给用户显示加载失败的提示
-            wx.showToast({
-                title: '数据加载失败，请稍后重试',
-                icon: 'none'
-            });
+        }
+        this.setData({
+            data_list: this.data.data_list.concat(newData),
+            currentPage: currentPage + 1
         });
+    })
+    .catch(err => {
+        console.error('数据加载失败', err);
+        // 给用户显示加载失败的提示
+        wx.showToast({
+            title: '数据加载失败，请稍后重试',
+            icon: 'none'
+        });
+    });
 },
 
    /**

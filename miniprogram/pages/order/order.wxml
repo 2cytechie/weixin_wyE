@@ -46,7 +46,7 @@
           <image src="/images/闹铃.png" class="task-imageclock"/>
           <text class="task-time">{{item.time}}</text>
           <text class="text">截止</text>
-          <!-- <view class="{{item.status ? 'task-status1' : 'task-status0'}}">{{item.status ? '进行中' : '待接单'}}</view> -->
+          <view class="{{item.status == '待接单' ? 'task-status0' : 'task-status1'}}">{{item.status}}</view>
         </view>
 
         <!-- 任务详情 -->
@@ -54,11 +54,11 @@
           <text>{{item.message}}</text>
           <view class="task-location">
             <image src="/images/我的地址.png" class="location-icon" />
-            {{item.pick_location}}
+            {{item.send_location}}
           </view>
           <view class="reward">
             <image src="/images/价格.png" class="reward-icon" />
-            <!-- {{item.reward}}元 -->
+            {{item.tip * item.count}}元
           </view>
         </view>
       </view>

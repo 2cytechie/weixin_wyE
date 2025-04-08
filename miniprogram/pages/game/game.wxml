@@ -19,7 +19,7 @@
   <view class="form-item">
     <image src="/images/游戏.png" class="item-icon" />
     <input bindblur="set_message_data"
-    data-takeout_type = "notes"
+    data-takeout_type = "send_location"
     placeholder="游戏类型（王者荣耀、和平精英...）"
     confirm-type="done"
     class="item-input" />

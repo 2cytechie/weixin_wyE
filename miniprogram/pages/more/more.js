@@ -13,6 +13,7 @@ Page({
       time:"",
       message:"",
       images:[],
+      count:1,
       tip:3,
 
       upload_time:"",

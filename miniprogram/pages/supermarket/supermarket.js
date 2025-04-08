@@ -126,10 +126,10 @@ Page({
   order() {
     // 检查信息是否为空
     const requiredFields = {
-      pick_location:"取餐地",
+      pick_location:"超市位置",
       send_location:"收货地址",
       time:"送达时间",
-      message:"取餐信息"
+      message:"代买内容"
     }; // 需要检查的字段
     for (const field in requiredFields) {
       if (!this.data.takeout_data[field]) {

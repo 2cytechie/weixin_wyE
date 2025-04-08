@@ -10,10 +10,11 @@ Page({
 
     tmp_images:[],
     takeout_data:{
+      send_locatin:"",
       time:"",
       message:"",
-      notes:"",
       gender:"",
+      count:1,
       tip:3,
 
       upload_time:"",

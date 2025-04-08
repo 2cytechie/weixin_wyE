@@ -102,7 +102,7 @@
   <view class="qvcan">
     <image src="/images/takeout/notes.png" class="item-icon" />
     <input bindblur="set_message_data"
-    data-type = "notes"
+    data-type = "message"
     placeholder="备注  (取件码)"
     confirm-type="done"
     class="item-input" />

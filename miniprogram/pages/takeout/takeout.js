@@ -16,7 +16,7 @@ Page({
       images:[],
       count:1,
       notes:"",
-      tip:3,
+      tip:2,
 
       upload_time:"",
       service:"取外卖",
