@@ -39,7 +39,7 @@
 .function-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40rpx;
+  gap: 20rpx;
   margin-bottom: 20rpx;
 }
 .function-item {
@@ -63,7 +63,7 @@
 /* 优惠券样式 */
 .coupon-section {
   display: flex;
-  gap: 80rpx;
+  gap: 70rpx;
   margin: 20rpx 0;
 }
 .coupon-item {

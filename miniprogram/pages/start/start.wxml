@@ -1,13 +1,13 @@
   <!-- 轮播图区域 -->
   <swiper class="banner-swiper" indicator-dots autoplay circular>
     <swiper-item data-navigatorUrl="{{item.navigatorUrl}}" bind:tap="showpage1">
-      <image src="/images/2.png" class="banner-image" mode="aspectFill"></image>
+      <image src="{{TapBarimages[0]}}" class="banner-image" mode="aspectFill"></image>
     </swiper-item>
     <swiper-item data-navigatorUrl="{{item.navigatorUrl}}" bind:tap="showpage2">
-      <image src="/images/3.png" class="banner-image" mode="aspectFill"></image>
+      <image src="{{TapBarimages[1]}}" class="banner-image" mode="aspectFill"></image>
     </swiper-item>
     <swiper-item data-navigatorUrl="{{item.navigatorUrl}}" bind:tap="showpage3">
-      <image src="/images/4.png" class="banner-image" mode="aspectFill"></image>
+      <image src="{{TapBarimages[2]}}" class="banner-image" mode="aspectFill"></image>
     </swiper-item>
   </swiper>
 
@@ -15,7 +15,7 @@
   <!-- 公告栏 -->
   <view class="notice-bar">
     <text class="notice-icon">📢</text>
-    <text class="notice-text">公告：提现或反馈请添加微信16678331135</text>
+    <text class="notice-text">公告：{{notice}}</text>
   </view>
 
   <!-- 功能图标区 -->

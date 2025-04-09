@@ -5,6 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tapbar_len:3,
+    TapBarimages:[],
+    notice:"",
+
     image:"/images/1.png"
   },
   showpage(){
@@ -31,6 +35,53 @@ Page({
     })
     
   },
+  init(){
+    wx.cloud.database().collection('Init')
+    .get()
+    .then(res => {
+      const tapbarImages = [];
+      let images_len = 0;
+      for(const item of res.data){
+        if(item.TapBarimage && images_len < 3){
+          tapbarImages.push(item.TapBarimage)
+          images_len = images_len + 1
+        }
+        else if(item.notice){
+          this.setData({
+            notice:item.notice
+          })
+        }
+      }
+      // 将数据保存到页面
+      this.downloadImages(tapbarImages)
+    })
+    .catch(err => {
+      console.error("tapbar初始化失败"); // 更完善的错误处理
+    });
+  },
+  downloadImages(res) {
+    // 遍历所有图片fileID并下载
+    const downloadTasks = res.map(fileID => 
+      wx.cloud.downloadFile({
+        fileID: fileID // 单个fileID
+      }).then(res => {
+        return res.tempFilePath; // 返回临时路径
+      })
+    );
+  
+    // 批量下载并保存结果
+    Promise.all(downloadTasks)
+      .then(tempFilePaths => {
+        this.setData({
+          TapBarimages: tempFilePaths // 保存临时路径到页面数据
+        });
+        console.log("tapbar加载成功")
+      })
+      .catch(error => {
+        console.error('tapbar部分图片加载失败', error);
+      });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -42,14 +93,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    this.init()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    
   },
 
   /**
