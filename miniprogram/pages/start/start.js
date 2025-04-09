@@ -1,4 +1,5 @@
 // pages/start/start.js
+var isCouponClaimed = false;
 Page({
 
   /**
@@ -136,5 +137,32 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  linqu() {
+
+  if (isCouponClaimed) {
+    
+  
+    wx.showToast({
+      title: '优惠卷已领取,不能再次领取',
+      icon: 'none',
+    
+    });
+  }else{
+  
+    wx.showToast({
+        title: '优惠券已领取',
+        icon: 'none'
+    });
+  
+    isCouponClaimed = true;
+  
+  }
+
+
+
+   
   }
 })
+
