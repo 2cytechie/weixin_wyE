@@ -3,7 +3,7 @@
   <navigator class="back-btn" url="/pages/start/start">
   </navigator>
   <!-- 取外卖图片 -->
-    <image src="/images/游戏开黑轮播.jpg" mode="aspectFill" class="top-image"/>
+    <image src="/images/home.png" mode="aspectFill" class="top-image"/>
   <view class="textarea-item">
     <view>
       <image src="/images/takeout/images.png" class="item-icon" />
