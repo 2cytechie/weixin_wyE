@@ -25,12 +25,15 @@
     "pages/service/service",
     "pages/map/map",
     "pages/by/by",
+ 
 
     "pages/index/index",
    
     "pages/banner1/banner1",
     "pages/banner2/banner2",
-    "pages/banner3/banner3"
+    "pages/banner3/banner3",
+
+    "pages/about/about"
   ],
   "window": {
     "backgroundColor": "#B9FFD3",

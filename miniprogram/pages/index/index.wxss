@@ -1,55 +1,173 @@
-/* pages/order/order.wxss */
 .container {
-  background: #ffffff;
+  padding: 20px;
 }
 
-/* wxss */
-.tab-scroll {
-  height: 80rpx;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-icon {
+  font-size: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-ops {
+  display: flex;
+  gap: 10px;
+}
+
+.dots,
+.icon {
+  font-size: 18px;
+}
+
+.points-section {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.points-count {
   display: flex;
   align-items: center;
-  border-bottom: 2rpx solid #f0f0f0;
-  overflow-x: auto; /* 强制显示滚动 */
-  -webkit-overflow-scrolling: touch; /* 优化滚动流畅度 */
-}
-.tab-item {
-  display: inline-block; /* 确保横向排列 */
-  padding: 0 20rpx;
-  font-size: 32rpx;
-  color: #333;
-  line-height: 80rpx;
-}
-.active {
-  color: #4CAF50;
-  position: relative;
-}
-.active::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 60rpx;
-  height: 4rpx;
-  background: #4CAF50;
+  margin-bottom: 20px;
 }
 
-/* 内容区域样式 */
-.content-swiper {
-  height: calc(100vh - 160rpx);
+.big-number {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: 10px;
 }
-.empty-container {
+
+.points-desc {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 80rpx;
 }
-.empty-container image {
-  width: 400rpx;
-  margin-bottom: 40rpx;
-}
-.empty-tip {
-  font-size: 32rpx;
+
+.sign-desc {
+  font-size: 12px;
   color: #999;
+}
+
+.sign-matrix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sign-item {
   text-align: center;
+}
+
+.day {
+  font-size: 14px;
+}
+
+.sign-status image {
+  width: 30px;
+  height: 30px;
+}
+
+.continuous-sign {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.sign-count {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sign-tip {
+  font-size: 12px;
+  color: #999;
+}
+
+.battery-icon {
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.exchange-section {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.exchange-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+}
+
+.item-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.item-desc {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title {
+  font-size: 16px;
+}
+
+.item-tip {
+  font-size: 12px;
+  color: #999;
+}
+
+.item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.money {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.condition {
+  font-size: 12px;
+  color: #999;
+}
+
+.exchange-btn {
+  margin-top: 10px;
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.exchange-btn[disabled] {
+  background-color: #ccc;
 }

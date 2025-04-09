@@ -3,7 +3,7 @@
   <navigator class="back-btn" url="/pages/start/start">
   </navigator>
   <!-- 取外卖图片 -->
-    <image src="/images/3.png" mode="aspectFill" class="top-image"/>
+    <image src="/images/取外卖轮播.jpg" mode="aspectFill" class="top-image"/>
   <!-- 取餐地 -->
   <view class="form-item">
     <image src="/images/takeout/pick_location.png" class="item-icon" />
@@ -130,7 +130,7 @@
   </view>
 
   <view class="qvcan">
-    <image src="/images/takeout/notes.png" class="item-icon" />
+    <image src="/images/4.png" class="item-icon" />
     <view class="tip">小费固定{{takeout_data.tip * takeout_data.count}}元</view>
   </view>
   </view>

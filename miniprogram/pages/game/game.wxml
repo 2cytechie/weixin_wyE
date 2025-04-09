@@ -3,7 +3,7 @@
   <navigator class="back-btn" url="/pages/start/start">
   </navigator>
   <!-- 取外卖图片 -->
-    <image src="/images/3.png" mode="aspectFill" class="top-image"/>
+    <image src="/images/游戏开黑轮播.jpg" mode="aspectFill" class="top-image"/>
   <view class="textarea-item">
     <view>
       <image src="/images/takeout/images.png" class="item-icon" />
@@ -60,7 +60,22 @@
     bindtap="hideTimePicker"
   ></view>
   <!-- 性别 -->
-  <view>--------性别（测试）-------</view>
+  <view class="form-item">
+          <image src="/images/性别.png" class="item-icon" />
+          <view class="gender-options">
+            <radio-group bindchange="setGender">
+              <label class="gender-label">
+                <radio value="男" checked="{{takeout_data.gender === '男'}}" /> 男
+              </label>
+              <label class="gender-label">
+                <radio value="女" checked="{{takeout_data.gender === '女'}}" /> 女
+              </label>
+              <label class="gender-label">
+                <radio value="不限" checked="{{takeout_data.gender === '不限'}}" /> 不限
+              </label>
+            </radio-group>
+          </view>
+        </view>
 
   <!-- 立即下单按钮 -->
   <view class="xiadan" bind:tap="order">立即下单</view>

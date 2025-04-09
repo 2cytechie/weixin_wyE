@@ -1,25 +1,61 @@
-<!-- pages/order/order.wxml -->
-<!-- wxml -->
-<view>
-<scroll-view class="tab-scroll" scroll-x="true" style="white-space: nowrap;">
-  <view 
-    class="tab-item {{currentTab === index ? 'active' : ''}}" 
-    wx:for="{{tabList}}" 
-    wx:key="index" 
-    data-index="{{index}}" 
-    bindtap="switchTab"
-  >
-    {{item.title}}
-  </view>
-</scroll-view>
+<!--pages/benefit/benefit.wxml-->
+        <!-- wxml -->
+        <view class="container">
+            <!-- 顶部区域 -->
+            <view class="header">
+                <view class="back-icon">←</view>
+                <view class="title">福利中心</view>
+                <view class="header-ops">
+                    <view class="dots">...</view>
+                    <view class="icon">◎</view>
+                </view>
+            </view>
 
-  <!-- 内容滑动区域 -->
-  <swiper class="content-swiper" current="{{currentTab}}" bindchange="handleSwiperChange">
-    <swiper-item wx:for="{{tabList}}" wx:key="index">
-      <view class="empty-container">
-        <image src="/images/home.png" mode="widthFix"></image>
-        <text class="empty-tip">你还没有{{item.title}}订单哦！</text>
-      </view>
-    </swiper-item>
-  </swiper>
-</view>
+            <!-- 积分与签到区域 -->
+            <view class="points-section">
+                <view class="points-count">
+                    <text class="big-number">{{points}}</text>
+                    <view class="points-desc">
+                        <text>可用积分 ></text>
+                        <text class="sign-desc">今年已签到{{signedDays}}天,可补签{{extraSignChance}}次</text>
+                    </view>
+                </view>
+
+                <!-- 签到矩阵 -->
+                <view class="sign-matrix">
+                    <view class="sign-item" wx:for="{{weekDays}}" wx:key="index" bindtap="signIn" data-index="{{index}}">
+                        <view class="day">{{item.day}}</view>
+                        <view class="sign-status">
+                            <image wx:if="{{item.needbuqian}}" src="/images/未签到.png" class="buqian-icon"></image>
+                            <image wx:elif="{{item.signed}}" src="/images/签到.png" class="sign-icon"></image>
+                            <image wx:else src="/images/未签到.png" class="unsign-icon"></image>
+                        </view>
+                    </view>
+                    <view class="continuous-sign">
+                        <text class="sign-count">已连续签到{{continuousSignDays}}天</text>
+                        <text class="sign-tip">连续签到七天领取豪礼</text>
+                        <image src="/images/签到 (1).png" class="battery-icon"></image>
+                    </view>
+                </view>
+            </view>
+
+            <!-- 积分兑换区域 -->
+            <view class="exchange-section">
+                <text class="section-title">积分兑换</text>
+                <view class="exchange-item" wx:for="{{exchangeList}}" wx:key="index">
+                    <view class="item-left">
+                        <image src="/images/红包.png" class="item-icon"></image>
+                        <view class="item-desc">
+                            <text class="item-title">{{item.title}}</text>
+                            <text class="item-tip">{{item.tip}}</text>
+                        </view>
+                    </view>
+                    <view class="item-right">
+                        <text class="money">{{item.money}}</text>
+                        <text class="condition">满{{item.condition}}可用</text>
+                        <button class="exchange-btn" disabled="{{item.integral > points}}" bindtap="exchange" data-index="{{index}}">{{item.integral}}兑换</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    

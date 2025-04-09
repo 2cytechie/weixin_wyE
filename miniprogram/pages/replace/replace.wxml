@@ -3,7 +3,7 @@
   <navigator class="back-btn" url="/pages/start/start">
   </navigator>
   <!-- 取外卖图片 -->
-    <image src="/images/3.png" mode="aspectFill" class="top-image"/>
+    <image src="/images/代替服务轮播.jpg" mode="aspectFill" class="top-image"/>
   <!-- 取餐地 -->
   <view class="form-item">
     <image src="/images/我的地址.png" class="item-icon" />

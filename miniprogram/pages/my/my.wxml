@@ -13,9 +13,11 @@
 
   <!-- 接单员申请模块 -->
   <view class="order-section">
+  <navigator url="/pages/about/about">
     <view class="order-banner">
       <text class="banner-tip">什么是接单员？点击了解</text>
     </view>
+  </navigator>
     <view class="order-content">
       <view class="test-left">
         <view class="order-title">接单员 · 校园</view>

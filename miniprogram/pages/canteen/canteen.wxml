@@ -4,10 +4,10 @@
   <navigator class="back-btn" url="/pages/start/start">
   </navigator>
   <!-- 取快递图片 -->
-    <image src="/images/4.png" mode="aspectFill" class="top-image"/>
+    <image src="/images/到店取餐轮播.jpg" mode="aspectFill" class="top-image"/>
   <!--地址-->
   <view class="form-item">
-    <image src="/images/home.png" class="item-icon" />
+    <image src="/images/位置.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "pick_location"
     placeholder="食堂位置"
