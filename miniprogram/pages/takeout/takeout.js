@@ -14,11 +14,15 @@ Page({
       time:"",
       message:"",
       images:[],
-      count:1,
       notes:"",
+      count:1,
       tip:2,
+      pay:2,
 
+      order_number:"",
       upload_time:"",
+      receive_time:"",
+      confirm_time:"",
       service:"取外卖",
       status:"待接单",
     }
