@@ -11,7 +11,7 @@
   z-index: 999;
 }
 .task-list{
-  margin-top: 240rpx;
+  margin-top: 150rpx;
 }
 
 /* 顶部标题栏样式 */

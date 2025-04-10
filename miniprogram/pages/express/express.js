@@ -11,15 +11,19 @@ Page({
     timeIndex: [0, 0],       // 当前选中索引
     tmp_images : [],
 
-    express_data:{
+    takeout_data:{
       send_location:"",
       time:"",
       images:[],
       message:"",
       count:1,
-      tip:null,
+      tip:2,
+      pay:2,
 
+      order_number:"",
       upload_time:"",
+      receive_time:"",
+      confirm_time:"",
       service:"送快递",
       status:"待接单",
     }
@@ -28,9 +32,9 @@ Page({
     const Type = e.currentTarget.dataset.type;
     const value = e.detail.value;
     const dataToUpdate = {};
-    dataToUpdate[`express_data.${Type}`] = value;
+    dataToUpdate[`takeout_data.${Type}`] = value;
     this.setData(dataToUpdate);
-    console.log(this.data.express_data)
+    console.log(this.data.takeout_data)
   },
 
   // 显示时间选择器
@@ -38,8 +42,8 @@ Page({
     this.setData({ showPicker: true });
     
     // 如果已有选择，初始化位置
-    if (this.data.express_data.time) {
-      const [h, m] = this.data.express_data.time.split(':');
+    if (this.data.takeout_data.time) {
+      const [h, m] = this.data.takeout_data.time.split(':');
       this.setData({
         timeIndex: [parseInt(h), parseInt(m)]
       });
@@ -64,7 +68,7 @@ Page({
     const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
     
     this.setData({
-      'express_data.time': time,
+      'takeout_data.time': time,
       showPicker: false
     });
     
@@ -112,16 +116,16 @@ Page({
     });
   },
   handleDecrease() {
-    if (this.data.express_data.count > 1) {
+    if (this.data.takeout_data.count > 1) {
       this.setData({
-        'express_data.count': this.data.express_data.count - 1
+        'takeout_data.count': this.data.takeout_data.count - 1
       })
     }
   },
 
   handleIncrease() {
     this.setData({
-      'express_data.count': this.data.express_data.count + 1
+      'takeout_data.count': this.data.takeout_data.count + 1
     })
   },
   order() {
@@ -132,7 +136,7 @@ Page({
       message:"取件码"
     }; // 需要检查的字段
     for (const field in requiredFields) {
-      if (!this.data.express_data[field]) {
+      if (!this.data.takeout_data[field]) {
           wx.showToast({
               title: `请输入${requiredFields[field]}`,
               icon: 'none'
@@ -150,12 +154,12 @@ Page({
             if (res.confirm) {
                 const now = new Date();
                 const uploadTime = now.toLocaleString();
-                this.setData({ 'express_data.upload_time': uploadTime });
+                this.setData({ 'takeout_data.upload_time': uploadTime });
                 // 上传图片
                 this.uploadImages().then(() => {
                     // 上传信息
                     db.collection("takeout_data").add({
-                        data: this.data.express_data,
+                        data: this.data.takeout_data,
                         success: (res) => {
                             wx.showToast({
                                 title: '下单成功',
@@ -197,9 +201,9 @@ Page({
                 cloudPath,
                 filePath: tempFilePath,
                 success: (res) => {
-                    const newImages = this.data.express_data.images.concat(res.fileID);
+                    const newImages = this.data.takeout_data.images.concat(res.fileID);
                     this.setData({
-                        'express_data.images': newImages
+                        'takeout_data.images': newImages
                     });
                     uploadedCount++;
                     if (uploadedCount === totalCount) {

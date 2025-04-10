@@ -16,8 +16,12 @@ Page({
       gender:"",
       count:1,
       tip:3,
+      pay:3,
 
+      order_number:"",
       upload_time:"",
+      receive_time:"",
+      confirm_time:"",
       service:"游戏开黑",
       status:"待接单",
     }

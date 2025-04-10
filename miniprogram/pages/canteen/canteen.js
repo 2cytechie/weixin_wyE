@@ -21,8 +21,12 @@ Page({
       images:[],
       count:1,
       tip:3,
+      pay:0,
 
+      order_number:"",
       upload_time:"",
+      receive_time:"",
+      confirm_time:"",
       service:"食堂带饭",
       status:"待接单",
     }
@@ -154,7 +158,10 @@ Page({
             if (res.confirm) {
                 const now = new Date();
                 const uploadTime = now.toLocaleString();
-                this.setData({ 'takeout_data.upload_time': uploadTime });
+                this.setData({
+                  'takeout_data.upload_time': uploadTime
+                  // 'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count
+                });
                 // 上传图片
                 this.uploadImages().then(() => {
                     // 上传信息

@@ -15,8 +15,12 @@ Page({
       images:[],
       count:1,
       tip:3,
+      pay:3,
 
+      order_number:"",
       upload_time:"",
+      receive_time:"",
+      confirm_time:"",
       service:"更多帮助",
       status:"待接单",
     }

@@ -126,7 +126,14 @@ Page({
             icon: 'none'
         });
     });
-},
+  },
+  show_page(e) {
+    const message = e.currentTarget.dataset.idx;
+    wx.setStorageSync('show_order_data', message)
+    wx.navigateTo({
+      url: '/pages/order_message/order_message',
+    });
+  },
 
    /**
    * 页面上拉触底事件的处理函数

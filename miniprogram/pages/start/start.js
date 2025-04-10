@@ -9,7 +9,6 @@ Page({
     TapBarimages:[],
     notice:"",
 
-    image:"/images/1.png"
   },
   showpage(){
 
@@ -35,6 +34,7 @@ Page({
     })
     
   },
+  // 初始化数据
   init(){
     wx.cloud.database().collection('Init')
     .get()
