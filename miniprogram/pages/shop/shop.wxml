@@ -6,7 +6,7 @@
     <image src="/images/home.png" mode="aspectFill" class="top-image"/>
   <!-- 取餐地 -->
   <view class="form-item">
-    <image src="/images/takeout/pick_location.png" class="item-icon" />
+    <image src="/images/shop/地址.png" class="item-icon" />
     <input bindinput="set_message_data"
     data-takeout_type = "pick_location"
     placeholder="取餐地"
@@ -19,7 +19,7 @@
   </view>
   <!-- 收外卖地址 -->
   <view class="form-item">
-    <image src="/images/takeout/send_location.png" class="item-icon" />
+    <image src="/images/shop/收地址.png" class="item-icon" />
     <input bindinput="set_message_data"
     data-takeout_type = "send_location"
     placeholder="输入收货地址"
@@ -28,7 +28,7 @@
   </view>
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
-    <image src="/images/takeout/time.png" class="item-icon" />
+    <image src="/images/shop/时间.png" class="item-icon" />
     <view class="item-input">{{takeout_data.time || "预计送达时间"}}</view>
   </view>
 
@@ -72,7 +72,7 @@
   <!-- 取餐信息 -->
   <view class="textarea-item">
     <view>
-      <image src="/images/takeout/images.png" class="item-icon" />
+      <image src="/images/shop/信息.png" class="item-icon" />
       <text class="item-label">取餐信息</text>
     </view>
     <textarea bindinput="set_message_data"
@@ -104,7 +104,7 @@
     <!-- 左侧图标和文字 -->
   <view class="qvcan">
     <view class="left-section">
-      <image src="/images/takeout/count.png" class="item-icon" />
+      <image src="/images/shop/份数.png" class="item-icon" />
       <text>取餐份数</text>
     </view>
       <!-- 右侧加减操作 -->
@@ -121,7 +121,7 @@
 
   <!-- 备注 -->
   <view class="qvcan">
-    <image src="/images/takeout/notes.png" class="item-icon" />
+    <image src="/images/shop/备注.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "notes"
     placeholder="备注"

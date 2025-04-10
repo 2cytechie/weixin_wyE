@@ -1,5 +1,7 @@
 // pages/start/start.js
 var isCouponClaimed = false;
+var isCouponClaimed1 = false;
+var isCouponClaimed2 = false;
 Page({
 
   /**
@@ -141,7 +143,7 @@ Page({
 
   linqu() {
 
-  if (isCouponClaimed) {
+  if (isCouponClaimed1) {
     
   
     wx.showToast({
@@ -156,13 +158,63 @@ Page({
         icon: 'none'
     });
   
-    isCouponClaimed = true;
+    isCouponClaimed1 = true;
   
   }
 
 
 
    
-  }
+  },
+  linqu1() {
+
+    if (isCouponClaimed) {
+      
+    
+      wx.showToast({
+        title: '优惠卷已领取,不能再次领取',
+        icon: 'none',
+      
+      });
+    }else{
+    
+      wx.showToast({
+          title: '优惠券已领取',
+          icon: 'none'
+      });
+    
+      isCouponClaimed = true;
+    
+    }
+  
+  
+  
+     
+    },
+    linqu2() {
+
+      if (isCouponClaimed2) {
+        
+      
+        wx.showToast({
+          title: '优惠卷已领取,不能再次领取',
+          icon: 'none',
+        
+        });
+      }else{
+      
+        wx.showToast({
+            title: '优惠券已领取',
+            icon: 'none'
+        });
+      
+        isCouponClaimed2 = true;
+      
+      }
+    
+    
+    
+       
+      }
 })
 

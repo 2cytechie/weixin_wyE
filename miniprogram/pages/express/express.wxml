@@ -6,7 +6,7 @@
     <image src="/images/home.png" mode="aspectFill" class="top-image"/>
   <!-- 收快递地址 -->
   <view class="form-item">
-    <image src="/images/takeout/send_location.png" class="item-icon" />
+    <image src="/images/express/地址.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-type = "send_location"
     placeholder="送到哪里"
@@ -15,7 +15,7 @@
   </view>
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
-    <image src="/images/takeout/time.png" class="item-icon" />
+    <image src="/images/express/闹铃1.png" class="item-icon" />
     <view class="item-input">{{express_data.time || "预计送达时间"}}</view>
   </view>
 
@@ -83,7 +83,7 @@
     <!-- 左侧图标和文字 -->
   <view class="qvcan">
     <view class="left-section">
-      <image src="/images/takeout/count.png" class="item-icon" />
+      <image src="/images/express/份数.png" class="item-icon" />
       <text>快递份数</text>
     </view>
       <!-- 右侧加减操作 -->
@@ -100,7 +100,7 @@
 
   <!-- 备注 -->
   <view class="qvcan">
-    <image src="/images/takeout/notes.png" class="item-icon" />
+    <image src="/images/express/备注.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-type = "message"
     placeholder="备注  (取件码)"

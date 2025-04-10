@@ -7,7 +7,7 @@
     <image src="/images/home.png" mode="aspectFill" class="top-image"/>
   <!--地址-->
   <view class="form-item">
-    <image src="/images/位置.png" class="item-icon" />
+    <image src="/images/canteen/食堂位置.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "pick_location"
     placeholder="食堂位置"
@@ -20,7 +20,7 @@
   </view>
   <!-- 收快递地址 -->
   <view class="form-item">
-    <image src="/images/takeout/send_location.png" class="item-icon" />
+    <image src="/images/canteen/宿舍位置.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "send_location"
     placeholder="输入宿舍地址及门牌号"
@@ -29,7 +29,7 @@
   </view>
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
-    <image src="/images/takeout/time.png" class="item-icon" />
+    <image src="/images/canteen/闹铃.png" class="item-icon" />
     <view class="item-input">{{takeout_data.time || "点击选择送达时间"}}</view>
   </view>
 
@@ -73,7 +73,7 @@
   <!-- 取餐信息 -->
   <view class="textarea-item">
     <view>
-      <image src="/images/takeout/images.png" class="item-icon" />
+      <image src="/images/canteen/内容.png" class="item-icon" />
       <text class="item-label">代买内容</text>
     </view>
     <textarea bindblur="set_message_data"
@@ -105,7 +105,7 @@
     <!-- 左侧图标和文字 -->
   <view class="qvcan">
     <view class="left-section">
-      <image src="/images/takeout/count.png" class="item-icon" />
+      <image src="/images/canteen/份数.png" class="item-icon" />
       <text>饭菜份数</text>
     </view>
       <!-- 右侧加减操作 -->

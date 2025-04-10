@@ -6,7 +6,7 @@
     <image src="/images/home.png" mode="aspectFill" class="top-image"/>
   <view class="textarea-item">
     <view>
-      <image src="/images/takeout/images.png" class="item-icon" />
+      <image src="/images/game/信息.png" class="item-icon" />
       <text class="item-label">游戏信息</text>
     </view>
     <textarea bindblur="set_message_data"
@@ -17,7 +17,7 @@
 
   <!-- 游戏类型 -->
   <view class="form-item">
-    <image src="/images/游戏.png" class="item-icon" />
+    <image src="/images/game/游戏类型.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "send_location"
     placeholder="游戏类型（王者荣耀、和平精英...）"
@@ -26,7 +26,7 @@
   </view>
   <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
-    <image src="/images/takeout/time.png" class="item-icon" />
+    <image src="/images/game/时长.png" class="item-icon" />
     <view class="item-input">{{takeout_data.time || "游戏时长"}}<text>(小时)</text></view>
   </view>
 
@@ -61,7 +61,7 @@
   ></view>
   <!-- 性别 -->
   <view class="form-item">
-          <image src="/images/性别.png" class="item-icon" />
+          <image src="/images/game/性别.png" class="item-icon" />
           <view class="gender-options">
             <radio-group bindchange="setGender">
               <label class="gender-label">

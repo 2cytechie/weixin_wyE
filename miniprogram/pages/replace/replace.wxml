@@ -6,7 +6,7 @@
     <image src="/images/home.png" mode="aspectFill" class="top-image"/>
   <!-- 取餐地 -->
   <view class="form-item">
-    <image src="/images/我的地址.png" class="item-icon" />
+    <image src="/images/replace/地址.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "send_location"
     placeholder="填写一个地址"
@@ -19,7 +19,7 @@
   </view>
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
-    <image src="/images/takeout/time.png" class="item-icon" />
+    <image src="/images/replace/时间.png" class="item-icon" />
     <view class="item-input">{{takeout_data.time || "期望时间"}}</view>
   </view>
 
@@ -63,7 +63,7 @@
   <!-- 取餐信息 -->
   <view class="textarea-item">
     <view>
-      <image src="/images/takeout/images.png" class="item-icon" />
+      <image src="/images/replace/信息.png" class="item-icon" />
       <text class="item-label">代替信息</text>
     </view>
     <textarea bindblur="set_message_data"
