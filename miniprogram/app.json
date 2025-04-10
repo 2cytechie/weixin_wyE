@@ -24,16 +24,13 @@
     "pages/message/message",
     "pages/service/service",
     "pages/map/map",
-    "pages/by/by",
- 
+    "pages/order_message/order_message",
 
     "pages/index/index",
    
     "pages/banner1/banner1",
     "pages/banner2/banner2",
-    "pages/banner3/banner3",
-
-    "pages/about/about"
+    "pages/banner3/banner3"
   ],
   "window": {
     "backgroundColor": "#B9FFD3",

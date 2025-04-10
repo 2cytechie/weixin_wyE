@@ -16,7 +16,7 @@
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
     <image src="/images/takeout/time.png" class="item-icon" />
-    <view class="item-input">{{express_data.time || "预计送达时间"}}</view>
+    <view class="item-input">{{takeout_data.time || "预计送达时间"}}</view>
   </view>
 
   <!-- 自定义时间选择弹窗 -->
@@ -91,7 +91,7 @@
     <view class="btn shadow" bindtap="handleDecrease">
       <text class="btn-text">-</text>
     </view>
-    <text class="count">{{express_data.count}}</text>
+    <text class="count">{{takeout_data.count}}</text>
     <view class="btn shadow" bindtap="handleIncrease">
       <text class="btn-text">+</text>
     </view>
