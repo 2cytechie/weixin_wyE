@@ -18,6 +18,7 @@ Page({
       count:1,
       tip:3,
       pay:3,
+      viewCount:1,
 
       order_number:"",
       upload_time:"",

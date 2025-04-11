@@ -31,7 +31,7 @@ Page({
         pick_location: "亳州学院宿舍-8栋(*楼)-****",
         tip: 3,
         count:1,
-        viewCount:""
+        viewCount:1,
       },
       // 其他任务数据...
     ]
@@ -39,6 +39,7 @@ Page({
 
   show_popup(e) {
     const type = e.currentTarget.dataset.type;
+    console.log(type)
     if (!this.data.popup_type || type === this.data.popup_type) {
         this.setData({
             is_popup:!this.data.is_popup,
@@ -131,9 +132,31 @@ Page({
   
   show_page(e) {
     const message = e.currentTarget.dataset.idx;
-    
+    // 增加点击量
+    wx.cloud.callFunction({
+      name: 'viewCount',
+      data: {
+        id:message._id
+      }
+    })
+    let new_data_list = [];
+    for (let item of this.data.data_list) {
+        if (item._id === message._id) {
+            const newItem = {
+                ...item,
+                viewCount: item.viewCount ? item.viewCount + 1 : 1
+            };
+            new_data_list.push(newItem);
+        } else {
+            new_data_list.push(item);
+        }
+    }
+    // 更新页面数据
+    this.setData({
+        data_list: new_data_list
+    });
+
     wx.setStorageSync('show_order_data', message);
-console.log(e)
     wx.navigateTo({
         url: '/pages/order_message/order_message',
     });

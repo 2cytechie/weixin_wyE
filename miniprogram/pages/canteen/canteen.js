@@ -22,6 +22,7 @@ Page({
       count:1,
       tip:3,
       pay:0,
+      viewCount:1,
 
       order_number:"",
       upload_time:"",

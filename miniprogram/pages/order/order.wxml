@@ -39,7 +39,6 @@
   <view class="task-list">
     <block wx:for="{{data_list}}" wx:key="id">
       <view class="task-item" bind:tap="show_page" data-idx="{{item}}" data-id="{{item._id}}">
-        <span class="text">浏览量: {{item.viewCount}}</span>
         <!-- 任务头部信息 -->
         <view class="task-header">
           <!-- <image src="/images/用户头像.png" class="task-avatar" /> -->
@@ -58,8 +57,11 @@
             {{item.send_location}}
           </view>
           <view class="reward">
-            <image src="/images/价格.png" class="reward-icon" />
-            {{item.tip * item.count}}元
+            <view class="reward">
+              <image src="/images/价格.png" class="reward-icon" />
+              <view class="text-red">{{item.tip * item.count}}元</view>
+            </view>
+            <view class="text">浏览量: {{item.viewCount}}</view>
           </view>
         </view>
       </view>

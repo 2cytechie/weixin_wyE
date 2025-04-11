@@ -179,10 +179,13 @@ input {
 .reward {
   display: flex;
   align-items: center;
-  color: #e53935;
   font-size: 32rpx;
   font-weight: bold;
   margin : 15rpx 5rpx;
+  justify-content: space-between;
+}
+.text-red{
+  color: red;
 }
 .reward-icon {
   width: 35rpx;
