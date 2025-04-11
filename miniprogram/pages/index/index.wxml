@@ -1,61 +1,68 @@
-<!--pages/benefit/benefit.wxml-->
-        <!-- wxml -->
-        <view class="container">
-            <!-- 顶部区域 -->
-            <view class="header">
-                <view class="back-icon">←</view>
-                <view class="title">福利中心</view>
-                <view class="header-ops">
-                    <view class="dots">...</view>
-                    <view class="icon">◎</view>
-                </view>
-            </view>
-
-            <!-- 积分与签到区域 -->
-            <view class="points-section">
-                <view class="points-count">
-                    <text class="big-number">{{points}}</text>
-                    <view class="points-desc">
-                        <text>可用积分 ></text>
-                        <text class="sign-desc">今年已签到{{signedDays}}天,可补签{{extraSignChance}}次</text>
-                    </view>
-                </view>
-
-                <!-- 签到矩阵 -->
-                <view class="sign-matrix">
-                    <view class="sign-item" wx:for="{{weekDays}}" wx:key="index" bindtap="signIn" data-index="{{index}}">
-                        <view class="day">{{item.day}}</view>
-                        <view class="sign-status">
-                            <image wx:if="{{item.needbuqian}}" src="/images/未签到.png" class="buqian-icon"></image>
-                            <image wx:elif="{{item.signed}}" src="/images/签到.png" class="sign-icon"></image>
-                            <image wx:else src="/images/未签到.png" class="unsign-icon"></image>
-                        </view>
-                    </view>
-                    <view class="continuous-sign">
-                        <text class="sign-count">已连续签到{{continuousSignDays}}天</text>
-                        <text class="sign-tip">连续签到七天领取豪礼</text>
-                        <image src="/images/签到 (1).png" class="battery-icon"></image>
-                    </view>
-                </view>
-            </view>
-
-            <!-- 积分兑换区域 -->
-            <view class="exchange-section">
-                <text class="section-title">积分兑换</text>
-                <view class="exchange-item" wx:for="{{exchangeList}}" wx:key="index">
-                    <view class="item-left">
-                        <image src="/images/红包.png" class="item-icon"></image>
-                        <view class="item-desc">
-                            <text class="item-title">{{item.title}}</text>
-                            <text class="item-tip">{{item.tip}}</text>
-                        </view>
-                    </view>
-                    <view class="item-right">
-                        <text class="money">{{item.money}}</text>
-                        <text class="condition">满{{item.condition}}可用</text>
-                        <button class="exchange-btn" disabled="{{item.integral > points}}" bindtap="exchange" data-index="{{index}}">{{item.integral}}兑换</button>
-                    </view>
-                </view>
+<view class="container">
+    <view class="top">
+        <!-- 顶部标题栏 -->
+        <view class="header">
+            <view class="title">
+                任务大厅
             </view>
         </view>
-    
+
+        <!-- 搜索栏 -->
+        <!-- <view class="search-bar">
+          <image src="/images/搜索.png" class="search-icon" />
+          <input type="text" placeholder="输入关键词搜索订单" />
+        </view> -->
+
+        <!-- 筛选标签 -->
+        <view class="filter-tags">
+            <view class="tag" bind:tap="show_popup" data-type="service">服务 {{popup_type=='service'?'▼':'▲'}}</view>
+            <view class="tag" bind:tap="show_popup" data-type="status">状态 {{popup_type=='status'?'▼':'▲'}}</view>
+            <view class="tag" bind:tap="show_popup" data-type="location">地点 {{popup_type=='location'?'▼':'▲'}}</view>
+            <view class="tag" bind:tap="show_popup" data-type="gender">性别 {{popup_type=='gender'?'▼':'▲'}}</view>
+        </view>
+
+        <!-- 弹窗 -->
+        <view wx:if="{{is_popup}}">
+            <view class="top-button" wx:for="{{optionLists[popup_type]}}" wx:key="*this" bindtap="selectOption" data-value="{{item}}">
+                <text class="text">{{item}}</text>
+                <checkbox class="checkBox" checked="{{selectedInfo[popup_type] === item}}"/>
+            </view>
+            <!-- 确定重置 -->
+            <view class="top-button">
+                <view class="reset-button" bindtap="resetOptions">重置</view>
+                <view class="confirm-button" bindtap="confirmOptions">确定</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 任务列表 --> 
+    <view class="task-list">
+        <block wx:for="{{data_list}}" wx:key="count">
+            <view class="task-item" bind:tap="show_page" data-idx="{{item}}" data-id="{{item._id}}">
+                <span class="text">浏览量: {{item.viewCount}}</span>
+                <!-- 任务头部信息 -->
+                <view class="task-header">
+                    <!-- <image src="/images/用户头像.png" class="task-avatar" /> -->
+                    <view class="task-type">{{item.service}}</view>
+                    <image src="/images/闹铃.png" class="task-imageclock"/>
+                    <text class="task-time">{{item.time}}</text>
+                    <text class="text">截止</text>
+                    <view class="{{item.status == '待接单' ? 'task-status0' : 'task-status1'}}">{{item.status}}</view>
+                </view>
+
+                <!-- 任务详情 -->
+                <view class="task-content">
+                    <text>{{item.message}}</text>
+                    <view class="task-location">
+                        <image src="/images/我的地址.png" class="location-icon" />
+                        {{item.pick_location}}
+                    </view>
+                    <view class="reward">
+                        <image src="/images/价格.png" class="reward-icon" />
+                        {{item.tip * item.count}}元
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>    

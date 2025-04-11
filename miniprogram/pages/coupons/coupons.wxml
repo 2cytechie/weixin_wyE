@@ -25,7 +25,9 @@
       <view class="coupon-line"></view>
       <view class="coupon-footer">
         <view class="usage">适用于所有服务</view>
-        <button class="use-btn" bindtap="goToUse">去使用</button>
+        <navigator url="/pages/order/order" open-type="switchTab" >
+        <view class="use-btn">去使用</view> 
+      </navigator>
       </view>
     </view>
   </view>

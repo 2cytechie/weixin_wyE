@@ -141,7 +141,16 @@ Page({
 
   },
 
-  linqu() {
+  linqu(e) {
+    const index = e.currentTarget.dataset.index;
+    // 获取当前的优惠券数组
+    const coupons = this.data.coupons;
+    // 将对应索引的优惠券标记为已领取
+    coupons[index].isClaimed = true;
+    // 更新数据状态
+    this.setData({
+        coupons: coupons
+    });
 
   if (isCouponClaimed1) {
     
@@ -161,13 +170,26 @@ Page({
     isCouponClaimed1 = true;
   
   }
-
-
-
-   
+ 
   },
-  linqu1() {
-
+  data: {
+    // 优惠券数组，每个对象代表一个优惠券
+    coupons: [
+        {
+            isClaimed: false
+        }
+    ]
+},
+  linqu1(e) {
+    const index = e.currentTarget.dataset.index;
+    // 获取当前的优惠券数组
+    const coupons = this.data.coupons;
+    // 将对应索引的优惠券标记为已领取
+    coupons[index].isClaimed1 = true;
+    // 更新数据状态
+    this.setData({
+        coupons: coupons
+    });
     if (isCouponClaimed) {
       
     
@@ -186,13 +208,18 @@ Page({
       isCouponClaimed = true;
     
     }
-  
-  
-  
-     
+    
     },
-    linqu2() {
-
+    linqu2(e) {
+      const index = e.currentTarget.dataset.index;
+      // 获取当前的优惠券数组
+      const coupons = this.data.coupons;
+      // 将对应索引的优惠券标记为已领取
+      coupons[index].isClaimed2 = true;
+      // 更新数据状态
+      this.setData({
+          coupons: coupons
+      });
       if (isCouponClaimed2) {
         
       
@@ -218,3 +245,4 @@ Page({
       }
 })
 
+6

@@ -38,7 +38,8 @@
   <!-- 任务列表 --> 
   <view class="task-list">
     <block wx:for="{{data_list}}" wx:key="id">
-      <view class="task-item" bind:tap="show_page" data-idx="{{item}}">
+      <view class="task-item" bind:tap="show_page" data-idx="{{item}}" data-id="{{item._id}}">
+        <span class="text">浏览量: {{item.viewCount}}</span>
         <!-- 任务头部信息 -->
         <view class="task-header">
           <!-- <image src="/images/用户头像.png" class="task-avatar" /> -->

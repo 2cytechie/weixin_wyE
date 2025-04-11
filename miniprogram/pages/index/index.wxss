@@ -3,171 +3,85 @@
 }
 
 .header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.filter-tags {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tag {
+  cursor: pointer;
+}
+
+.top-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.reset-button,
+.confirm-button {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.task-list {
+  margin-top: 20px;
+}
+
+.task-item {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.task-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.back-icon {
-  font-size: 20px;
-}
-
-.title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.header-ops {
-  display: flex;
-  gap: 10px;
-}
-
-.dots,
-.icon {
-  font-size: 18px;
-}
-
-.points-section {
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.points-count {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.big-number {
-  font-size: 30px;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.points-desc {
-  display: flex;
-  flex-direction: column;
-}
-
-.sign-desc {
-  font-size: 12px;
-  color: #999;
-}
-
-.sign-matrix {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.sign-item {
-  text-align: center;
-}
-
-.day {
-  font-size: 14px;
-}
-
-.sign-status image {
-  width: 30px;
-  height: 30px;
-}
-
-.continuous-sign {
-  width: 100%;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.sign-count {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.sign-tip {
-  font-size: 12px;
-  color: #999;
-}
-
-.battery-icon {
-  width: 30px;
-  height: 30px;
-  margin-top: 10px;
-}
-
-.exchange-section {
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: bold;
   margin-bottom: 10px;
 }
 
-.exchange-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
-}
-
-.item-left {
-  display: flex;
-  align-items: center;
-}
-
-.item-icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
-
-.item-desc {
-  display: flex;
-  flex-direction: column;
-}
-
-.item-title {
-  font-size: 16px;
-}
-
-.item-tip {
-  font-size: 12px;
-  color: #999;
-}
-
-.item-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.money {
-  font-size: 16px;
+.task-type {
   font-weight: bold;
 }
 
-.condition {
-  font-size: 12px;
-  color: #999;
+.task-time {
+  margin-left: 10px;
 }
 
-.exchange-btn {
+.task-status0 {
+  color: green;
+}
+
+.task-status1 {
+  color: gray;
+}
+
+.task-content {
   margin-top: 10px;
-  background-color: #007aff;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
 }
 
-.exchange-btn[disabled] {
-  background-color: #ccc;
+.task-location,
+.reward {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
 }
+
+.location-icon,
+.reward-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}    

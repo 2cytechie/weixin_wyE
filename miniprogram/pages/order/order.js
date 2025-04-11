@@ -30,7 +30,8 @@ Page({
         message: "test肯德基，聂女士，8604预计到校门时间:17：14备注:",
         pick_location: "亳州学院宿舍-8栋(*楼)-****",
         tip: 3,
-        count:1
+        count:1,
+        viewCount:""
       },
       // 其他任务数据...
     ]
@@ -127,13 +128,16 @@ Page({
         });
     });
   },
+  
   show_page(e) {
     const message = e.currentTarget.dataset.idx;
-    wx.setStorageSync('show_order_data', message)
+    
+    wx.setStorageSync('show_order_data', message);
+console.log(e)
     wx.navigateTo({
-      url: '/pages/order_message/order_message',
+        url: '/pages/order_message/order_message',
     });
-  },
+},
 
    /**
    * 页面上拉触底事件的处理函数
@@ -148,6 +152,22 @@ Page({
    */
   onLoad(options) {
     this.loadData();
+    
+      const that = this;
+      // 确保 data_list 存在
+      if (this.data_list) {
+          this.data_list.forEach((order, index) => {
+              const viewCount = wx.getStorageSync('order_view_count_' + order.idx);
+              if (viewCount) {
+                  this.data_list[index].viewCount = viewCount;
+              }
+          });
+          this.setData({
+              data_list: this.data_list
+          });
+      }
+  
+    
   },
 
   /**
