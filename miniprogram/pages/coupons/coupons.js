@@ -1,31 +1,40 @@
+// pages/coupons/coupons.js
 Page({
   data: {
-    couponList: [
-      {
-        id: 1,
-        icon: '/images/coupon-icon.png', // 替换为实际图标路径
-        name: '跑腿券',
-        expireTime: '2025-04-02 19:35到期',
-        amount: 1,
-        condition: 3
+    couponList: [],       // 存储优惠券列表
+    isLoading: true,      // 加载状态
+    loadError: false      // 错误状态
+  },
+
+  onLoad() {
+    // 页面加载时获取优惠券
+    this.fetchCoupons();
+  },
+
+  fetchCoupons() {
+    // 调用云函数获取优惠券数据
+    wx.cloud.callFunction({
+      name: 'getCoupons', // 云函数名称（需与云函数目录名一致）
+      success: ({ result }) => {
+        // 成功时更新数据并关闭加载状态
+        this.setData({
+          couponList: result,
+          isLoading: false
+        });
+      },
+      fail: (err) => {
+        // 失败时记录错误并显示错误提示
+        console.error('[云函数调用失败]', err);
+        this.setData({
+          isLoading: false,
+          loadError: true
+        });
       }
-    ]
+    });
   },
 
-  // 返回上一页
   goBack() {
-    wx.navigateBack({
-      delta: 1
-    });
-  },
-
-  // 跳转到使用优惠券页面（示例）
-  goToUse() {
-    wx.showToast({
-      title: '前往使用优惠券',
-      icon: 'none'
-    });
-    // 实际开发中替换为真实跳转逻辑
-    // wx.navigateTo({ url: '/pages/useCoupon/useCoupon' });
+    // 返回上一页
+    wx.navigateBack({ delta: 1 });
   }
-})
+});
