@@ -1,4 +1,3 @@
-<!--pages/coupons/coupons.wxml-->
 <view class="container">
   <!-- 顶部导航栏 -->
   <view class="nav-bar">
@@ -8,30 +7,56 @@
     <view class="nav-title">我的优惠券</view>
   </view>
 
-  <!-- 优惠券列表 -->
-  <view class="coupon-list">
-    <view class="coupon-card" wx:for="{{couponList}}" wx:key="id">
-      <view class="coupon-header">
-        <image src="/images/红包.png" mode="widthFix" class="coupon-icon"></image>
-        <view class="coupon-info">
-          <view class="coupon-name">{{item.name}}</view>
-          <view class="coupon-time">{{item.expireTime}}</view>
-        </view>
-        <view class="coupon-price">
-          <view class="price-text">¥{{item.amount}}</view>
-          <view class="condition">满{{item.condition}}可用</view>
-        </view>
-      </view>
-      <view class="coupon-line"></view>
-      <view class="coupon-footer">
-        <view class="usage">适用于所有服务</view>
-        <navigator url="/pages/order/order" open-type="switchTab" >
-        <view class="use-btn">去使用</view> 
-      </navigator>
-      </view>
-    </view>
+  <!-- 加载状态提示 -->
+  <view wx:if="{{isLoading}}" class="loading-tip">
+    <text>正在加载优惠券...</text>
   </view>
 
-  <!-- 无更多提示 -->
-  <view class="no-more-tip">----- 已展示全部优惠券 -----</view>
+  <!-- 错误提示 -->
+  <view wx:if="{{loadError}}" class="error-tip">
+    <text>加载优惠券失败，请稍后重试</text>
+  </view>
+
+  <!-- 优惠券列表（仅在数据加载完成且无错误时显示） -->
+  <view class="coupon-list" wx:if="{{!isLoading && !loadError}}">
+    <!-- 使用 <block> 进行列表渲染（不生成额外节点） -->
+    <block wx:for="{{couponList}}" wx:key="id"> <!-- wx:key 使用文档唯一标识（id 或 _id） -->
+      <view class="coupon-card">
+        <!-- 优惠券头部：图标 + 名称 + 时间 -->
+        <view class="coupon-header">
+          <image src="/images/红包.png" mode="widthFix" class="coupon-icon"></image>
+          <view class="coupon-info">
+            <view class="coupon-name">{{item.name}}</view> <!-- 优惠券名称 -->
+            <view class="coupon-time">
+              有效期至：{{item.expireTime | formatTime}} <!-- 格式化时间（需配合过滤器） -->
+            </view>
+          </view>
+          <view class="coupon-price">
+            <view class="price-text">¥{{item.amount}}</view> <!-- 优惠金额 -->
+            <view class="condition">满{{item.condition}}元可用</view> <!-- 使用条件 -->
+          </view>
+        </view>
+
+        <!-- 分割线 -->
+        <view class="coupon-line"></view>
+
+        <!-- 底部：使用范围 + 按钮 -->
+        <view class="coupon-footer">
+          <view class="usage">{{item.usage || '适用于所有服务'}}</view> <!-- 适用范围（支持数据库字段） -->
+          <navigator 
+            url="/pages/order/order" 
+            open-type="switchTab" 
+            class="use-btn"
+          >
+            去使用
+          </navigator>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 无数据提示（当列表为空时显示） -->
+  <view class="no-more-tip" wx:if="{{!isLoading && !loadError && couponList.length === 0}}">
+    ----- 暂无可用优惠券 -----
+  </view>
 </view>

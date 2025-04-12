@@ -1,68 +1,44 @@
 <view class="container">
-    <view class="top">
-        <!-- 顶部标题栏 -->
-        <view class="header">
-            <view class="title">
-                任务大厅
-            </view>
+    <!-- 顶部导航栏 -->
+    <view class="nav-bar">
+        <view class="nav-left" bindtap="goBack">
+            <image src="/images/优惠券01.png" mode="widthFix" class="back-icon"></image>
         </view>
-
-        <!-- 搜索栏 -->
-        <!-- <view class="search-bar">
-          <image src="/images/搜索.png" class="search-icon" />
-          <input type="text" placeholder="输入关键词搜索订单" />
-        </view> -->
-
-        <!-- 筛选标签 -->
-        <view class="filter-tags">
-            <view class="tag" bind:tap="show_popup" data-type="service">服务 {{popup_type=='service'?'▼':'▲'}}</view>
-            <view class="tag" bind:tap="show_popup" data-type="status">状态 {{popup_type=='status'?'▼':'▲'}}</view>
-            <view class="tag" bind:tap="show_popup" data-type="location">地点 {{popup_type=='location'?'▼':'▲'}}</view>
-            <view class="tag" bind:tap="show_popup" data-type="gender">性别 {{popup_type=='gender'?'▼':'▲'}}</view>
-        </view>
-
-        <!-- 弹窗 -->
-        <view wx:if="{{is_popup}}">
-            <view class="top-button" wx:for="{{optionLists[popup_type]}}" wx:key="*this" bindtap="selectOption" data-value="{{item}}">
-                <text class="text">{{item}}</text>
-                <checkbox class="checkBox" checked="{{selectedInfo[popup_type] === item}}"/>
-            </view>
-            <!-- 确定重置 -->
-            <view class="top-button">
-                <view class="reset-button" bindtap="resetOptions">重置</view>
-                <view class="confirm-button" bindtap="confirmOptions">确定</view>
-            </view>
-        </view>
+        <view class="nav-title">我的优惠券</view>
     </view>
 
-    <!-- 任务列表 --> 
-    <view class="task-list">
-        <block wx:for="{{data_list}}" wx:key="count">
-            <view class="task-item" bind:tap="show_page" data-idx="{{item}}" data-id="{{item._id}}">
-                <span class="text">浏览量: {{item.viewCount}}</span>
-                <!-- 任务头部信息 -->
-                <view class="task-header">
-                    <!-- <image src="/images/用户头像.png" class="task-avatar" /> -->
-                    <view class="task-type">{{item.service}}</view>
-                    <image src="/images/闹铃.png" class="task-imageclock"/>
-                    <text class="task-time">{{item.time}}</text>
-                    <text class="text">截止</text>
-                    <view class="{{item.status == '待接单' ? 'task-status0' : 'task-status1'}}">{{item.status}}</view>
-                </view>
+    <!-- 加载状态提示 -->
+    <view wx:if="{{isLoading}}" class="loading-tip">正在加载优惠券...</view>
 
-                <!-- 任务详情 -->
-                <view class="task-content">
-                    <text>{{item.message}}</text>
-                    <view class="task-location">
-                        <image src="/images/我的地址.png" class="location-icon" />
-                        {{item.pick_location}}
+    <!-- 错误提示 -->
+    <view wx:if="{{loadError}}" class="error-tip">加载优惠券失败，请稍后重试。</view>
+
+    <!-- 优惠券列表（使用 <block> 循环） -->
+    <view class="coupon-list" wx:if="{{!isLoading && !loadError}}">
+        <block wx:for="{{couponList}}" wx:key="id"> <!-- 改为 <block> 循环 -->
+            <view class="coupon-card">
+                <view class="coupon-header">
+                    <image src="/images/红包.png" mode="widthFix" class="coupon-icon"></image>
+                    <view class="coupon-info">
+                        <view class="coupon-name">{{item.name}}</view>
+                        <view class="coupon-time">{{item.expireTime}}</view>
                     </view>
-                    <view class="reward">
-                        <image src="/images/价格.png" class="reward-icon" />
-                        {{item.tip * item.count}}元
+                    <view class="coupon-price">
+                        <view class="price-text">¥{{item.amount}}</view>
+                        <view class="condition">满{{item.condition}}可用</view>
                     </view>
+                </view>
+                <view class="coupon-line"></view>
+                <view class="coupon-footer">
+                    <view class="usage">适用于所有服务</view>
+                    <navigator url="/pages/order/order" open-type="switchTab">
+                        <view class="use-btn">去使用</view>
+                    </navigator>
                 </view>
             </view>
         </block>
     </view>
-</view>    
+
+    <!-- 无更多提示 -->
+    <view class="no-more-tip" wx:if="{{!isLoading && !loadError}}">----- 已展示全部优惠券 -----</view>
+</view>
