@@ -1,19 +1,157 @@
 Page({
   data: {
+    tmp_images:[],
     takeout_data:{
     },
     user_data:{
       avatar:"/images/4.png",
       name:"名字",
       phone:"电话"
-    }
+    },
+
+    isImageFullScreen: false,
+    currentImage: "",
+    scale: 1,
+    initialScale: 1,
+    translateX: 0,
+    translateY: 0,
+    initialTranslateX: 0,
+    initialTranslateY: 0,
+    startDistance: 0,
+    startX: 0,
+    startY: 0
   },
   onLoad(options) {
-    // 利用openid请求数据库
     const data = wx.getStorageSync('show_order_data')
     this.setData({
       takeout_data:data
       // user_data
     })
+    let images = this.data.takeout_data.images
+    if(images.length > 0){
+      this.downloadImages(images)
+    }
+  },
+  downloadImages(res) {
+    // 遍历所有图片fileID并下载
+    const downloadTasks = res.map(fileID => 
+      wx.cloud.downloadFile({
+        fileID: fileID // 单个fileID
+      }).then(res => {
+        return res.tempFilePath; // 返回临时路径
+      })
+    );
+  
+    // 批量下载并保存结果
+    Promise.all(downloadTasks)
+      .then(tempFilePaths => {
+        this.setData({
+          tmp_images: tempFilePaths // 保存临时路径到页面数据
+        });
+        console.log("message_order加载成功")
+      })
+      .catch(error => {
+        console.error('message_order加载成功部分图片加载失败', error);
+      });
+  },
+  // 优化后的JS逻辑
+previewImage(e) {
+  const src = e.currentTarget.dataset.src;
+  this.setData({
+    isImageFullScreen: true,
+    currentImage: src,
+    scale: 1,
+    translateX: 0,
+    translateY: 0,
+  });
+},
+
+closeFullScreen() {
+  this.setData({
+    isImageFullScreen: false,
+    scale: 1,
+    translateX: 0,
+    translateY: 0
+  });
+},
+
+onTouchStart(e) {
+  if (e.touches.length === 2) {
+    // 计算初始间距
+    const touch1 = e.touches[0];
+    const touch2 = e.touches[1];
+    this.startDistance = Math.hypot(
+      touch2.clientX - touch1.clientX,
+      touch2.clientY - touch1.clientY
+    );
+    this.initialScale = this.data.scale;
+  } else if (e.touches.length === 1) {
+    // 记录初始位置
+    this.startX = e.touches[0].clientX;
+    this.startY = e.touches[0].clientY;
+    this.initialTranslateX = this.data.translateX;
+    this.initialTranslateY = this.data.translateY;
   }
+},
+
+onTouchMove(e) {
+  if (e.touches.length === 2) {
+    // 处理缩放
+    const touch1 = e.touches[0];
+    const touch2 = e.touches[1];
+    const currentDistance = Math.hypot(
+      touch2.clientX - touch1.clientX,
+      touch2.clientY - touch1.clientY
+    );
+    
+    // 计算缩放比例并限制范围
+    const newScale = Math.min(
+      Math.max(
+        this.initialScale * (currentDistance / this.startDistance),
+        0.5
+      ),
+      5
+    );
+    
+    this.setData({ scale: newScale });
+  } else if (e.touches.length === 1) {
+    // 处理平移
+    const deltaX = e.touches[0].clientX - this.startX;
+    const deltaY = e.touches[0].clientY - this.startY;
+    
+    // 计算新的位置并限制边界
+    const maxTranslate = 100 * (this.data.scale - 1);
+    const newTranslateX = Math.min(
+      Math.max(
+        this.initialTranslateX + deltaX,
+        -maxTranslate
+      ),
+      maxTranslate
+    );
+    const newTranslateY = Math.min(
+      Math.max(
+        this.initialTranslateY + deltaY,
+        -maxTranslate
+      ),
+      maxTranslate
+    );
+    
+    this.setData({
+      translateX: newTranslateX,
+      translateY: newTranslateY
+    });
+  }
+},
+
+onTouchEnd() {
+  // 自动居中逻辑（可选）
+  // if (this.data.scale === 1) {
+  //   setTimeout(() => {
+  //     this.setData({
+  //       translateX: 0,
+  //       translateY: 0
+  //     });
+  //   }, 200);
+  // }
+}
 });

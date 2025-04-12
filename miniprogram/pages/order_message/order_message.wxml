@@ -35,9 +35,14 @@
   <!-- 取外卖 -->
   <view class="order-section takeout-section">
     <view class="section-title">{{takeout_data.service}}</view>
-    <view class="takeout-item">
+    <view class="takeout-item" wx:if="{{takeout_data.pick_location}}">
       <view>取餐地</view>
       <view>{{takeout_data.pick_location}}</view>
+    </view>
+    <view class="takeout-item">
+      <view wx:if="{{takeout_data.service === '更多帮助'}}">帮助地点</view>
+      <view wx:else>送餐地址</view>
+      <view>{{takeout_data.send_location}}</view>
     </view>
     <view class="takeout-item">
       <view>预计送达时间</view>
@@ -46,10 +51,6 @@
     <view class="takeout-item">
       <view>取餐份数</view>
       <view>{{takeout_data.count}}</view>
-    </view>
-    <view class="takeout-item">
-      <view>备注</view>
-      <view>{{takeout_data.notes}}</view>
     </view>
     <view class="takeout-item">
       <view>总价</view>
@@ -63,6 +64,23 @@
       <view>备注</view>
       <view>{{takeout_data.notes}}</view> <!-- 额外备注字段 -->
     </view>
+    <view class="image-list">
+  <block wx:for="{{tmp_images}}" wx:key="*this">
+    <view class="image-item" bindtap="previewImage" data-src="{{item}}">
+      <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
+    </view>
+  </block>
+</view>
+
+<!-- 调整后的WXML结构 -->
+<view class="full-screen-mask" wx:if="{{isImageFullScreen}}" catchtap="closeFullScreen">
+  <view class="full-screen-image-container">
+    <image src="{{currentImage}}" mode="aspectFit" class="full-screen-image {{animationClass}}" 
+           bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd"
+           style="transform: scale({{scale}}) translate({{translateX}}px, {{translateY}}px);" />
+  </view>
+</view>
+
   </view>
 
   <!-- 小费与合计 -->
@@ -80,18 +98,18 @@
   <!-- 订单详细信息 -->
   <view class="order-section detail-section">
     <view class="detail-item">
-      <view>单号</view>
+      <view class="section-title">单号</view>
       <view>{{takeout_data.order_number}}</view>
     </view>
     <view class="detail-item">
       <view>支付时间</view>
       <view>{{takeout_data.upload_time}}</view>
     </view>
-    <view class="detail-item">
+    <view class="detail-item" wx:if="{{takeout_data.receive_time}}">
       <view>接单时间</view>
       <view>{{takeout_data.receive_time}}</view>
     </view>
-    <view class="detail-item">
+    <view class="detail-item" wx:if="{{takeout_data.confirm_time}}">
       <view>确认时间</view>
       <view>{{takeout_data.confirm_time}}</view>
     </view>

@@ -18,7 +18,7 @@ Page({
       count:1,
       tip:2,
       pay:2,
-      viewCount:1,
+      viewCount:0,
 
       order_number:"",
       upload_time:"",
@@ -34,7 +34,7 @@ Page({
     const dataToUpdate = {};
     dataToUpdate[`takeout_data.${takeoutType}`] = value;
     this.setData(dataToUpdate);
-    console.log(this.data.takeout_data)
+    // console.log(this.data.takeout_data)
   },
 
   // 显示时间选择器
@@ -155,7 +155,10 @@ Page({
             if (res.confirm) {
                 const now = new Date();
                 const uploadTime = now.toLocaleString();
-                this.setData({ 'takeout_data.upload_time': uploadTime });
+                this.setData({
+                  'takeout_data.upload_time': uploadTime,
+                  'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count
+                });
                 // 上传图片
                 this.uploadImages().then(() => {
                     // 上传信息
@@ -164,7 +167,14 @@ Page({
                         success: (res) => {
                             wx.showToast({
                                 title: '下单成功',
-                                icon: 'success'
+                                icon: 'success',
+                                success: () => {
+                                  setTimeout(() => {
+                                    wx.switchTab({
+                                      url: '/pages/start/start',
+                                  });
+                                  }, 1500);
+                              }
                             });
                         },
                         fail: (err) => {

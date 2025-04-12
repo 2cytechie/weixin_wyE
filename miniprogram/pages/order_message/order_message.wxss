@@ -24,8 +24,9 @@
   border-radius: 8px;
 }
 .section-title {
-  color: #666;
-  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  font-size: 30rpx;
   margin-bottom: 10px;
 }
 .route-info {
@@ -84,4 +85,47 @@
   padding: 8px 0;
   font-size: 12px;
   color: #666;
+}
+.image-item {
+  position: relative;
+  margin-bottom: 10rpx;
+  margin-left: 5rpx;
+}
+.uploaded-image {
+  margin-right: 17rpx;
+  width: 145rpx;
+  height: 145rpx;
+}
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+/* 优化后的CSS样式 */
+.full-screen-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.full-screen-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-screen-image {
+  max-width: 100%;
+  max-height: 100%;
+  transition: none;
+  will-change: transform; /* 启用GPU加速 */
 }

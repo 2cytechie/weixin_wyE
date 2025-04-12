@@ -31,7 +31,7 @@ Page({
         pick_location: "亳州学院宿舍-8栋(*楼)-****",
         tip: 3,
         count:1,
-        viewCount:1,
+        viewCount:0,
       },
       // 其他任务数据...
     ]
@@ -176,7 +176,6 @@ Page({
   onLoad(options) {
     this.loadData();
     
-      const that = this;
       // 确保 data_list 存在
       if (this.data_list) {
           this.data_list.forEach((order, index) => {
@@ -190,7 +189,6 @@ Page({
           });
       }
   
-    
   },
 
   /**

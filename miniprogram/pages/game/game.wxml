@@ -61,21 +61,21 @@
   ></view>
   <!-- 性别 -->
   <view class="form-item">
-          <image src="/images/game/性别.png" class="item-icon" />
-          <view class="gender-options">
-            <radio-group bindchange="setGender">
-              <label class="gender-label">
-                <radio value="男" checked="{{takeout_data.gender === '男'}}" /> 男
-              </label>
-              <label class="gender-label">
-                <radio value="女" checked="{{takeout_data.gender === '女'}}" /> 女
-              </label>
-              <label class="gender-label">
-                <radio value="不限" checked="{{takeout_data.gender === '不限'}}" /> 不限
-              </label>
-            </radio-group>
-          </view>
-        </view>
+    <image src="/images/game/性别.png" class="item-icon" />
+    <view class="gender-options">
+      <radio-group bindchange="setGender">
+        <label class="gender-label">
+          <radio value="男" checked="{{takeout_data.gender === '男'}}" /> 男
+        </label>
+        <label class="gender-label">
+          <radio value="女" checked="{{takeout_data.gender === '女'}}" /> 女
+        </label>
+        <label class="gender-label">
+          <radio value="不限" checked="{{takeout_data.gender === '不限'}}" /> 不限
+        </label>
+      </radio-group>
+    </view>
+  </view>
 
   <!-- 立即下单按钮 -->
   <view class="xiadan" bind:tap="order">立即下单</view>

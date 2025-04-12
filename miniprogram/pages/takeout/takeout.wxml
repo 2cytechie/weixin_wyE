@@ -22,7 +22,7 @@
     <image src="/images/supermarket/位置.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "send_location"
-    placeholder="输入收外卖地址"
+    placeholder="收货地址"
     confirm-type="done"
     class="item-input" />
   </view>
@@ -104,7 +104,7 @@
     <!-- 左侧图标和文字 -->
   <view class="qvcan">
     <view class="left-section">
-      <image src="/images/takeout/份数.png" class="item-icon" />
+      <image src="/images/supermarket/份数.png" class="item-icon" />
       <text>取餐份数</text>
     </view>
       <!-- 右侧加减操作 -->
