@@ -19,8 +19,7 @@
 
   <!-- 优惠券列表（仅在数据加载完成且无错误时显示） -->
   <view class="coupon-list" wx:if="{{!isLoading && !loadError}}">
-    <!-- 使用 <block> 进行列表渲染（不生成额外节点） -->
-    <block wx:for="{{couponList}}" wx:key="id"> <!-- wx:key 使用文档唯一标识（id 或 _id） -->
+    <block wx:for="{{couponList}}" wx:key="id">
       <view class="coupon-card">
         <!-- 优惠券头部：图标 + 名称 + 时间 -->
         <view class="coupon-header">

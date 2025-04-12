@@ -7,18 +7,19 @@ Page({
   },
 
   onLoad() {
-    // 页面加载时获取优惠券
+    // 页面加载时获取优惠券 
     this.fetchCoupons();
   },
 
   fetchCoupons() {
     // 调用云函数获取优惠券数据
     wx.cloud.callFunction({
-      name: 'getCoupons', // 云函数名称（需与云函数目录名一致）
-      success: ({ result }) => {
+      name: 'getCoupons',
+      success: (res) => {
         // 成功时更新数据并关闭加载状态
+        console.log(res.result)
         this.setData({
-          couponList: result,
+          couponList: res.result,
           isLoading: false
         });
       },
