@@ -1,5 +1,6 @@
 Page({
   data: {
+    is_looding:true,
     tmp_images:[],
     takeout_data:{
     },
@@ -46,7 +47,8 @@ Page({
     Promise.all(downloadTasks)
       .then(tempFilePaths => {
         this.setData({
-          tmp_images: tempFilePaths // 保存临时路径到页面数据
+          tmp_images: tempFilePaths, // 保存临时路径到页面数据
+          is_looding:false
         });
         console.log("message_order加载成功")
       })

@@ -64,22 +64,24 @@
       <view>备注</view>
       <view>{{takeout_data.notes}}</view> <!-- 额外备注字段 -->
     </view>
+    <view class="takeout-item" wx:if="{{is_looding}}">详情图片加载中. . .</view>
+    <view class="takeout-item" wx:if="{{!is_looding}}">详情图片</view>
     <view class="image-list">
-  <block wx:for="{{tmp_images}}" wx:key="*this">
-    <view class="image-item" bindtap="previewImage" data-src="{{item}}">
-      <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
+      <block wx:for="{{tmp_images}}" wx:key="*this">
+        <view class="image-item" bindtap="previewImage" data-src="{{item}}">
+          <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
+        </view>
+      </block>
     </view>
-  </block>
-</view>
 
-<!-- 调整后的WXML结构 -->
-<view class="full-screen-mask" wx:if="{{isImageFullScreen}}" catchtap="closeFullScreen">
-  <view class="full-screen-image-container">
-    <image src="{{currentImage}}" mode="aspectFit" class="full-screen-image {{animationClass}}" 
-           bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd"
-           style="transform: scale({{scale}}) translate({{translateX}}px, {{translateY}}px);" />
-  </view>
-</view>
+    <!-- 调整后的WXML结构 -->
+    <view class="full-screen-mask" wx:if="{{isImageFullScreen}}" catchtap="closeFullScreen">
+      <view class="full-screen-image-container">
+        <image src="{{currentImage}}" mode="aspectFit" class="full-screen-image {{animationClass}}" 
+              bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd"
+              style="transform: scale({{scale}}) translate({{translateX}}px, {{translateY}}px);" />
+      </view>
+    </view>
 
   </view>
 

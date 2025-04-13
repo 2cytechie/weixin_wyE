@@ -10,6 +10,18 @@ Page({
 
     openid : "",
     phoneList: [],
+    user_data:{
+      avatar:"/images/1.png",
+      name:"小明",
+      phone:[1909099,290849083],
+      is_orderer:false,
+      send_orders:["发出的订单号"],
+      pick_orders:["接单的订单号"],
+      locations:["我的地址"],
+      coupons:["优惠卷"],
+      cards:["卡号??????????????"],
+      message:["我的消息"]
+    },
 
     isAgree: true,
     showPhonePopup: false
@@ -30,6 +42,7 @@ Page({
       }
     })
   },
+
 
   handleGetPhoneNumber(e){
     console.log(e)
@@ -74,23 +87,7 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
 
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage() {
 
   }
