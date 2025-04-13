@@ -13,7 +13,7 @@
 
   <!-- 接单员申请模块 -->
   <view class="order-section">
-  <navigator url="/pages/about/about">
+  <navigator url="/pages/about/about" >
     <view class="order-banner">
       <text class="banner-tip">什么是接单员？点击了解</text>
     </view>
