@@ -2,16 +2,16 @@
 <view class="container">
   <!-- 顶部导航 -->
   <view class="header">
-    <view class="back-btn" bindtap="navBack">
+    <view class="back-btn">
       <image src="/images/申请.png" class="back-icon"></image>
     </view>
     <view class="title-container">
       <text class="title">申请接单员</text>
     </view>
-    <view class="header-ops">
+    <!-- <view class="header-ops">
       <view class="dots">...</view>
       <view class="icon">◎</view>
-    </view>
+    </view> -->
   </view>
 
   <!-- 上传区域 -->
@@ -20,7 +20,8 @@
     <text class="upload-tip">点击图片上传学生证或学籍证明</text>
     <view class="upload-box" bindtap="chooseImage">
       <view class="upload-placeholder">
-        <image src="/images/上传证件.png" class="placeholder-img"></image>
+        <image wx:if="{{tmp_image}}" mode="aspectFit" src="{{tmp_image}}" class="placeholder-img"/>
+        <image wx:else mode="aspectFit" src="/images/上传证件.png" class="placeholder-img"></image>
       </view>
     </view>
   </view>
@@ -30,31 +31,28 @@
     <view class="form-item">
       <image src="/images/姓名.png" class="form-icon"></image>
       <text class="form-label">姓名</text>
-      <input type="text" placeholder="请输入真实姓名" class="form-input" />
+      <input type="text" placeholder="请输入真实姓名" class="form-input" bindblur="set_message_data" data-takeout_type = "name" />
     </view>
     <view class="form-item">
       <image src="/images/证件号码.png" class="form-icon"></image>
       <text class="form-label">证件号码</text>
-      <input type="text" placeholder="请输入证件号码" class="form-input" />
+      <input type="text" placeholder="请输入证件号码" class="form-input" bindblur="set_message_data" data-takeout_type = "id_number" />
     </view>
     <view class="fee-section">
       <image src="/images/说明.png" class="form-icon"></image>
-      <text class="form-label">手续费说明</text>
-      <picker-view class="fee-picker">
-        <picker-view-column>
-          <view>以下为本平台各项服务的手续费说明内容...</view>
-        </picker-view-column>
-      </picker-view>
+      <view class="form-label">手续费说明</view>
     </view>
+    <view>为确保平台稳定发展，征收手续费用于平台日常维护。 当前手续费仅供参考，在不同季节下会有所调整</view>
   </view>
 
   <!-- 提交区域 -->
   <view class="submit-section">
-    <button class="submit-btn" disabled="{{!isAgree}}">
+    <view class="submit-btn" bind:tap="order">
       <text class="btn-text">提交审核</text>
-    </button>
+    </view>
+
     <view class="agreement-section">
-      <checkbox checked="{{isAgree}}" bindchange="handleAgreeChange" class="agree-checkbox" />
+      <checkbox checked="{{isAgree}}" bind:tap="handleAgreeChange" class="agree-checkbox" />
       <text class="agree-text">我已同意并阅读</text>
       <text class="link-text">《申请接单员协议》</text>
     </view>

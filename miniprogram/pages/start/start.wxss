@@ -1,6 +1,7 @@
 .container {
   background: #f5f5f5;
   padding: 25rpx;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 
 /* 轮播图样式 */

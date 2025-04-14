@@ -1,13 +1,18 @@
 // js
 Page({
-  navBack() {
-    wx.navigateBack();
+  data:{
+    takeout_data:{
+      name:"",
+      phone:""
+    }
   },
-
-  navigateToRule() {
-    wx.navigateTo({
-      url: '/pages/rule/rule' // 替换为实际规则页面路径
-    });
+  set_message_data(e) {
+    const takeoutType = e.currentTarget.dataset.takeout_type;
+    const value = e.detail.value;
+    const dataToUpdate = {};
+    dataToUpdate[`takeout_data.${takeoutType}`] = value;
+    this.setData(dataToUpdate);
+    console.log(this.data.takeout_data)
   },
 
   submitApply() {

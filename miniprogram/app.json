@@ -12,6 +12,7 @@
     "pages/game/game",
     "pages/more/more",
     "pages/login/login",
+    "pages/about/about",
     "pages/taker/taker",
     "pages/promotion/promation",
     "pages/benefit/benefit",
@@ -26,6 +27,7 @@
     "pages/map/map",
     "pages/order_message/order_message",
     "pages/index/index",
+
     "pages/banner1/banner1",
     "pages/banner2/banner2",
     "pages/banner3/banner3"

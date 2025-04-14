@@ -1,7 +1,8 @@
 /* pages/coupons/coupons.wxss */
 .container {
   background: #fff;
-  padding: 20rpx;
+  padding: 25rpx;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 
 /* 导航栏样式 */

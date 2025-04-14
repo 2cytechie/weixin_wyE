@@ -1,5 +1,6 @@
 .container {
-  padding: 20px;
+  padding: 25px;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 
 .header {
