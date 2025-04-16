@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor":"#DAA520",
+  "navigationBarTitleText": "游戏开黑^_^"
+
 }

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor":"#FFA500",
+  "navigationBarTitleText": "代替服务^_^"
+
 }

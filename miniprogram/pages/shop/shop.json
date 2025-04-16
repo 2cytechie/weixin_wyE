@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor":"#00FFFF",
+  "navigationBarTitleText": "取奶咖^_^"
+
 }

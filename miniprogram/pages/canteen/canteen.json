@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor":"#d4237a",
+  "navigationBarTitleText": "食堂^_^"
 }

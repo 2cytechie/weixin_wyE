@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor":"#f4ea2a",
+  "navigationBarTitleText": "取外卖^_^"
 }
