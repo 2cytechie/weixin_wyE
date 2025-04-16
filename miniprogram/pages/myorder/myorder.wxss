@@ -1,6 +1,8 @@
 /* pages/order/order.wxss */
 .container {
   background: #ffffff;
+  padding: 25rpx;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 
 /* wxss */

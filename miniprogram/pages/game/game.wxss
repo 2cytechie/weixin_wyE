@@ -1,6 +1,7 @@
 .container {
   background: #f8f8f8;
   padding: 25rpx;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 .zuoyou{
   display: flex;

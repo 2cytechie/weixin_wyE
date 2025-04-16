@@ -17,7 +17,7 @@ Page({
       name: 'getCoupons',
       success: (res) => {
         // 成功时更新数据并关闭加载状态
-        console.log(res.result)
+        // console.log(res.result)
         this.setData({
           couponList: res.result,
           isLoading: false

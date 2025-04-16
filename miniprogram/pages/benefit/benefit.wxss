@@ -1,20 +1,18 @@
 .container {
-  padding: 20px;
+  padding: 25px;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.back-icon {
-  font-size: 20px;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
 }
 
 .title {
-  font-size: 20px;
+  align-items: center;
+  font-size: 40rpx;
   font-weight: bold;
 }
 
@@ -166,8 +164,4 @@
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
-}
-
-.exchange-btn[disabled] {
-  background-color: #ccc;
 }

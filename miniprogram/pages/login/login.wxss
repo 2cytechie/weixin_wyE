@@ -1,7 +1,8 @@
 /* pages/login/login.wxss */
 .container {
   background: linear-gradient(180deg, #F8FFBD 0%, #FFFFFF 100%);
-  min-height: 100vh;
+  padding: 25rpx;
+  height: 100vh; /* 占满整个屏幕高度 */
   padding: 40rpx 30rpx;
 }
 

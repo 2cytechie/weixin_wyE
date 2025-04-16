@@ -12,12 +12,12 @@
     <!-- <view class="login-btn" bindtap="handleLogin">手机号快捷登录</view> -->
     
     <!-- 测试 -->
-  <view bind:tap="get_openid">获取用户openid--{{openid}}</view>
-  <view bind:tap="test">test------------{{test}}</view>
+  <view bind:tap="get_openid">获取用户openid--{{user_data.openid}}</view>
+  <view bind:tap="Login">Login------------{{test}}</view>
 
 
     <view class="agreement">
-      <checkbox checked="{{isAgree}}" bindchange="handleAgreeChange" />
+      <checkbox checked="{{isAgree}}" bindchange="" />
       <text>我已阅读并同意</text>
       <text class="link">《用户协议》</text>
       <text>和</text>

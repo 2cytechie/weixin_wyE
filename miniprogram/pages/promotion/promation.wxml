@@ -1,16 +1,12 @@
-<!--pages/promotion/promation.wxml-->
-<!-- wxml -->
 <view class="container">
   <!-- 顶部导航 -->
   <view class="header">
-    <view class="back-btn" bindtap="navBack">
+    <view class="back-btn">
       <image src="/images/申请.png" class="back-icon"></image>
     </view>
     <view class="title">申请推广员</view>
-    <view class="header-ops">
-      <view class="dots">...</view>
-      <view class="icon">◎</view>
-    </view>
+    <!-- 占位 -->
+    <view></view>
   </view>
 
   <!-- 表单区域 -->
@@ -20,28 +16,28 @@
         <image src="/images/姓名.png" class="form-icon"></image>
         <text>昵称</text>
       </view>
-      <input type="text" placeholder="请输入真实昵称" class="form-input" />
+      <input type="text" placeholder="请输入真实昵称" class="form-input" bindblur="set_message_data" data-takeout_type = "name"/>
     </view>
     <view class="form-item">
       <view class="form-label">
         <image src="/images/手机号.png" class="form-icon"></image>
         <text>手机号</text>
       </view>
-      <input type="number" placeholder="请输入手机号" class="form-input" />
+      <input type="number" placeholder="请输入手机号" class="form-input" bindblur="set_message_data" data-takeout_type = "phone"/>
     </view>
   </view>
 
   <!-- 规则说明 -->
-  <view class="rule-item" bindtap="navigateToRule">
+  <view class="rule-item">
     <view class="rule-label">
       <image src="/images/说明.png" class="form-icon"></image>
-      <text>规则说明</text>
+      <text>规则说明 ---- text</text>
     </view>
     <view class="arrow-icon">›</view>
   </view>
 
   <!-- 提交按钮 -->
-  <button class="submit-btn" bindtap="submitApply">
-    <text class="btn-text">提交申请</text>
-  </button>
+  <view class="submit-btn" bindtap="order">
+    <text>提交申请</text>
+  </view>
 </view>

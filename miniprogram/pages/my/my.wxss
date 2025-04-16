@@ -4,6 +4,7 @@
   flex-direction: column;
   background: linear-gradient(180deg, #B9FFD3, #FFFFFF);
   padding: 25rpx;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 
 /* 头部用户信息区域 */
@@ -226,5 +227,5 @@
   text-align: center;
   color: #999;
   font-size: 28rpx;
-  margin-top: 100rpx;
+  margin-top: 150rpx;
 }

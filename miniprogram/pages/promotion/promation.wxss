@@ -2,7 +2,8 @@
 /* wxss */
 .container {
   background: linear-gradient(180deg, #a1ffce 0%, #faffd1 100%);
-  padding: 20rpx;
+  padding: 25rpx;
+  height: 100vh; /* 占满整个屏幕高度 */
 }
 
 .header {
@@ -86,7 +87,6 @@
   font-size: 36rpx;
   color: #999;
 }
-
 .submit-btn {
   background: #333;
   color: #a1ffce;
@@ -95,7 +95,7 @@
   border: none;
   border-radius: 50rpx;
   padding: 30rpx;
-  margin-top: 40rpx;
-  width: 100%;
-  max-width: 800rpx;
+  width: 50%;
+  text-align: center;
+  margin: 100rpx 150rpx;
 }
