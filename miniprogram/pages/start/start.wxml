@@ -68,7 +68,8 @@
     <view class="coupon-upper">¥1</view>
     <view class="coupon-middle">满3可用</view>
     <view class="coupon-lower" bind:tap="linqu" data-index="0">
-        {{coupons[0].isClaimed ? '已领取' : '立即领取'}}
+      <navigator url="/pages/order/order" open-type="switchTab" >
+        {{coupons[0].isClaimed ? '已领取' : '立即领取'}} </navigator>
     </view>
 </view>
 
@@ -76,16 +77,20 @@
     <view class="coupon-item">
     <view class="coupon-upper">¥1</view>
     <view class="coupon-middle">满3可用</view>
+    
     <view class="coupon-lower" bind:tap="linqu1" data-index="0">
-        {{coupons[0].isClaimed1 ? '已领取' : '立即领取'}}
-    </view>
+      <navigator url="/pages/order/order" open-type="switchTab">
+        {{coupons[0].isClaimed1 ? '已领取' : '立即领取'}} </navigator>
+    </view> 
 </view>
 <view class="coupon-item">
     <view class="coupon-upper">¥1</view>
     <view class="coupon-middle">满3可用</view>
+    
     <view class="coupon-lower" bind:tap="linqu2" data-index="0">
-        {{coupons[0].isClaimed2 ? '已领取' : '立即领取'}}
-    </view>
+      <navigator url="/pages/order/order" open-type="switchTab"  >
+        {{coupons[0].isClaimed2 ? '已领取' : '立即领取'}} </navigator>
+    </view> 
 </view>
 </view>
 
@@ -96,3 +101,7 @@
   </view>
 
 </view>
+
+
+
+

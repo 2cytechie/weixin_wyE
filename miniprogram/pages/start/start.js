@@ -156,7 +156,7 @@ Page({
     
   
     wx.showToast({
-      title: '优惠卷已领取,不能再次领取',
+      title: '优惠卷已领取,正在前往使用',
       icon: 'none',
     
     });
@@ -194,7 +194,7 @@ Page({
       
     
       wx.showToast({
-        title: '优惠卷已领取,不能再次领取',
+        title: '优惠卷已领取,正在前往使用',
         icon: 'none',
       
       });
@@ -210,6 +210,7 @@ Page({
     }
     
     },
+    
     linqu2(e) {
       const index = e.currentTarget.dataset.index;
       // 获取当前的优惠券数组
@@ -221,27 +222,17 @@ Page({
           coupons: coupons
       });
       if (isCouponClaimed2) {
-        
-      
         wx.showToast({
-          title: '优惠卷已领取,不能再次领取',
+          title: '优惠卷已领取,正在前往使用',
           icon: 'none',
-        
         });
       }else{
-      
         wx.showToast({
             title: '优惠券已领取',
             icon: 'none'
         });
-      
         isCouponClaimed2 = true;
-      
       }
-    
-    
-    
-       
       }
 })
 
