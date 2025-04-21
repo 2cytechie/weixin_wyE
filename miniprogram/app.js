@@ -3,7 +3,7 @@
 App({
   onLaunch: function () {
     wx.cloud.init({
-      env: 'cloud1-6g8u7jyybab9ae76'
+      env: 'cloud1-1gm8k64i003f436e'
     })
   },
   get_openid(){
@@ -20,5 +20,5 @@ App({
         console.error('获取 openid 失败：', err);
       }
     })
-  },
+  }
 });

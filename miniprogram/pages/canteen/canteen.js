@@ -216,7 +216,7 @@ Page({
                 cloudPath,
                 filePath: tempFilePath,
                 success: (res) => {
-                    const newImages = this.data.tmp_images.concat(res.fileID);
+                    const newImages = this.data.takeout_data.images.concat(res.fileID);
                     this.setData({
                         'takeout_data.images': newImages
                     });

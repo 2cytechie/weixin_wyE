@@ -13,7 +13,7 @@ Page({
       avatar:"/images/1.png",
       name:"小白",
       gender:"男",
-      phones:[12345974564,159745668436],
+      phone:"",
       login_time:"注册时间",
       is_orderer:false,
       make_orderer_time:"",
@@ -48,13 +48,28 @@ Page({
   },
 
 
-  handleGetPhoneNumber(e){
-    console.log(e)
+  handleGetPhoneNumber(e) {
+    const cloudId = e.detail.cloudID
+    wx.cloud.callFunction({
+      name:"get_phoneNumber",
+      data:{
+        weRunData:wx.cloud.CloudID(cloudId)
+      }
+    }).then(res=>{
+      console.log(res.result)
+      wx.setStorageSync('phoneNumber', res.result)
+    })
   },
 
   Login(){
     // 检查是否已经登录
-
+    if(wx.getStorageSync("phoneNumber")){
+      console.log("已经登录")
+      return
+    }
+    else{
+      console.log("还没登录")
+    }
 
     const now = new Date();
     const uploadTime = now.toLocaleString();
