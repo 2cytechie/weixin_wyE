@@ -42,7 +42,7 @@ Page({
       console.log("不用下载头像")  
       return;
       }
-      if(this.data.avatar){
+      if(this.data.avatar === "/images/用户.png"){
         const that = this
         wx.cloud.downloadFile({
           fileID: userData.avatar, // 单个fileID

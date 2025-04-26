@@ -37,52 +37,73 @@ Page({
     })
     
   },
-  // 初始化数据
-  init(){
-    wx.cloud.database().collection('Init').get()
-    .then(res => {
-      const tapbarImages = [];
-      let images_len = 0;
-      for(const item of res.data){
-        if(item.TapBarimage && images_len < 3){
-          tapbarImages.push(item.TapBarimage)
-          images_len = images_len + 1
-        }
-        else if(item.notice){
-          this.setData({
-            notice:item.notice
-          })
-        }
-      }
-      // 将数据保存到页面
-      this.downloadImages(tapbarImages)
-    })
-    .catch(err => {
-      console.error("tapbar初始化失败"); // 更完善的错误处理
-    });
-  },
-  downloadImages(res) {
-    // 遍历所有图片fileID并下载
-    const downloadTasks = res.map(fileID => 
-      wx.cloud.downloadFile({
-        fileID: fileID // 单个fileID
-      }).then(res => {
-        return res.tempFilePath; // 返回临时路径
-      }),
-    );
-  
-    // 批量下载并保存结果
-    Promise.all(downloadTasks)
-      .then(tempFilePaths => {
-        this.setData({
-          TapBarimages: tempFilePaths // 保存临时路径到页面数据
-        });
-        console.log("tapbar加载成功") 
+// 初始化数据
+init() {
+  wx.cloud.database().collection('Init').get()
+    .then(({ data }) => {
+          const { tapbarImages, notice } = this.extractData(data);
+          this.setData({ notice });
+          return this.downloadImages(tapbarImages);
       })
-      .catch(error => {
-        console.error('tapbar部分图片加载失败', error);
+    .then(() => {
+          console.log('tapbar 初始化及图片下载完成');
+      })
+    .catch((err) => {
+          console.error('tapbar 初始化失败:', err);
       });
-  },
+},
+
+// 提取数据的辅助函数
+extractData(data) {
+  const tapbarImages = [];
+  let notice = '';
+  let imagesCount = 0;
+
+  for (const item of data) {
+      if (item.TapBarimage && imagesCount < 3) {
+          tapbarImages.push(item.TapBarimage);
+          imagesCount++;
+      } else if (item.notice) {
+          notice = item.notice;
+      }
+  }
+
+  return { tapbarImages, notice };
+},
+
+// 下载图片的函数
+downloadImages(fileIDs) {
+  if (fileIDs.length === 0) {
+      return Promise.resolve();
+  }
+
+  // 创建下载任务数组
+  const downloadTasks = fileIDs.map((fileID) => {
+    console.log('准备下载的文件 ID:', fileID);
+    return wx.cloud.downloadFile({ fileID })
+      .then((res) => {
+          console.log('文件下载成功，临时路径:', res.tempFilePath);
+          return res.tempFilePath;
+      })
+      .catch((error) => {
+          console.error('文件下载失败，文件 ID:', fileID, '错误信息:', error);
+          return null;
+      });
+  });
+
+  // 批量处理下载任务
+  return Promise.all(downloadTasks)
+    .then((tempFilePaths) => {
+        const validTempFilePaths = tempFilePaths.filter((path) => path!== null);
+        // 设置有效图片路径到页面数据
+        this.setData({ TapBarimages: validTempFilePaths });
+        console.log('tapbar 图片加载成功');
+    })
+    .catch((error) => {
+        console.error('tapbar 部分图片加载失败:', error);
+        throw error;
+    });
+},
 
   /**
    * 生命周期函数--监听页面加载
@@ -123,7 +144,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.init()
   },
 
   /**

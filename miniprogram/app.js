@@ -14,7 +14,10 @@ App({
         type:type,
         update_data:update_data
       }
-    }).catch(res=>{
+    }).then(res=>{
+      console.log("user_data.",type,"修改为：",update_data)
+    })
+    .catch(res=>{
       console.log(res)
     })
   },
