@@ -1,44 +1,42 @@
-<view class="container">
-    <!-- 顶部导航栏 -->
-    <view class="nav-bar">
-        <view class="nav-left" bindtap="goBack">
-            <image src="/images/优惠券01.png" mode="widthFix" class="back-icon"></image>
-        </view>
-        <view class="nav-title">我的优惠券</view>
+<!-- 页面主体 -->
+<view class="page-container">
+  <!-- 其他页面内容 -->
+  <button bindtap="showNicknameModal">修改昵称</button>
+
+  <!-- 昵称修改弹窗 -->
+  <view 
+    class="nickname-modal" 
+    wx:if="{{isNicknameModalShow}}"
+  >
+    <!-- 弹窗内容 -->
+    <view class="modal-content">
+      <!-- 标题 -->
+      <view class="modal-title">修改昵称</view>
+      <!-- 输入框 -->
+      <input 
+        type="text" 
+        placeholder="请输入新昵称（最多8个字）" 
+        value="{{nicknameInput}}" 
+        bindinput="onNicknameInput"
+        class="nickname-input"
+      />
+      <!-- 操作按钮 -->
+      <view class="modal-buttons">
+        <button 
+          type="default" 
+          class="cancel-btn" 
+          bindtap="hideNicknameModal"
+        >
+          取消
+        </button>
+        <button 
+          type="primary" 
+          class="confirm-btn" 
+          bindtap="confirmNicknameChange"
+        >
+          确定
+        </button>
+      </view>
     </view>
-
-    <!-- 加载状态提示 -->
-    <view wx:if="{{isLoading}}" class="loading-tip">正在加载优惠券...</view>
-
-    <!-- 错误提示 -->
-    <view wx:if="{{loadError}}" class="error-tip">加载优惠券失败，请稍后重试。</view>
-
-    <!-- 优惠券列表（使用 <block> 循环） -->
-    <view class="coupon-list" wx:if="{{!isLoading && !loadError}}">
-        <block wx:for="{{couponList}}" wx:key="id"> <!-- 改为 <block> 循环 -->
-            <view class="coupon-card">
-                <view class="coupon-header">
-                    <image src="/images/红包.png" mode="widthFix" class="coupon-icon"></image>
-                    <view class="coupon-info">
-                        <view class="coupon-name">{{item.name}}</view>
-                        <view class="coupon-time">{{item.expireTime}}</view>
-                    </view>
-                    <view class="coupon-price">
-                        <view class="price-text">¥{{item.amount}}</view>
-                        <view class="condition">满{{item.condition}}可用</view>
-                    </view>
-                </view>
-                <view class="coupon-line"></view>
-                <view class="coupon-footer">
-                    <view class="usage">适用于所有服务</view>
-                    <navigator url="/pages/order/order" open-type="switchTab">
-                        <view class="use-btn">去使用</view>
-                    </navigator>
-                </view>
-            </view>
-        </block>
-    </view>
-
-    <!-- 无更多提示 -->
-    <view class="no-more-tip" wx:if="{{!isLoading && !loadError}}">----- 已展示全部优惠券 -----</view>
+  </view>
 </view>

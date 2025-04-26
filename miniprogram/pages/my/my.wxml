@@ -1,14 +1,16 @@
 <view class="container">
   <!-- 头部用户信息区域 -->
   <view class="header-section">
-    <image src="/images/用户.png" class="avatar"></image>
+    <image src="{{avatar}}" mode="aspectFill" class="avatar" bind:tap="selectAvatar"></image>
     <view class="user-info">
-      <text class="welcome-text">Hi,未登录用户</text>
+      <text class="welcome-text" bind:tap="selectName" wx:if="{{user_data.name}}">{{user_data.name}}</text>
+      <text class="welcome-text" wx:else="">Hi,未登录用户</text>
       <navigator url="/pages/login/login">
-        <view class="login-btn">登录</view>
+        <view class="login-btn" wx:if="{{user_data}}">已登录</view>
+        <view class="login-btn" wx:else="">登录</view>
       </navigator>
     </view>
-    <image src="/images/修改.png" class="invite-img"></image>
+    <view class="invite-gender" bind:tap="selectgender">{{user_data.gender}}</view>
   </view>
 
   <!-- 接单员申请模块 -->
@@ -117,5 +119,52 @@
   <!-- 版本号 -->
   <view class="version-section">
     <text>版本号 0.0.1</text>
+  </view>
+  <!-- 性别选择弹窗 -->
+  <view class="modal-mask" wx:if="{{showModal}}">
+    <view class="modal-container">
+      <view class="modal-title">请选择性别</view>
+      <view class="gender-options">
+        <view class="gender-option" bindtap="selectGender" data-gender="男">男</view>
+        <view class="gender-option" bindtap="selectGender" data-gender="女">女</view>
+      </view>
+      <button class="cancel-button" bindtap="hideGenderModal">取消</button>
+    </view>
+  </view>
+    <!-- 昵称修改弹窗 -->
+    <view 
+    class="nickname-modal" 
+    wx:if="{{isNicknameModalShow}}"
+    >
+    <!-- 弹窗内容 -->
+    <view class="modal-content">
+      <!-- 标题 -->
+      <view class="modal-title">修改昵称</view>
+      <!-- 输入框 -->
+      <input 
+        type="text" 
+        placeholder="请输入新昵称（最多8个字）" 
+        value="{{nicknameInput}}" 
+        bindinput="onNicknameInput"
+        class="nickname-input"
+      />
+      <!-- 操作按钮 -->
+      <view class="modal-buttons">
+        <view 
+          type="default" 
+          class="cancel-btn" 
+          bindtap="hideNicknameModal"
+        >
+          取消
+        </view>
+        <view 
+          type="primary" 
+          class="confirm-btn" 
+          bindtap="confirmNicknameChange"
+        >
+          确定
+        </view>
+      </view>
+    </view>
   </view>
 </view>

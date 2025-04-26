@@ -1,7 +1,6 @@
 .container {
   background-color: #f5f5f5;
-  padding: 25rpx;
-  height: 100vh; /* 占满整个屏幕高度 */
+  /* padding: 25rpx; */
 }
 .avatar {
   width: 100rpx;

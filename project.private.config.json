@@ -11,8 +11,8 @@
           "name": "db guide",
           "pathName": "pages/index/index",
           "query": "",
-          "launchMode": "default",
-          "scene": null
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }

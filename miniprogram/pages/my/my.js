@@ -1,86 +1,172 @@
 // pages/my/my.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    image:"/images/1.png",
-    is_login:false,
-    userInfo:"",
+    isNicknameModalShow: false, // 昵称弹窗显示状态
+    showModal: false,
 
-    test:""
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+    avatar:"/images/用户.png",
+    name:"",
+    user_data:null
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // if(!this.data.is_login){
-    //   wx.showModal({
-    //     title: '登录提示',
-    //     content: '你还没有授权登录哟！',
-    //     complete: (res) => {
-    //       if (res.cancel) {
+    const userData = wx.getStorageSync('user_data');
+    this.setData({user_data:userData})
+    if(!userData.phone){
+      wx.showModal({
+        title: '你还没有授权登录哟！',
+        content: '去登录',
+        complete: (res) => {
+          if (res.cancel) {
             
-    //       }
-      
-    //       if (res.confirm) {
-    //         wx.navigateTo({
-    //           url: '/pages/login/login',
-    //         })
-    //       }
-    //     }
-    //   })
-    // }
+          }
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }
+        }
+      })
+    }
+    else{
+      // 已经登录加载头像等资源
+      if(userData.avatar === "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png"){
+      console.log("不用下载头像")  
+      return;
+      }
+      if(this.data.avatar){
+        const that = this
+        wx.cloud.downloadFile({
+          fileID: userData.avatar, // 单个fileID
+          success (res) {
+            that.setData({
+              avatar:res.tempFilePath
+            })
+            console.log("avatar下载成功")
+          },
+          fail: error => {
+            console.log(userData.avatar)
+            console.error('avatarr图片下载失败', error);
+          }
+        })
+      }
+    }
+  },
+  selectAvatar(){
+    this.chooseImage()
+  },
+  selectName(){
+    this.showNicknameModal()
+  },
+  selectgender(){
+    this.showGenderModal()
+  },
+  chooseImage() {
+    const that = this
+    wx.chooseMedia({
+      count: 1,
+      mediaType:["image"],
+      sourceType: ['album', 'camera'],
+      success: res => {
+        const tempFilePath = res.tempFiles[0].tempFilePath;
+        const cloudPath = `avatar/${Date.now()}-${Math.floor(Math.random() * 1000)}.png`; // 生成唯一的云存储路径
+        wx.cloud.uploadFile({
+            cloudPath: cloudPath,
+            filePath: tempFilePath,
+            success: uploadRes => {
+                const fileID = uploadRes.fileID;
+                that.setData({
+                  "user_data.avatar":fileID,
+                  "avatar":tempFilePath
+                })
+                wx.setStorageSync('user_data', that.data.user_data)
+                app.update_user_data(that.data.user_data.phone,"avatar",fileID)
+            },
+            fail: err => {
+                console.error('图片上传失败:', err);
+            }
+        });
+    },
+    fail(err) {
+      console.error('选择图片失败:', err);
+      wx.showToast({
+          title: '选择图片失败',
+          icon: 'none'
+      });
+    },
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  showNicknameModal() {
+    this.setData({
+      isNicknameModalShow: true,
+      nicknameInput: this.data.user_data.name
+    });
+  },
+  // 关闭弹窗
+  hideNicknameModal() {
+    this.setData({
+      isNicknameModalShow: false
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  // 输入框内容变化
+  onNicknameInput(e) {
+    this.setData({
+      nicknameInput: e.detail.value.trim()
+    });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
+  // 确定修改昵称
+  confirmNicknameChange() {
+    const newNickname = this.data.nicknameInput;
+    // 简单校验（可根据需求扩展）
+    if (!newNickname) {
+      wx.showToast({ title: '昵称不能为空', icon: 'none' });
+      return;
+    }
+    if (newNickname.length > 8) {
+      wx.showToast({ title: '昵称最多8个字', icon: 'none' });
+      return;
+    }
 
+    // 模拟修改昵称逻辑（实际需调用接口或更新数据）
+    this.setData({
+      'user_data.name': newNickname, // 更新用户数据中的昵称
+      isNicknameModalShow: false
+    });
+    wx.setStorageSync('user_data', this.data.user_data)
+    app.update_user_data(this.data.user_data.phone,"name",newNickname)
+    wx.showToast({ title: '昵称修改成功' });
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  // 显示性别选择弹窗
+  showGenderModal() {
+    this.setData({
+      showModal: true
+    });
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+  // 隐藏性别选择弹窗
+  hideGenderModal() {
+    this.setData({
+      showModal: false
+    });
+  },
+  // 选择性别
+  selectGender(e) {
+    const gender = e.currentTarget.dataset.gender;
+    this.setData({
+      "user_data.gender": gender,
+      showModal: false
+    });
+    wx.setStorageSync('user_data', this.data.user_data)
+    app.update_user_data(this.data.user_data.phone,"gender",gender)
+  },
 })

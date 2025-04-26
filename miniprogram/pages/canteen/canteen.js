@@ -178,7 +178,7 @@ Page({
                                       url: '/pages/start/start',
                                   });
                                   }, 1500);
-                              }
+                                }
                             });
                         },
                         fail: (err) => {

@@ -39,8 +39,7 @@ Page({
   },
   // 初始化数据
   init(){
-    wx.cloud.database().collection('Init')
-    .get()
+    wx.cloud.database().collection('Init').get()
     .then(res => {
       const tapbarImages = [];
       let images_len = 0;
@@ -69,7 +68,7 @@ Page({
         fileID: fileID // 单个fileID
       }).then(res => {
         return res.tempFilePath; // 返回临时路径
-      })
+      }),
     );
   
     // 批量下载并保存结果
@@ -78,7 +77,7 @@ Page({
         this.setData({
           TapBarimages: tempFilePaths // 保存临时路径到页面数据
         });
-        console.log("tapbar加载成功")
+        console.log("tapbar加载成功") 
       })
       .catch(error => {
         console.error('tapbar部分图片加载失败', error);
@@ -235,5 +234,3 @@ Page({
       }
       }
 })
-
-6
