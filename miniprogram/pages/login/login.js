@@ -137,47 +137,37 @@ Page({
     });
   },
 
-  pay() {
-    // 生成唯一订单号（示例：时间戳 + 随机字符串）
-    const outTradeNo = new Date().getTime() + Math.random().toString(36).substr(2, 5);
-    wx.cloud.callFunction({
-        name: 'Pay',
-        data: {
-            // 商品描述
-            body: "test",
-            // 商户系统内部订单号（需保证唯一）
-            outTradeNo: outTradeNo,
-            // 订单总金额（单位：分）
-            totalFee: 1,
-            // 终端IP（简单示例用本地回环地址，实际需替换为真实用户IP）
-            spbillCreateIp: "127.0.0.1",
-            // 其他可能需要传递的参数（如子商户号等，按需添加）
-            // subMchId: "your_sub_mch_id"
-        },
-        success: res => {
-            const payment = res.result.payment;
-            wx.requestPayment({
-               ...payment,
-                success (res) {
-                    console.log('pay success', res);
-                    // 可在此处添加支付成功后的逻辑，如更新订单状态、提示用户等
-                    wx.showToast({
-                        title: '支付成功',
-                        icon:'success'
-                    });
-                },
-                fail (err) {
-                    console.error('pay fail', err);
-                    // 支付失败后的处理，如提示用户重新支付等
-                    wx.showToast({
-                        title: '支付失败',
-                        icon: 'none'
-                    });
-                }
-            });
-        },
-        fail: console.error,
-    });
+  // 页面中点击支付按钮触发的函数
+pay() {
+  const body = 'test'
+  const totalFee = 1 // 订单总金额，单位为分
+  const outTradeNo = new Date().getTime().toString() // 商户订单号
+
+  wx.cloud.callFunction({
+    name: 'Pay',
+    data: {
+      body,
+      totalFee,
+      outTradeNo
+    },
+    success: res => {
+      if (res.result.success) {
+        const payment = res.result.payment
+        wx.requestPayment({
+          ...payment,
+          success(res) {
+            console.log('支付成功', res)
+          },
+          fail(err) {
+            console.error('支付失败', err)
+          }
+        })
+      } else {
+        console.error('生成支付参数失败:', res.result.error)
+      }
+    },
+    fail: console.error
+  })
 }
   
 
