@@ -151,20 +151,27 @@ pay() {
       outTradeNo
     },
     success: res => {
-      if (res.result.success) {
+      // if (res.result.success) {
+        console.log(res)
         const payment = res.result.payment
         wx.requestPayment({
-          ...payment,
-          success(res) {
-            console.log('支付成功', res)
+          // ...其他参数
+          nonceStr: payment.nonceStr, // 确保字段名一致
+          success() {
+            console.log('支付成功')
           },
           fail(err) {
             console.error('支付失败', err)
+            // 添加详细错误日志
+            wx.showToast({
+              title: `支付失败: ${err.errMsg}`,
+              icon: 'none'
+            })
           }
         })
-      } else {
-        console.error('生成支付参数失败:', res.result.error)
-      }
+      // } else {
+      //   console.error('生成支付参数失败:', res.result.error)
+      // }
     },
     fail: console.error
   })

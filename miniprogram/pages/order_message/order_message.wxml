@@ -48,7 +48,7 @@
       <view>预计送达时间</view>
       <view>{{takeout_data.time}}</view>
     </view>
-    <view class="takeout-item">
+    <view class="takeout-item" wx:if="{{takeout_data.service !== '更多帮助'}}">
       <view>取餐份数</view>
       <view>{{takeout_data.count}}</view>
     </view>
@@ -65,7 +65,8 @@
       <view>{{takeout_data.notes}}</view> <!-- 额外备注字段 -->
     </view>
     <view class="takeout-item" wx:if="{{is_looding}}">详情图片加载中. . .</view>
-    <view class="takeout-item" wx:if="{{!is_looding}}">详情图片</view>
+    <view class="takeout-item" wx:if="{{!is_looding && tmp_images.length <= 0}}">暂无详情图片</view>
+    <view class="takeout-item" wx:if="{{tmp_images.length > 0}}">详情图片</view>
     <view class="image-list">
       <block wx:for="{{tmp_images}}" wx:key="*this">
         <view class="image-item" bindtap="previewImage" data-src="{{item}}">

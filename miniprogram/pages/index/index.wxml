@@ -1,42 +1,11 @@
-<!-- 页面主体 -->
-<view class="page-container">
-  <!-- 其他页面内容 -->
-  <button bindtap="showNicknameModal">修改昵称</button>
+<image src="/images/1.png" mode="aspectFill"/>
+<view class="container">
 
-  <!-- 昵称修改弹窗 -->
-  <view 
-    class="nickname-modal" 
-    wx:if="{{isNicknameModalShow}}"
-  >
-    <!-- 弹窗内容 -->
-    <view class="modal-content">
-      <!-- 标题 -->
-      <view class="modal-title">修改昵称</view>
-      <!-- 输入框 -->
-      <input 
-        type="text" 
-        placeholder="请输入新昵称（最多8个字）" 
-        value="{{nicknameInput}}" 
-        bindinput="onNicknameInput"
-        class="nickname-input"
-      />
-      <!-- 操作按钮 -->
-      <view class="modal-buttons">
-        <button 
-          type="default" 
-          class="cancel-btn" 
-          bindtap="hideNicknameModal"
-        >
-          取消
-        </button>
-        <button 
-          type="primary" 
-          class="confirm-btn" 
-          bindtap="confirmNicknameChange"
-        >
-          确定
-        </button>
-      </view>
+    <image src="{{imageUrl}}" mode="aspectFit" bindtap="previewImage"></image>
+    <view class="preview-mask" wx:if="{{isPreview}}" bindtap="closePreview">
+        <movable-view class="preview-image" scale="{{isScaled}}" scale-min="0.5" scale-max="3" bindchange="onScaleChange" bindscale="onScale">
+            <image src="{{imageUrl}}" mode="aspectFit"></image>
+        </movable-view>
     </view>
-  </view>
 </view>
+    

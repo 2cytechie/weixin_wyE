@@ -32,6 +32,11 @@ Page({
     if(images.length > 0){
       this.downloadImages(images)
     }
+    else{
+      this.setData({
+        is_looding:false
+      })
+    }
   },
   downloadImages(res) {
     // 遍历所有图片fileID并下载
@@ -53,6 +58,9 @@ Page({
         console.log("message_order加载成功")
       })
       .catch(error => {
+        this.setData({
+          is_looding:false
+        })
         console.error('message_order加载成功部分图片加载失败', error);
       });
   },

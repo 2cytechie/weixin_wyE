@@ -76,19 +76,33 @@ Page({
       mediaType:["image"],
       sourceType: ['album', 'camera'],
       success: res => {
+        // 上传头像
         const tempFilePath = res.tempFiles[0].tempFilePath;
         const cloudPath = `avatar/${Date.now()}-${Math.floor(Math.random() * 1000)}.png`; // 生成唯一的云存储路径
         wx.cloud.uploadFile({
             cloudPath: cloudPath,
             filePath: tempFilePath,
             success: uploadRes => {
-                const fileID = uploadRes.fileID;
-                that.setData({
-                  "user_data.avatar":fileID,
-                  "avatar":tempFilePath
+              if(this.data.user_data.avatar !== "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png"){
+                // 上传后删除原有头像
+                const file = this.data.user_data.avatar
+                wx.cloud.deleteFile({
+                  fileList: [file],
+                  success:res=>{
+                    console.log("头像删除成功",file)
+                  },
+                  fail:res=>{
+                    console.error("头像删除失败",file)
+                  }
                 })
-                wx.setStorageSync('user_data', that.data.user_data)
-                app.update_user_data(that.data.user_data.phone,"avatar",fileID)
+              }
+              const fileID = uploadRes.fileID;
+              that.setData({
+                "user_data.avatar":fileID,
+                "avatar":tempFilePath
+              })
+              wx.setStorageSync('user_data', that.data.user_data)
+              app.update_user_data(that.data.user_data.phone,"avatar",fileID)
             },
             fail: err => {
                 console.error('图片上传失败:', err);
