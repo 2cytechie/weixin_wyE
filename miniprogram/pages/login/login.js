@@ -136,46 +136,7 @@ Page({
         });
     });
   },
-
-  // 页面中点击支付按钮触发的函数
-pay() {
-  const body = 'test'
-  const totalFee = 1 // 订单总金额，单位为分
-  const outTradeNo = new Date().getTime().toString() // 商户订单号
-
-  wx.cloud.callFunction({
-    name: 'Pay',
-    data: {
-      body,
-      totalFee,
-      outTradeNo
-    },
-    success: res => {
-      // if (res.result.success) {
-        console.log(res)
-        const payment = res.result.payment
-        wx.requestPayment({
-          // ...其他参数
-          nonceStr: payment.nonceStr, // 确保字段名一致
-          success() {
-            console.log('支付成功')
-          },
-          fail(err) {
-            console.error('支付失败', err)
-            // 添加详细错误日志
-            wx.showToast({
-              title: `支付失败: ${err.errMsg}`,
-              icon: 'none'
-            })
-          }
-        })
-      // } else {
-      //   console.error('生成支付参数失败:', res.result.error)
-      // }
-    },
-    fail: console.error
-  })
-}
-  
-
+  pay(){
+    app.Pay("test",1)
+  }
 })

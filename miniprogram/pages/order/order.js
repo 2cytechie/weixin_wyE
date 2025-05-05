@@ -23,7 +23,7 @@ Page({
     hasMoreData: true, // 是否还有更多数据
     data_list: [
       {
-        avatar: "/images/1.png",
+        avatar: "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
         service: "取外卖",
         time: "17:46",
         status:"已完成",
@@ -93,7 +93,8 @@ Page({
     const { pageSize, currentPage } = this.data;
     const skip = (currentPage - 1) * pageSize;
 
-    // 构建查询条件
+    // 构建查询条件 只能查询到已经支付的订单
+    // let queryCondition = {is_payed:true};
     let queryCondition = {};
     let _SelectedInfo = this.data.selectedInfo
     for(let key in _SelectedInfo){
@@ -169,6 +170,14 @@ Page({
     // 页面加载时加载第一页数据
     this.loadData();
   },
+  // 监听用户下拉操作
+  onPullDownRefresh() {
+    this.setData({
+      currentPage:1,
+      data_list:[]
+    })
+    this.loadData();
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -191,45 +200,4 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

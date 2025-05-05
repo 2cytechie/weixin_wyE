@@ -3,6 +3,7 @@ const db = wx.cloud
 Page({
   data:{
     takeout_data:{
+      avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
       name:"",
       phone:"",
       make_promation_time:""
@@ -39,11 +40,14 @@ Page({
                 // 取消
             }
             if (res.confirm) {
-                const now = new Date();
-                const uploadTime = now.toLocaleString();
-                this.setData({
-                  'takeout_data.make_promation_time': uploadTime
-                });
+              const now = new Date();
+              const uploadTime = now.toLocaleString();
+              let upLoadAvatar = wx.getStorageSync('user_data').avatar;
+              this.setData({
+                'takeout_data.upload_time': uploadTime,
+                'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
+                'takeout_data.avatar':upLoadAvatar
+              });
                 // 上传信息
                 db.database().collection("promation_data").add({
                     data: this.data.takeout_data,

@@ -71,11 +71,12 @@ Page({
                 // 取消
             }
             if (res.confirm) {
-                const now = new Date();
-                const uploadTime = now.toLocaleString();
-                this.setData({
-                  'takeout_data.make_takerer_time': uploadTime,
-                });
+              const now = new Date();
+              const uploadTime = now.toLocaleString();
+              this.setData({
+                'takeout_data.upload_time': uploadTime,
+                'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count
+              });
                 // 上传图片
                 this.uploadImage().then(() => {
                     // 上传信息

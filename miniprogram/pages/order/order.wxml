@@ -41,7 +41,7 @@
       <view class="task-item" bind:tap="show_page" data-idx="{{item}}" data-id="{{item._id}}">
         <!-- 任务头部信息 -->
         <view class="task-header">
-          <!-- <image src="/images/用户头像.png" class="task-avatar" /> -->
+          <image src="{{item.avatar}}" class="task-avatar" />
           <view class="task-type">{{item.service}}</view>
           <image src="/images/闹铃.png" class="task-imageclock"/>
           <text class="task-time">{{item.time}}</text>

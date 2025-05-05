@@ -1,4 +1,5 @@
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -12,6 +13,7 @@ Page({
     tmp_images : [],
 
     takeout_data:{
+      avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
       send_location:"",
       time:"",
       images:[],
@@ -19,6 +21,7 @@ Page({
       count:1,
       tip:2,
       pay:2,
+      is_payed:false,
       viewCount:0,
 
       order_number:"",
@@ -153,38 +156,36 @@ Page({
                 // 取消
             }
             if (res.confirm) {
-                const now = new Date();
-                const uploadTime = now.toLocaleString();
-                this.setData({
-                  'takeout_data.upload_time': uploadTime,
-                  'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count
-                });
+              const now = new Date();
+              const uploadTime = now.toLocaleString();
+              let upLoadAvatar = wx.getStorageSync('user_data').avatar;
+              this.setData({
+                'takeout_data.upload_time': uploadTime,
+                'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
+                'takeout_data.avatar':upLoadAvatar
+              });
                 // 上传图片
                 this.uploadImages().then(() => {
-                    // 上传信息
-                    db.collection("takeout_data").add({
-                        data: this.data.takeout_data,
-                        success: (res) => {
-                            wx.showToast({
-                                title: '下单成功',
-                                icon: 'success',
-                                success: () => {
-                                  setTimeout(() => {
-                                    wx.switchTab({
-                                      url: '/pages/start/start',
-                                  });
-                                  }, 1500);
-                              }
-                            });
-                        },
-                        fail: (err) => {
-                            console.error('下单失败:', err);
-                            wx.showToast({
-                                title: '下单失败,请检查输入信息或网络',
-                                icon: 'none'
-                            });
-                        }
-                    });
+                  // 上传信息
+                  db.collection("takeout_data").add({
+                      data: this.data.takeout_data
+                  }).then(res=>{
+                    // 支付
+                    const outTradeNo = new Date().getTime().toString(); // 商户订单号
+                    app.Pay("取外卖",this.data.takeout_data.pay*1000,outTradeNo,'/pages/start/start').then(res=>{
+                      // 更新支付状态
+                      db.collection("takeout_data").where({
+                        outTradeNo
+                      }).update({
+                        is_payed:true
+                      })
+                      console.log("支付成功",res)
+                    }).catch(res=>{
+                      console.log("支付失败",res)
+                    })
+                  }).catch(res=>{
+                    console.log("取外卖信息上传失败",res)
+                  })
                 }).catch((err) => {
                     console.error('图片上传失败:', err);
                     wx.showToast({
@@ -229,59 +230,4 @@ Page({
     });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

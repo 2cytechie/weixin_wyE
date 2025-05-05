@@ -1,21 +1,24 @@
-// 云函数代码
+// 云函数入口文件
 const cloud = require('wx-server-sdk')
-cloud.init({
-  env: cloud.DYNAMIC_CURRENT_ENV
-})
 
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
+
+// 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+
+  let {body,totalFee,outTradeNo} = event
   const res = await cloud.cloudPay.unifiedOrder({
-    "body" : "test",//商品名称或商品描述event.goodName
-    "outTradeNo" : "2608230605"+Date.parse(new Date()),//订单号，，，唯一  >>>>>>QQ号+时间戳
-    "spbillCreateIp" : wxContext.CLIENTIP,//先填这个
-    "subMchId" : "1715015051",//你的商户号
-    "totalFee" : 1,//支付金额，，，分 event.totalFee*100
-    "envId": cloud.DYNAMIC_CURRENT_ENV,
-    "functionName": "payCallback",
-    "nonceStr": "shfh&8sf8s"
+    openid: wxContext.OPENID,
+    body,
+    outTradeNo:outTradeNo + wxContext.OPENID,
+    spbillCreateIp : wxContext.CLIENTIP,
+    subMchId : "1715015051",
+    totalFee : 1,// 测试
+    envId: "cloud1-1gm8k64i003f436e",
+    nonceStr: Math.random().toString(36).substr(2, 15),
+    signType: "MD5",
+    functionName: "payCallback",
   })
   return res
 }
-

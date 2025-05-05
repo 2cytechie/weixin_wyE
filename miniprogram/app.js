@@ -36,28 +36,58 @@ App({
       }
     })
   },
-  test(){
-    console.log("appfunction")
-  },
-  Pay(){
-    wx.request({
-      url: 'https://cloud1-1gm8k64i003f436e.ap-shanghai.tcbautomation.cn/Automation/Webhook/DirectCallback/100042028545/ezzf_bce48ac/trigger_pqmxc5xxx/1J2yegNcHtpjb8yF',
-      method:"POST",
-      data:{
-        "description": "商品描述(类型为string)",
-        "out_trade_no": "商户订单号(类型为string)   唯一",
-        "time_expire": "交易结束时间(类型为string)",
-        "support_fapiao": "true",
-        "amount": {
-            "total": "总金额(类型为number)    以分为单位",
-            "currency": "CNY"
-        },
-        "payer": {
-            "openid": "用户标识(类型为string)"
-        }
-    }.then(res=>{
-      
-    })
-    })
-  }
+  async  Pay(body, totalFee,outTradeNo, toPage) {
+    return new Promise((resolve, reject) => {
+        wx.cloud.callFunction({
+            name: 'Pay',
+            data: {
+                body,
+                totalFee,
+                outTradeNo
+            },
+            success: res => {
+                let payment = res.result.payment;
+                wx.requestPayment({
+                    nonceStr: payment.nonceStr,
+                    package: payment.package,
+                    paySign: payment.paySign,
+                    timeStamp: payment.timeStamp,
+                    signType: payment.signType,
+                    success: (res) => {
+                        wx.showToast({
+                            title: '下单成功',
+                            icon: 'success',
+                            success: () => {
+                                setTimeout(() => {
+                                    wx.switchTab({
+                                        url: toPage,
+                                        success: () => {
+                                            resolve();
+                                        },
+                                        fail: (err) => {
+                                            reject(err);
+                                        }
+                                    });
+                                }, 1500);
+                            }
+                        });
+                        console.log("支付成功", res);
+                    },
+                    fail: (err) => {
+                        console.error('下单失败:', err);
+                        wx.showToast({
+                            title: '下单失败,请检查输入信息或网络',
+                            icon: 'none'
+                        });
+                        reject(err);
+                    }
+                });
+            },
+            fail: (err) => {
+                console.error("云函数调用失败", err);
+                reject(err);
+            }
+        });
+    });
+},
 });

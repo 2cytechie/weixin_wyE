@@ -116,6 +116,9 @@ Page({
           icon: 'none'
       });
     },
+    cancel(res){
+      console.log("取消选择头像图片")
+    }
     });
   },
 
