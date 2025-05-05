@@ -1,4 +1,5 @@
 // pages/start/start.js
+const db = wx.cloud.database();
 var isCouponClaimed = false;
 var isCouponClaimed1 = false;
 var isCouponClaimed2 = false;
@@ -162,6 +163,7 @@ downloadImages(fileIDs) {
   },
 
   linqu(e) {
+  
     const index = e.currentTarget.dataset.index;
     // 获取当前的优惠券数组
     const coupons = this.data.coupons;
@@ -186,7 +188,13 @@ downloadImages(fileIDs) {
         title: '优惠券已领取',
         icon: 'none'
     });
-  
+    db.collection("coupons").add({
+      data:{
+      name:"红包",  
+      amount:"1",
+      condition:"3"
+      }
+    })
     isCouponClaimed1 = true;
   
   }
@@ -223,8 +231,16 @@ downloadImages(fileIDs) {
       wx.showToast({
           title: '优惠券已领取',
           icon: 'none'
+          
+          
       });
-    
+      db.collection("coupons").add({
+        data:{
+        name:"红包",  
+        amount:"1",
+        condition:"3"
+        }
+      })
       isCouponClaimed = true;
     
     }
@@ -251,6 +267,13 @@ downloadImages(fileIDs) {
             title: '优惠券已领取',
             icon: 'none'
         });
+        db.collection("coupons").add({
+          data:{
+          name:"红包",  
+          amount:"1",
+          condition:"3"
+          }
+        })
         isCouponClaimed2 = true;
       }
       }

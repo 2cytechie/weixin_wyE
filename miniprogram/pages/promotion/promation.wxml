@@ -31,9 +31,12 @@
   <view class="rule-item">
     <view class="rule-label">
       <image src="/images/说明.png" class="form-icon"></image>
-      <text>规则说明 ---- text</text>
+      <navigator url="/pages/guize/guize">
+      <text>规则说明</text>
+    </navigator>
     </view>
-    <view class="arrow-icon">›</view>
+
+    <view class="arrow-icon"><navigator url="/pages/guize/guize">› </navigator></view>
   </view>
 
   <!-- 提交按钮 -->

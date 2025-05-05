@@ -54,7 +54,9 @@
     <view class="agreement-section">
       <checkbox checked="{{isAgree}}" bind:tap="handleAgreeChange" class="agree-checkbox" />
       <text class="agree-text">我已同意并阅读</text>
+      <navigator url="/pages/xeiyi/xeiyi">
       <text class="link-text">《申请接单员协议》</text>
+    </navigator>
     </view>
   </view>
 </view>

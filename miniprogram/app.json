@@ -30,8 +30,10 @@
 
     "pages/banner1/banner1",
     "pages/banner2/banner2",
-    "pages/banner3/banner3"
-   
+    "pages/banner3/banner3",
+
+    "pages/xeiyi/xeiyi",
+    "pages/guize/guize"
   ],
   "window": {
     "backgroundColor": "#B9FFD3",

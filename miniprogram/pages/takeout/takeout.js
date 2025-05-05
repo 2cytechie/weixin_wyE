@@ -107,6 +107,9 @@ Page({
     }
     });
   },
+  onShareAppMessage() {
+
+  },
   deleteImage(e) {
     const index = e.currentTarget.dataset.index;
     const imageList = this.data.tmp_images;

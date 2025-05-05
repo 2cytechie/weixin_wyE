@@ -16,7 +16,7 @@
   <!-- 广告图区域 -->
   <view class="banner">
     <image src="/images/红包复制.jpg" mode="widthFix"></image>
-    <button class="invite-btn">立即邀请</button>
+    <button class="invite-btn" open-type="share">立即邀请</button>
   </view>
 
   <!-- 数据展示区 -->
