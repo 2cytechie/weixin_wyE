@@ -15,6 +15,7 @@ Page({
     tmp_images:[],
     takeout_data:{
       avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
+      phone:"",
       pick_location:"",
       send_location:"",
       time:"",
@@ -26,7 +27,12 @@ Page({
       is_payed:false,
       viewCount:0,
 
-      order_number:"",
+      taker_avatar:"",
+      taker_name:"",
+      taker_send_time:"",
+      profit:0,
+
+      outTradeNo:"",
       upload_time:"",
       receive_time:"",
       confirm_time:"",
@@ -161,11 +167,15 @@ Page({
             if (res.confirm) {
               const now = new Date();
               const uploadTime = now.toLocaleString();
+              const OutTradeNo = new Date().getTime().toString() + wx.getStorageSync('user_data')._openid;
               let upLoadAvatar = wx.getStorageSync('user_data').avatar;
+              let phone = wx.getStorageSync('user_data').phone;
               this.setData({
+                'takeout_data.outTradeNo': OutTradeNo,
                 'takeout_data.upload_time': uploadTime,
                 'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
-                'takeout_data.avatar':upLoadAvatar
+                'takeout_data.avatar':upLoadAvatar,
+                'takeout_data.phone':phone
               });
                 // 上传图片
                 this.uploadImages().then(() => {
@@ -174,13 +184,20 @@ Page({
                       data: this.data.takeout_data
                   }).then(res=>{
                     // 支付
-                    const outTradeNo = new Date().getTime().toString(); // 商户订单号
-                    app.Pay("取外卖",this.data.takeout_data.pay*1000,outTradeNo,'/pages/start/start').then(res=>{
+                    app.Test("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
                       // 更新支付状态
                       db.collection("takeout_data").where({
-                        outTradeNo
+                        OutTradeNo
                       }).update({
                         is_payed:true
+                      })
+                      const Phone = wx.getStorageSync('user_data').phone;
+                      const SendOrders = wx.getStorageSync('user_data').send_orders;
+                      SendOrders.push(OutTradeNo)
+                      db.collection("user_data").where({
+                        phone:Phone
+                      }).update({
+                        send_orders:SendOrders
                       })
                       console.log("支付成功",res)
                     }).catch(res=>{

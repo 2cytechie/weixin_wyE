@@ -7,9 +7,9 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const { order_number } = event;
+    const { outTradeNo } = event;
     const res = await db.collection('takeout_data').where({
-      order_number: order_number
+      outTradeNo: outTradeNo
     }).get()
     return res.data[0];
   } catch (e) {

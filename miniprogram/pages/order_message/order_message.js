@@ -1,14 +1,10 @@
+const app = getApp()
 Page({
   data: {
     is_looding:true,
     tmp_images:[],
-    takeout_data:{
-    },
-    user_data:{
-      avatar:"/images/4.png",
-      name:"名字",
-      phone:"电话"
-    },
+    takeout_data:{},
+    user_data:{},
 
     isImageFullScreen: false,
     currentImage: "",
@@ -23,10 +19,11 @@ Page({
     startY: 0
   },
   onLoad(options) {
-    const data = wx.getStorageSync('show_order_data')
+    const TakeoutData = wx.getStorageSync('show_order_data')
+    const UserData = wx.getStorageSync('user_data')
     this.setData({
-      takeout_data:data
-      // user_data
+      takeout_data:TakeoutData,
+      user_data:UserData
     })
     let images = this.data.takeout_data.images
     if(images.length > 0){
@@ -152,16 +149,73 @@ onTouchMove(e) {
     });
   }
 },
+async receiveOrder(){
+  // 判断是否登录
+if (this.data.user_data) {
+  // 更新云端数据
+  const OutTradeNo = this.data.takeout_data.outTradeNo;
+  let PickOrders = this.data.user_data.pick_orders;
+  PickOrders.push(String(OutTradeNo));
+  const Phone = this.data.user_data.phone;
+  wx.cloud.database().collection("user_data").where({
+    phone: Phone
+  }).update({
+    data: {
+      pick_orders: PickOrders
+    }
+  }).then(res => {
+    wx.cloud.database().collection("takeout_data").where({
+      outTradeNo: OutTradeNo
+    }).update({
+      data: {
+        status: "已接单"
+      }
+    })
+    wx.showToast({
+      title: '接单成功',
+      icon: 'success'
+    });
+
+    // 跳转到订单页面
+    setTimeout(() => {
+      wx.switchTab({
+        url: '/pages/order/order',
+      });
+    }, 1500);
+  }).catch(err => {
+      console.error('更新云端数据失败:', err);
+      wx.showToast({
+        title: '接单失败',
+        icon: 'none'
+      });
+  });
+} else {
+  wx.showModal({
+    content: '请先登录！',
+    complete: (res) => {
+      if (res.cancel) {
+          // 用户点击取消，可根据需求添加相应逻辑
+      }
+      if (res.confirm) {
+        wx.navigateTo({
+            url: '/pages/login/login',
+        });
+      }
+    }
+  });
+}
+  
+},
 
 onTouchEnd() {
   // 自动居中逻辑（可选）
-  // if (this.data.scale === 1) {
-  //   setTimeout(() => {
-  //     this.setData({
-  //       translateX: 0,
-  //       translateY: 0
-  //     });
-  //   }, 200);
-  // }
+  if (this.data.scale === 1) {
+    setTimeout(() => {
+      this.setData({
+        translateX: 0,
+        translateY: 0
+      });
+    }, 200);
+  }
 }
 });

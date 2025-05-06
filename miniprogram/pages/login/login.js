@@ -12,6 +12,7 @@ Page({
       name:"小白小红小绿小兰",
       gender:"男",
       phone:"",
+      money:0,
       login_time:"注册时间",
       is_orderer:false,
       make_orderer_time:"",
@@ -137,6 +138,6 @@ Page({
     });
   },
   pay(){
-    app.Pay("test",1)
+    app.Test("test",1)
   }
 })

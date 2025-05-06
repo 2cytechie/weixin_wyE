@@ -23,15 +23,30 @@ Page({
     hasMoreData: true, // 是否还有更多数据
     data_list: [
       {
-        avatar: "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
-        service: "取外卖",
-        time: "17:46",
-        status:"已完成",
-        message: "test肯德基，聂女士，8604预计到校门时间:17：14备注:",
-        pick_location: "亳州学院宿舍-8栋(*楼)-****",
-        tip: 3,
-        count:1,
-        viewCount:0,
+        avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
+      phone:"1676934923",
+      pick_location:"东门口",
+      send_location:"三号楼",
+      time:"23:12",
+      message:"取来放门口",
+      images:[],
+      count:1,
+      tip:3,
+      pay:3,
+      is_payed:false,
+      viewCount:0,
+
+      taker_avatar:"/images/4.png",
+      taker_name:"讲究名字",
+      taker_send_time:"2025年12月12日",
+      profit:3,
+
+      outTradeNo:"93759749573475975023702340",
+      upload_time:"2025年12月11日",
+      receive_time:"2025年12月12日",
+      confirm_time:"2025年12月12日",
+      service:"食堂带饭",
+      status:"待接单",
       },
       // 其他任务数据...
     ]
@@ -133,6 +148,7 @@ Page({
   
   show_page(e) {
     const message = e.currentTarget.dataset.idx;
+    message.phone = this.formatPhone(message.phone)
     // 增加点击量
     wx.cloud.callFunction({
       name: 'viewCount',
@@ -161,6 +177,16 @@ Page({
     wx.navigateTo({
         url: '/pages/order_message/order_message',
     });
+},
+
+// 电话号码脱敏函数
+formatPhone(phone) {
+  // 转为字符串（处理可能的数字类型输入）
+  phone = phone.toString();
+  // 检查长度（至少保留前3后2，需至少5位）
+  if (phone.length < 5) return phone; // 长度不足时直接返回
+  // 前3位 + 中间星号 + 后2位
+  return phone.slice(0, 3) + '*'.repeat(phone.length - 5) + phone.slice(-2);
 },
 
    /**
