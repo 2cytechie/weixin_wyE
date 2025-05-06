@@ -83,7 +83,7 @@
       <navigator url="/pages/coupons/coupons">
         <view class="function-item">
         <image src="/images/优惠券01.png" class="function-icon"></image>
-        <text class="function-text">优惠券</text>
+        <text class="function-text">我的优惠券</text>
       </view>
       </navigator>
       <navigator url="/pages/cards/cards">

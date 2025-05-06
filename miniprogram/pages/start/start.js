@@ -190,7 +190,8 @@ downloadImages(fileIDs) {
     });
     db.collection("coupons").add({
       data:{
-      name:"红包",  
+      name:"红包",
+      expireTime:"5天",  
       amount:"1",
       condition:"3"
       }
