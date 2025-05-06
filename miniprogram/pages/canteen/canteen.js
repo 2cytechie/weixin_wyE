@@ -1,6 +1,7 @@
 // pages/canteen/canteen.js
 // pages/takeout/takeout.js
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**

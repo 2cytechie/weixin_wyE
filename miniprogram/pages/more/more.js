@@ -160,6 +160,7 @@ Page({
               this.setData({
                 'takeout_data.upload_time': uploadTime,
                 'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
+                'takeout_data.outTradeNo':OutTradeNo,
                 'takeout_data.avatar':upLoadAvatar,
                 'takeout_data.phoen':phone
               });

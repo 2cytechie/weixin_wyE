@@ -1,6 +1,6 @@
 // pages/order/order.js
 const db = wx.cloud.database()
-
+const app = getApp()
 Page({
   data: {
     is_popup:false,
