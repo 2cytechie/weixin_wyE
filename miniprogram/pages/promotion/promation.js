@@ -43,10 +43,13 @@ Page({
               const now = new Date();
               const uploadTime = now.toLocaleString();
               let upLoadAvatar = wx.getStorageSync('user_data').avatar;
+              let phone = wx.getStorageSync('user_data').phone;
               this.setData({
                 'takeout_data.upload_time': uploadTime,
                 'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
-                'takeout_data.avatar':upLoadAvatar
+                'takeout_data.outTradeNo':OutTradeNo,
+                'takeout_data.avatar':upLoadAvatar,
+                'takeout_data.phone':phone
               });
                 // 上传信息
                 db.database().collection("promation_data").add({

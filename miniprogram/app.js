@@ -22,7 +22,7 @@ App({
     })
   },
   get_openid(){
-    db.callFunction({
+    db.cloud.callFunction({
       name: 'get_openid',
       success: res => {
         console.log(res)
@@ -90,4 +90,21 @@ App({
         });
     });
 },
+
+// 测试
+async  Test(body, totalFee,outTradeNo, toPage) {
+  return new Promise((resolve, reject) => {
+    wx.switchTab({
+      url:"/pages/start/start",
+      success: () => {
+          resolve();
+      },
+      fail: (err) => {
+          reject(err);
+      }
+  });
+
+  })
+},
+
 });

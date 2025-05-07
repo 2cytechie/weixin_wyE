@@ -63,6 +63,8 @@ Page({
     });
     return;
   }
+  const UserData = wx.getStorageSync('user_data');
+  if(UserData){
     wx.showModal({
         title: '确定申请',
         content: '',
@@ -109,6 +111,22 @@ Page({
             }
         }
     });
+  }
+  else{
+    wx.showModal({
+      content: '请先登录！',
+      complete: (res) => {
+        if (res.cancel) {
+            // 用户点击取消，可根据需求添加相应逻辑
+        }
+        if (res.confirm) {
+          wx.navigateTo({
+              url: '/pages/login/login',
+          });
+        }
+      }
+    });
+  }
   },
   uploadImage() {
     return new Promise((resolve, reject) => {

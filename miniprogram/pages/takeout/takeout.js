@@ -20,10 +20,16 @@ Page({
       count:1,
       tip:2,
       pay:2,
+      couponsId:"",
       is_payed:false,
       viewCount:0,
 
-      order_number:"",
+      taker_avatar:"",
+      taker_name:"",
+      taker_send_time:"",
+      profit:0,
+
+      outTradeNo:"",
       upload_time:"",
       receive_time:"",
       confirm_time:"",
@@ -110,9 +116,6 @@ Page({
     }
     });
   },
-  onShareAppMessage() {
-
-  },
   deleteImage(e) {
     const index = e.currentTarget.dataset.index;
     const imageList = this.data.tmp_images;
@@ -151,6 +154,8 @@ Page({
           return;
       }
   }
+  const UserData = wx.getStorageSync('user_data');
+  if(UserData){
     wx.showModal({
         title: '确定下单',
         content: '',
@@ -161,11 +166,20 @@ Page({
             if (res.confirm) {
               const now = new Date();
               const uploadTime = now.toLocaleString();
-              let upLoadAvatar = wx.getStorageSync('user_data').avatar;
+              const OutTradeNo = new Date().getTime().toString();
+              let upLoadAvatar = UserData.avatar;
+              let phone = UserData.phone;
+              // 测试
+              // 优惠劵返回优惠数值或优惠倍数
+              let coupons = 1;
+              let Pay = this.data.takeout_data.tip * this.data.takeout_data.count - coupons;
+              
               this.setData({
                 'takeout_data.upload_time': uploadTime,
-                'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
-                'takeout_data.avatar':upLoadAvatar
+                'takeout_data.pay':Pay,
+                'takeout_data.outTradeNo':OutTradeNo,
+                'takeout_data.avatar':upLoadAvatar,
+                'takeout_data.phone':phone
               });
                 // 上传图片
                 this.uploadImages().then(() => {
@@ -173,16 +187,27 @@ Page({
                     db.collection("takeout_data").add({
                         data: this.data.takeout_data
                     }).then(res=>{
-                      // 支付
-                      const outTradeNo = new Date().getTime().toString(); // 商户订单号
-                      app.Pay("取外卖",this.data.takeout_data.pay*1000,outTradeNo,'/pages/start/start').then(res=>{
+                      // 支付  测试
+                      app.Test("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
                         // 更新支付状态
                         db.collection("takeout_data").where({
-                          outTradeNo
+                          OutTradeNo
                         }).update({
                           is_payed:true
                         })
-                        console.log("支付成功",res)
+                        const Phone = UserData.phone;
+                        const SendOrders = UserData.send_orders;
+                        SendOrders.push(OutTradeNo);
+                        UserData.send_orders = SendOrders;
+                        wx.setStorageSync('user_data', UserData)
+                        db.collection("user_data").where({
+                          phone:Phone
+                        }).update({
+                          data:{
+                            send_orders:SendOrders
+                          }
+                        })
+                        console.log("支付成功")
                       }).catch(res=>{
                         console.log("支付失败",res)
                       })
@@ -199,6 +224,24 @@ Page({
             }
         }
     });
+  }
+  else{
+    wx.showModal({
+      content: '请先登录！',
+      complete: (res) => {
+        if (res.cancel) {
+            // 用户点击取消，可根据需求添加相应逻辑
+        }
+        if (res.confirm) {
+          wx.navigateTo({
+              url: '/pages/login/login',
+          });
+        }
+      }
+    });
+  }
+
+
   },
   uploadImages() {
     return new Promise((resolve, reject) => {

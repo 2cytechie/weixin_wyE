@@ -1,5 +1,6 @@
 // pages/takeout/takeout.js
 const db = wx.cloud.database()
+const app = getApp()
 Page({
   data: {
     showPicker: false,      // 控制弹窗显示
@@ -20,7 +21,12 @@ Page({
       is_payed:false,
       viewCount:0,
 
-      order_number:"",
+      taker_avatar:"",
+      taker_name:"",
+      taker_send_time:"",
+      profit:0,
+
+      outTradeNo:"",
       upload_time:"",
       receive_time:"",
       confirm_time:"",
@@ -97,6 +103,8 @@ Page({
           return;
       }
   }
+  const UserData = wx.getStorageSync('user_data');
+  if(UserData){
     wx.showModal({
         title: '确定下单',
         content: '',
@@ -107,24 +115,39 @@ Page({
             if (res.confirm) {
               const now = new Date();
               const uploadTime = now.toLocaleString();
-              let upLoadAvatar = wx.getStorageSync('user_data').avatar;
+              const OutTradeNo = new Date().getTime().toString();
+              let upLoadAvatar =  UserData.avatar;
+              let phone =  UserData.phone;
               this.setData({
                 'takeout_data.upload_time': uploadTime,
                 'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
-                'takeout_data.avatar':upLoadAvatar
+                'takeout_data.outTradeNo':OutTradeNo,
+                'takeout_data.avatar':upLoadAvatar,
+                'takeout_data.phone':phone
               });
                 // 上传信息
                 db.collection("takeout_data").add({
                   data: this.data.takeout_data
               }).then(res=>{
                 // 支付
-                const outTradeNo = new Date().getTime().toString(); // 商户订单号
-                app.Pay("取外卖",this.data.takeout_data.pay*1000,outTradeNo,'/pages/start/start').then(res=>{
+                app.Test("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
                   // 更新支付状态
                   db.collection("takeout_data").where({
-                    outTradeNo
+                    OutTradeNo
                   }).update({
                     is_payed:true
+                  })
+                  const Phone = UserData.phone;
+                  const SendOrders = UserData.send_orders;
+                  SendOrders.push(OutTradeNo);
+                  UserData.send_orders = SendOrders;
+                  wx.setStorageSync('user_data', UserData)
+                  db.collection("user_data").where({
+                    phone:Phone
+                  }).update({
+                    data:{
+                      send_orders:SendOrders
+                    }
                   })
                   console.log("支付成功",res)
                 }).catch(res=>{
@@ -134,5 +157,21 @@ Page({
             }
         }
     });
+  }
+  else{
+    wx.showModal({
+      content: '请先登录！',
+      complete: (res) => {
+        if (res.cancel) {
+            // 用户点击取消，可根据需求添加相应逻辑
+        }
+        if (res.confirm) {
+          wx.navigateTo({
+              url: '/pages/login/login',
+          });
+        }
+      }
+    });
+  }
   }
 });

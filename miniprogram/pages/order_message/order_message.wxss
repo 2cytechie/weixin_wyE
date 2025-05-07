@@ -36,6 +36,7 @@
 }
 .receiver-info {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -44,12 +45,14 @@
   color: white;
   border-radius: 20px;
   padding: 2px 8px;
+  margin-left: 320rpx;
 }
 .income-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  margin: 10rpx 0;
 }
 .task-accept {
   background-color: #f9f9f9;
@@ -132,4 +135,29 @@
   will-change: transform;
   box-sizing: border-box; /* 新增 */
   margin: 0 -1rpx;
+}
+
+.task-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.fixed-button {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 40px;
+  background-color: black;
+  color: greenyellow;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px; /* 设置行高等于按钮高度，实现垂直居中 */
+  display: flex; /* 使用 flex 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
 }

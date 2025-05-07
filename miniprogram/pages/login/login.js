@@ -9,20 +9,21 @@ Page({
     // 私人数据(进创建者可访问) 注意利用云函数返回特定字符
     user_data:{
       avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
-      name:"小白小红小绿小兰",
+      name:"点击修改昵称",
       gender:"男",
       phone:"",
-      login_time:"注册时间",
+      money:0,
+      login_time:"",
       is_orderer:false,
       make_orderer_time:"",
       is_promoter:false,
       make_promoter_time:"",
-      send_orders:["发出的订单号"],
-      pick_orders:["接单的订单号"],
-      locations:["我的地址"],
-      coupons:["优惠卷id"],
-      cards:["卡号??????????????"],
-      message:["我的消息"]
+      send_orders:[],
+      pick_orders:[],
+      locations:[],
+      coupons:[],
+      cards:[],
+      message:[]
     }
   },
   Login(e) {
@@ -137,6 +138,6 @@ Page({
     });
   },
   pay(){
-    app.Pay("test",1)
+    app.Test("test",1)
   }
 })
