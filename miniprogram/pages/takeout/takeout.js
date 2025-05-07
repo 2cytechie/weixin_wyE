@@ -20,6 +20,7 @@ Page({
       count:1,
       tip:2,
       pay:2,
+      couponsId:"",
       is_payed:false,
       viewCount:0,
 
@@ -115,9 +116,6 @@ Page({
     }
     });
   },
-  onShareAppMessage() {
-
-  },
   deleteImage(e) {
     const index = e.currentTarget.dataset.index;
     const imageList = this.data.tmp_images;
@@ -156,6 +154,8 @@ Page({
           return;
       }
   }
+  const UserData = wx.getStorageSync('user_data');
+  if(UserData){
     wx.showModal({
         title: '确定下单',
         content: '',
@@ -166,12 +166,17 @@ Page({
             if (res.confirm) {
               const now = new Date();
               const uploadTime = now.toLocaleString();
-              const OutTradeNo = new Date().getTime().toString() + wx.getStorageSync('user_data')._openid;
-              let upLoadAvatar = wx.getStorageSync('user_data').avatar;
-              let phone = wx.getStorageSync('user_data').phone;
+              const OutTradeNo = new Date().getTime().toString();
+              let upLoadAvatar = UserData.avatar;
+              let phone = UserData.phone;
+              // 测试
+              // 优惠劵返回优惠数值或优惠倍数
+              let coupons = 1;
+              let Pay = this.data.takeout_data.tip * this.data.takeout_data.count - coupons;
+              
               this.setData({
                 'takeout_data.upload_time': uploadTime,
-                'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
+                'takeout_data.pay':Pay,
                 'takeout_data.outTradeNo':OutTradeNo,
                 'takeout_data.avatar':upLoadAvatar,
                 'takeout_data.phone':phone
@@ -190,8 +195,8 @@ Page({
                         }).update({
                           is_payed:true
                         })
-                        const Phone = wx.getStorageSync('user_data').phone;
-                        const SendOrders = wx.getStorageSync('user_data').send_location;
+                        const Phone = UserData.phone;
+                        const SendOrders = UserData.send_location;
                         SendOrders.push(OutTradeNo)
                         db.collection("user_data").where({
                           phone:Phone
@@ -215,6 +220,24 @@ Page({
             }
         }
     });
+  }
+  else{
+    wx.showModal({
+      content: '请先登录！',
+      complete: (res) => {
+        if (res.cancel) {
+            // 用户点击取消，可根据需求添加相应逻辑
+        }
+        if (res.confirm) {
+          wx.navigateTo({
+              url: '/pages/login/login',
+          });
+        }
+      }
+    });
+  }
+
+
   },
   uploadImages() {
     return new Promise((resolve, reject) => {

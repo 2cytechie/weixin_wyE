@@ -137,6 +137,8 @@ Page({
           return;
       }
   }
+  const UserData = wx.getStorageSync('user_data');
+  if(UserData){
     wx.showModal({
         title: '确定下单',
         content: '',
@@ -147,9 +149,9 @@ Page({
             if (res.confirm) {
               const now = new Date();
               const uploadTime = now.toLocaleString();
-              const OutTradeNo = new Date().getTime().toString() + wx.getStorageSync('user_data')._openid;
-              let upLoadAvatar = wx.getStorageSync('user_data').avatar;
-              let phone = wx.getStorageSync('user_data').phone;
+              const OutTradeNo = new Date().getTime().toString();
+              let upLoadAvatar =  UserData.avatar;
+              let phone =  UserData.phone;
               this.setData({
                 'takeout_data.upload_time': uploadTime,
                 'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
@@ -196,6 +198,22 @@ Page({
             }
         }
     });
+  }
+  else{
+    wx.showModal({
+      content: '请先登录！',
+      complete: (res) => {
+        if (res.cancel) {
+            // 用户点击取消，可根据需求添加相应逻辑
+        }
+        if (res.confirm) {
+          wx.navigateTo({
+              url: '/pages/login/login',
+          });
+        }
+      }
+    });
+  }
   },
   uploadImages() {
     return new Promise((resolve, reject) => {

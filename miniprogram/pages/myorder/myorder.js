@@ -20,5 +20,19 @@ Page({
   // 滑动切换
   handleSwiperChange(e) {
     this.setData({ currentTab: e.detail.current })
-  }
+  },
+
+  onReady() {
+    const UserData = wx.getStorageSync('user_data');
+    const PickOrders = UserData.pick_orders;
+    const SendOrders = UserData.send_orders;
+    // 从takeout_data中请求数据
+    const PickData = wx.cloud.database().collection("takeout_data").where({
+      outTradeNo:PickOrders
+    }).get()
+    const SendData = wx.cloud.database().collection("takeout_data").where({
+      outTradeNo:SendOrders
+    }).get()
+    console.log(PickData,SendData)
+  },
 })

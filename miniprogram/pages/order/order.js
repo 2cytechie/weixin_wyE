@@ -148,6 +148,7 @@ Page({
   
   show_page(e) {
     const message = e.currentTarget.dataset.idx;
+    console.log("电话",message.phone)
     message.phone = this.formatPhone(message.phone)
     // 增加点击量
     wx.cloud.callFunction({

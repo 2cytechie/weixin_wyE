@@ -126,6 +126,12 @@
       <view>确认时间</view>
       <view>{{takeout_data.confirm_time}}</view>
     </view>
+    <!-- 留白 -->
+    <view class="detail-item"></view>
+    <view class="detail-item"></view>
+    <view class="detail-item"></view>
+    <view class="detail-item"></view>
+    <view class="detail-item"></view>
   </view>
 
   <view bind:tap="receiveOrder" wx:if="{{takeout_data.status === '待接单'}}" class="fixed-button">一键接单</view>
