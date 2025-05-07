@@ -194,13 +194,17 @@ Page({
                       }).update({
                         is_payed:true
                       })
-                      const Phone = wx.getStorageSync('user_data').phone;
-                      const SendOrders = wx.getStorageSync('user_data').send_orders;
-                      SendOrders.push(OutTradeNo)
+                      const Phone = UserData.phone;
+                      const SendOrders = UserData.send_orders;
+                      SendOrders.push(OutTradeNo);
+                      UserData.send_orders = SendOrders;
+                      wx.setStorageSync('user_data', UserData)
                       db.collection("user_data").where({
                         phone:Phone
                       }).update({
-                        send_orders:SendOrders
+                        data:{
+                          send_orders:SendOrders
+                        }
                       })
                       console.log("支付成功",res)
                     }).catch(res=>{

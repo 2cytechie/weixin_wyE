@@ -18,9 +18,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    const userData = wx.getStorageSync('user_data');
-    this.setData({user_data:userData})
-    if(!userData.phone){
+    const UserData = wx.getStorageSync('user_data');
+    this.setData({user_data:UserData})
+    if(!UserData.phone){
       wx.showModal({
         title: '你还没有授权登录哟！',
         content: '去登录',
@@ -38,14 +38,14 @@ Page({
     }
     else{
       // 已经登录加载头像等资源
-      if(userData.avatar === "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png"){
+      if(UserData.avatar === "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png"){
       console.log("不用下载头像")  
       return;
       }
       if(this.data.avatar === "/images/用户.png"){
         const that = this
         wx.cloud.downloadFile({
-          fileID: userData.avatar, // 单个fileID
+          fileID: UserData.avatar, // 单个fileID
           success (res) {
             that.setData({
               avatar:res.tempFilePath
@@ -53,7 +53,7 @@ Page({
             console.log("avatar下载成功")
           },
           fail: error => {
-            console.log(userData.avatar)
+            console.log(UserData.avatar)
             console.error('avatarr图片下载失败', error);
           }
         })
@@ -102,6 +102,16 @@ Page({
                 "avatar":tempFilePath
               })
               wx.setStorageSync('user_data', that.data.user_data)
+              const SendOrders = this.data.user_data.send_orders;
+              SendOrders.forEach((orderNo)=>{
+                wx.cloud.database().collection("takeout_data").where({
+                  outTradeNo:orderNo
+                }).update({
+                  data:{
+                    avatar:fileID
+                  }
+                })
+              })
               app.update_user_data(that.data.user_data.phone,"avatar",fileID)
             },
             fail: err => {
