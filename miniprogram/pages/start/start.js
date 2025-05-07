@@ -1,5 +1,16 @@
 // pages/start/start.js
 const db = wx.cloud.database();
+// 获取当前时间
+const now = new Date();
+// 计算两天的毫秒数
+const twoDaysInMilliseconds = 5 * 24 * 60 * 60 * 1000;
+// 在当前时间的基础上加上两天的毫秒数
+const newDate = new Date(now.getTime() + twoDaysInMilliseconds);
+// 将新的日期转换为本地字符串格式
+const uploadTime = newDate.toLocaleString();
+
+console.log('当前时间:', now.toLocaleString());
+console.log('增加两天后的时间:', uploadTime);
 var isCouponClaimed = false;
 var isCouponClaimed1 = false;
 var isCouponClaimed2 = false;
@@ -191,8 +202,9 @@ downloadImages(fileIDs) {
     db.collection("coupons").add({
       data:{
       name:"红包",
-      expireTime:"5天",  
+      expireTime:uploadTime,  
       amount:"1",
+     
       condition:"3"
       }
     })
@@ -238,8 +250,9 @@ downloadImages(fileIDs) {
       db.collection("coupons").add({
         data:{
         name:"红包",  
-        amount:"1",
-        condition:"3"
+        amount:"3",
+        expireTime:uploadTime,
+        condition:"10"
         }
       })
       isCouponClaimed = true;
@@ -271,8 +284,9 @@ downloadImages(fileIDs) {
         db.collection("coupons").add({
           data:{
           name:"红包",  
-          amount:"1",
-          condition:"3"
+          amount:"5",
+          expireTime:uploadTime,
+          condition:"15"
           }
         })
         isCouponClaimed2 = true;

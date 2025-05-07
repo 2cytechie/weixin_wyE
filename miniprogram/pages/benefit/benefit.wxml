@@ -48,8 +48,7 @@
                 <text class="money">{{item.money}}</text>
                 <text class="condition">满{{item.condition}}可用</text>
                 <button class="exchange-btn" disabled="{{item.integral > points}}" bindtap="exchange" data-index="{{index}}">{{item.integral}}兑换</button>
-            </view>
-            
+            </view>  
         </view>
     </view>
 </view>

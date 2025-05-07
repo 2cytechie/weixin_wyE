@@ -27,7 +27,7 @@
           <view class="coupon-info">
             <view class="coupon-name">{{item.name}}</view> <!-- 优惠券名称 -->
             <view class="coupon-time">
-              有效期至：{{item.expireTime | formatTime}} <!-- 格式化时间（需配合过滤器） -->
+              有效期至：{{item.expireTime}} <!-- 格式化时间（需配合过滤器） -->
             </view>
           </view>
           <view class="coupon-price">

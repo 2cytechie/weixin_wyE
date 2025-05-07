@@ -76,8 +76,8 @@
 
     <!-- 重复优惠券项 -->
     <view class="coupon-item">
-    <view class="coupon-upper">¥1</view>
-    <view class="coupon-middle">满3可用</view>
+    <view class="coupon-upper">¥3</view>
+    <view class="coupon-middle">满10可用</view>
     
     <view class="coupon-lower" bind:tap="linqu1" data-index="0">
       <navigator url="/pages/order/order" open-type="switchTab">
@@ -85,8 +85,8 @@
     </view> 
 </view>
 <view class="coupon-item">
-    <view class="coupon-upper">¥1</view>
-    <view class="coupon-middle">满3可用</view>
+    <view class="coupon-upper">¥5</view>
+    <view class="coupon-middle">满15可用</view>
     
     <view class="coupon-lower" bind:tap="linqu2" data-index="0">
       <navigator url="/pages/order/order" open-type="switchTab"  >
