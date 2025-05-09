@@ -27,13 +27,13 @@
     "pages/map/map",
     "pages/order_message/order_message",
     "pages/index/index",
-
     "pages/banner1/banner1",
     "pages/banner2/banner2",
     "pages/banner3/banner3",
-
     "pages/xeiyi/xeiyi",
-    "pages/guize/guize"
+    "pages/guize/guize",
+   
+    "pages/zhuli2/zhuli2"
   ],
   "window": {
     "backgroundColor": "#B9FFD3",
