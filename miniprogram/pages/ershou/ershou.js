@@ -18,9 +18,8 @@ Page({
       images:[],
       notes:"",
       count:1,
-      tip:2,
-      pay:2,
-      couponsId:"",
+      tip:3,
+      pay:3,
       is_payed:false,
       viewCount:0,
 
@@ -33,7 +32,7 @@ Page({
       upload_time:"",
       receive_time:"",
       confirm_time:"",
-      service:"取外卖",
+      service:"二手交易",
       status:"待接单",
     }
   },
@@ -43,7 +42,7 @@ Page({
     const dataToUpdate = {};
     dataToUpdate[`takeout_data.${takeoutType}`] = value;
     this.setData(dataToUpdate);
-    // console.log(this.data.takeout_data)
+    console.log(this.data.takeout_data)
   },
 
   // 显示时间选择器
@@ -137,22 +136,12 @@ Page({
       'takeout_data.count': this.data.takeout_data.count + 1
     })
   },
-  chooseAddress(){
-    console.log(111)
-    wx.chooseAddress({
-      success:res=>{
-        console.log(res)
-      }
-      
-    })
-  },
   order() {
     // 检查信息是否为空
     const requiredFields = {
-      pick_location:"取餐地",
-      send_location:"收货地址",
-      time:"送达时间",
-      message:"取餐信息"
+      pick_location:"交易地点",
+      time:"碰头时间",
+      message:"交易信息"
     }; // 需要检查的字段
     for (const field in requiredFields) {
       if (!this.data.takeout_data[field]) {
@@ -176,60 +165,55 @@ Page({
               const now = new Date();
               const uploadTime = now.toLocaleString();
               const OutTradeNo = new Date().getTime().toString();
-              let upLoadAvatar = UserData.avatar;
-              let phone = UserData.phone;
-              // 测试
-              // 优惠劵返回优惠数值或优惠倍数
-              let coupons = 1;
-              let Pay = this.data.takeout_data.tip * this.data.takeout_data.count - coupons;
-              
+              let upLoadAvatar =  UserData.avatar;
+              let phone =  UserData.phone;
               this.setData({
                 'takeout_data.upload_time': uploadTime,
-                'takeout_data.pay':Pay,
+                'takeout_data.pay':this.data.takeout_data.tip * this.data.takeout_data.count,
                 'takeout_data.outTradeNo':OutTradeNo,
                 'takeout_data.avatar':upLoadAvatar,
                 'takeout_data.phone':phone
               });
                 // 上传图片
                 this.uploadImages().then(() => {
-                    // 上传信息
-                    db.collection("takeout_data").add({
-                        data: this.data.takeout_data
-                    }).then(res=>{
-                      // 支付  测试
-                      app.Test("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
-                        // 更新支付状态
-                        db.collection("takeout_data").where({
-                          OutTradeNo
-                        }).update({
-                          is_payed:true
-                        })
-                        const Phone = UserData.phone;
-                        const SendOrders = UserData.send_orders;
-                        SendOrders.push(OutTradeNo);
-                        UserData.send_orders = SendOrders;
-                        wx.setStorageSync('user_data', UserData)
-                        db.collection("user_data").where({
-                          phone:Phone
-                        }).update({
-                          data:{
-                            send_orders:SendOrders
-                          }
-                        })
-                        console.log("支付成功")
-                      }).catch(res=>{
-                        console.log("支付失败",res)
+                  // 上传信息
+                  db.collection("takeout_data").add({
+                      data: this.data.takeout_data
+                  }).then(res=>{
+                    // 支付
+                    app.Test("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
+                      // 更新支付状态
+                      db.collection("takeout_data").where({
+                        OutTradeNo
+                      }).update({
+                        is_payed:true
                       })
+                      const Phone = UserData.phone;
+                      const SendOrders = UserData.send_orders;
+                      SendOrders.push(OutTradeNo);
+                      UserData.send_orders = SendOrders;
+                      wx.setStorageSync('user_data', UserData)
+                      db.collection("user_data").where({
+                        phone:Phone
+                      }).update({
+                        data:{
+                          send_orders:SendOrders
+                        }
+                      })
+                      console.log("支付成功",res)
                     }).catch(res=>{
-                      console.log("取外卖信息上传失败",res)
+                      console.log("支付失败",res)
                     })
-                }).catch((err) => {
-                    console.error('图片上传失败:', err);
-                    wx.showToast({
-                        title: '图片上传失败，请重试',
-                        icon: 'none'
-                    });
-                });
+                  }).catch(res=>{
+                    console.log("取外卖信息上传失败",res)
+                  })
+              }).catch((err) => {
+                  console.error('图片上传失败:', err);
+                  wx.showToast({
+                      title: '图片上传失败，请重试',
+                      icon: 'none'
+                  });
+              });
             }
         }
     });
@@ -249,8 +233,6 @@ Page({
       }
     });
   }
-
-
   },
   uploadImages() {
     return new Promise((resolve, reject) => {

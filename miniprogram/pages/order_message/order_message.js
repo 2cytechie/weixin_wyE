@@ -150,8 +150,8 @@ onTouchMove(e) {
   }
 },
 async receiveOrder(){
-  // 判断是否登录
-if (this.data.user_data) {
+  // 判断是否是接单员
+if (this.data.user_data.is_orderer) {
   // 更新云端数据
   const OutTradeNo = this.data.takeout_data.outTradeNo;
   let PickOrders = this.data.user_data.pick_orders;
@@ -191,14 +191,14 @@ if (this.data.user_data) {
   });
 } else {
   wx.showModal({
-    content: '请先登录！',
+    content: '请先成为接单员！',
     complete: (res) => {
       if (res.cancel) {
           // 用户点击取消，可根据需求添加相应逻辑
       }
       if (res.confirm) {
         wx.navigateTo({
-            url: '/pages/login/login',
+            url: '/pages/taker/taker',
         });
       }
     }

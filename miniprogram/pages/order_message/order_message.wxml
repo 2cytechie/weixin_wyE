@@ -42,7 +42,7 @@
 <!-- 早期 -->
   <view class="order-section takeout-section" wx:else="">
     <view class="takeout-item">
-      <image src="{{takeout_data.avatar}}" class="task-avatar"/>
+      <image src="{{takeout_data.avatar}}" class="task-avatar" mode="aspectFill"/>
       <view class="section-title">{{takeout_data.service}}</view>
     </view>
     <view class="takeout-item" wx:if="{{takeout_data.pick_location}}">
@@ -127,7 +127,6 @@
       <view>{{takeout_data.confirm_time}}</view>
     </view>
     <!-- 留白 -->
-    <view class="detail-item"></view>
     <view class="detail-item"></view>
     <view class="detail-item"></view>
     <view class="detail-item"></view>

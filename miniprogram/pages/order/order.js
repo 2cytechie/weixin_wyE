@@ -41,7 +41,7 @@ Page({
       taker_send_time:"2025年12月12日",
       profit:3,
 
-      outTradeNo:"93759749573475975023702340",
+      outTradeNo:"937597495702340",
       upload_time:"2025年12月11日",
       receive_time:"2025年12月12日",
       confirm_time:"2025年12月12日",
@@ -108,7 +108,7 @@ Page({
     const { pageSize, currentPage } = this.data;
     const skip = (currentPage - 1) * pageSize;
 
-    // 构建查询条件 只能查询到已经支付的订单
+    // 构建查询条件 只能查询到已经支付的订单  测试
     // let queryCondition = {is_payed:true};
     let queryCondition = {};
     let _SelectedInfo = this.data.selectedInfo

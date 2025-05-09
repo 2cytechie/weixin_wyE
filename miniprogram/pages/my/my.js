@@ -11,7 +11,7 @@ Page({
 
     avatar:"/images/用户.png",
     name:"",
-    user_data:null
+    user_data:{}
   },
 
   /**

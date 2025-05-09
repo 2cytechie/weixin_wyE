@@ -26,7 +26,8 @@
         <view class="order-desc">课余时间也有收益！</view>
       </view>
       <navigator url="/pages/taker/taker">
-        <view class="apply-btn">立即申请></view>
+        <view wx:if="{{user_data.is_orderer}}" class="apply-btn">立即申请></view>
+        <view wx:else="" class="apply-btn">查看接的订单</view>
       </navigator>
     </view>
   </view>

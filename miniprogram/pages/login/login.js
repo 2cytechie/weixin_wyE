@@ -14,7 +14,8 @@ Page({
       phone:"",
       money:0,
       login_time:"",
-      is_orderer:false,
+      // 测试
+      is_orderer:true,
       make_orderer_time:"",
       is_promoter:false,
       make_promoter_time:"",

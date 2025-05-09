@@ -1,6 +1,6 @@
 <!-- pages/order/order.wxml -->
 <!-- wxml -->
-<view>
+<view class="container">
 <scroll-view class="tab-scroll" scroll-x="true" style="white-space: nowrap;">
   <view 
     class="tab-item {{currentTab === index ? 'active' : ''}}" 
@@ -16,9 +16,41 @@
   <!-- 内容滑动区域 -->
   <swiper class="content-swiper" current="{{currentTab}}" bindchange="handleSwiperChange">
     <swiper-item wx:for="{{tabList}}" wx:key="index">
-      <view class="empty-container">
+      <view wx:if="{{data_list.length == 0}}" class="empty-container">
         <image src="/images/我的订单1.png" mode="widthFix"></image>
         <text class="empty-tip">你还没有{{item.title}}订单哦！</text>
+      </view>
+      <!-- 展示 -->
+      <view wx:else="" class="task-list">
+        <block wx:for="{{data_list}}" wx:key="id">
+          <view class="task-item" bind:tap="show_page" data-idx="{{item}}" data-id="{{item._id}}">
+            <!-- 任务头部信息 -->
+            <view class="task-header">
+              <image src="{{item.avatar}}" mode="aspectFill" class="task-avatar" />
+              <view class="task-type">{{item.service}}</view>
+              <image src="/images/闹铃.png" class="task-imageclock"/>
+              <text class="task-time">{{item.time}}</text>
+              <text class="text">截止</text>
+              <view class="{{item.status == '待接单' ? 'task-status0' : 'task-status1'}}">{{item.status}}</view>
+            </view>
+
+            <!-- 任务详情 -->
+            <view class="task-content">
+              <text>{{item.message}}</text>
+              <view class="task-location">
+                <image src="/images/我的地址.png" class="location-icon" />
+                {{item.send_location}}
+              </view>
+              <view class="reward">
+                <view class="reward">
+                  <image src="/images/价格.png" class="reward-icon" />
+                  <view class="text-red">{{item.tip * item.count}}元</view>
+                </view>
+                <view class="text">浏览量: {{item.viewCount}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
       </view>
     </swiper-item>
   </swiper>

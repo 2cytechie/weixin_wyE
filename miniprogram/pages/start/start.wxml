@@ -46,9 +46,9 @@
       <text class="item-text">代替服务</text>
     </navigator>
     <!-- 代买 -->
-    <navigator url="/pages/shop/shop" class="function-item">
+    <navigator url="/pages/ershou/ershou" class="function-item">
       <image src="/images/取奶咖.png" class="item-icon"></image>
-      <text class="item-text">取奶咖</text>
+      <text class="item-text">二手交易</text>
     </navigator>
     <!-- 游戏开黑 -->
     <navigator url="/pages/game/game" class="function-item">

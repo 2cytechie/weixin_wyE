@@ -109,7 +109,9 @@ input {
   border-radius: 20rpx;
   margin-bottom: 20rpx;
   overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0, 123, 255, 0.1); /* 蓝色阴影边框 */
 }
+
 .task-header {
   display: flex;
   align-items: center;
