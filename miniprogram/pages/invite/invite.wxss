@@ -88,7 +88,13 @@
 }
 .invited-friends {
   text-align: center;
-  color: #ccc;
-  font-size: 32rpx;
+  color:rgb(255, 0, 0);
+  font-size: 44rpx;
+  margin-top: 30rpx;
+}
+.invited-friends2 {
+  text-align: center;
+  color:rgb(0, 25, 250);
+  font-size: 30rpx;
   margin-top: 30rpx;
 }
