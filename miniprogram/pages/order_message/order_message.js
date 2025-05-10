@@ -164,10 +164,20 @@ if (this.data.user_data.is_orderer) {
       pick_orders: PickOrders
     }
   }).then(res => {
+    let UserData = wx.getStorageSync('user_data');
+    UserData.pick_orders = PickOrders;
+    let Reciive_time = new Date().toLocaleString();
+    // 同步数据
+    wx.setStorageSync('user_data', UserData);
+    
     wx.cloud.database().collection("takeout_data").where({
       outTradeNo: OutTradeNo
     }).update({
       data: {
+        taker_avatar:UserData.avatar,
+        taker_phone:UserData.phone,
+        taker_name:UserData.taker_name,
+        receive_time:Reciive_time,
         status: "已接单"
       }
     })
@@ -178,9 +188,9 @@ if (this.data.user_data.is_orderer) {
 
     // 跳转到订单页面
     setTimeout(() => {
-      wx.switchTab({
-        url: '/pages/order/order',
-      });
+      wx.navigateTo({
+        url: '/pages/taker/taker',
+      })
     }, 1500);
   }).catch(err => {
       console.error('更新云端数据失败:', err);
@@ -205,6 +215,27 @@ if (this.data.user_data.is_orderer) {
   });
 }
   
+},
+
+deliver(){
+  wx.showModal({
+    title: '已送达',
+    complete: (res) => {
+      if (res.cancel) {
+        
+      }
+  
+      if (res.confirm) {
+        wx.cloud.database().collection("takeout_data").where({
+          outTradeNo:this.data.takeout_data.outTradeNo
+        }).update({
+          data:{
+            status:"已完成"
+          }
+        })
+      }
+    }
+  })
 },
 
 onTouchEnd() {

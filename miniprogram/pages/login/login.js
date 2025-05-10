@@ -16,6 +16,7 @@ Page({
       login_time:"",
       // 测试
       is_orderer:true,
+      true_name:"",
       make_orderer_time:"",
       is_promoter:false,
       make_promoter_time:"",

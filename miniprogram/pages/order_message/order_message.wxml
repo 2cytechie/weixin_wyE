@@ -12,7 +12,7 @@
   <view class="order-section" wx:if="{{takeout_data.status === '已完成'}}">
     <view class="section-title">接单员</view>
     <view class="receiver-info">
-      <image src="{{takeout_data.taker_avatar}}" mode="" class="avatar"/>
+      <image src="{{takeout_data.taker_avatar}}" mode="aspectFill" class="avatar"/>
       <view class="text-niming">已匿名</view>
       <button class="reward-btn" size="mini">打赏</button>
     </view>
@@ -134,4 +134,5 @@
   </view>
 
   <view bind:tap="receiveOrder" wx:if="{{takeout_data.status === '待接单'}}" class="fixed-button">一键接单</view>
+  <view bind:tap="deliver" wx:if="{{takeout_data.status === '已接单' && takeout_data.taker_phone === user_data.phone}}" class="fixed-button">确认送达</view>
 </view>

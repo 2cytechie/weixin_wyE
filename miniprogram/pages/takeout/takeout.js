@@ -25,6 +25,7 @@ Page({
       viewCount:0,
 
       taker_avatar:"",
+      taker_phone:"",
       taker_name:"",
       taker_send_time:"",
       profit:0,
@@ -138,13 +139,13 @@ Page({
     })
   },
   chooseAddress(){
-    console.log(111)
-    wx.chooseAddress({
-      success:res=>{
-        console.log(res)
-      }
+    console.log("选择地址")
+    // wx.chooseAddress({
+    //   success:res=>{
+    //     console.log(res)
+    //   }
       
-    })
+    // })
   },
   order() {
     // 检查信息是否为空

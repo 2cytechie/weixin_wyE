@@ -1,9 +1,10 @@
 /* pages/order/order.wxss */
 .container {
-  background-color: #ffffff;
+  background-color: #fafafa;
   padding: 25rpx;
-  height: 100vh; /* 占满整个屏幕高度 */
+  min-height: 100hv;
 }
+
 
 /* wxss */
 .tab-scroll {
@@ -37,10 +38,6 @@
   background: #4CAF50;
 }
 
-/* 内容区域样式 */
-.content-swiper {
-  height: calc(100vh - 160rpx);
-}
 .empty-container {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,6 @@
 // js
 const db = wx.cloud
+const _ = db.database().command;
 Page({
   data: {
     isAgree: false,
@@ -195,14 +196,21 @@ Page({
   },
 
   loadData: function () {
-    const { pageSize, currentPage } = this.data;
+    const { pageSize, currentPage,PickOrders } = this.data;
     const skip = (currentPage - 1) * pageSize;
 
-    console.log(this.data.PickOrders)
+    // 检查 PickOrders 是否有效
+    if (!PickOrders || PickOrders.length === 0) {
+      console.log("PickOrders 为空，跳过查询");
+      this.setData({ hasMoreData: false });
+      return;
+    }
+
+    console.log("接的单号",PickOrders)
     // 构建查询条件 只能查询到已经支付的订单 测试
     db.database().collection('takeout_data')
       .where({
-        outTradeNo:this.data.PickOrders
+      outTradeNo: _.in(PickOrders) // 使用 .in 操作符查询多个订单号
       })
       .skip(skip)
       .limit(pageSize)

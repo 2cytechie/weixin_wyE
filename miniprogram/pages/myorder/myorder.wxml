@@ -14,7 +14,7 @@
 </scroll-view>
 
   <!-- 内容滑动区域 -->
-  <swiper class="content-swiper" current="{{currentTab}}" bindchange="handleSwiperChange">
+  <swiper style="height: {{200*data_list.length}}px" current="{{currentTab}}" bindchange="handleSwiperChange">
     <swiper-item wx:for="{{tabList}}" wx:key="index">
       <view wx:if="{{data_list.length == 0}}" class="empty-container">
         <image src="/images/我的订单1.png" mode="widthFix"></image>
