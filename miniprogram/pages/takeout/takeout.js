@@ -11,6 +11,7 @@ Page({
     tmp_images:[],
     takeout_data:{
       avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
+      phone:"",
       pick_location:"",
       send_location:"",
       time:"",
@@ -171,7 +172,7 @@ Page({
         content: '',
         complete: (res) => {
             if (res.cancel) {
-                // 取消
+                // 取消 
             }
             if (res.confirm) {
               const now = new Date();
@@ -198,7 +199,7 @@ Page({
                         data: this.data.takeout_data
                     }).then(res=>{
                       // 支付  测试
-                      app.Test("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
+                      app.Pay("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
                         // 更新支付状态
                         db.collection("takeout_data").where({
                           OutTradeNo

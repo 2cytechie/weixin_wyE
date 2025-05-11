@@ -39,13 +39,14 @@ App({
   async  Pay(body, totalFee,outTradeNo, toPage) {
     return new Promise((resolve, reject) => {
         wx.cloud.callFunction({
-            name: 'Pay',
+            name: 'SetPay',
             data: {
                 body,
                 totalFee,
                 outTradeNo
             },
             success: res => {
+              console.log(res)
                 let payment = res.result.payment;
                 wx.requestPayment({
                     nonceStr: payment.nonceStr,

@@ -27,7 +27,8 @@ Page({
     })
     let images = this.data.takeout_data.images
     if(images.length > 0){
-      this.downloadImages(images)
+      this.setData({tmp_images:images})
+      // this.downloadImages(images)
     }
     else{
       this.setData({

@@ -54,8 +54,13 @@ init() {
   wx.cloud.database().collection('Init').get()
     .then(({ data }) => {
           const { tapbarImages, notice } = this.extractData(data);
-          this.setData({ notice });
-          return this.downloadImages(tapbarImages);
+          console.log(tapbarImages)
+          this.setData({
+            notice,
+            TapBarimages:tapbarImages
+          });
+          // 不需要下载
+          // return this.downloadImages(tapbarImages);
       })
     .then(() => {
           console.log('tapbar 初始化及图片下载完成');

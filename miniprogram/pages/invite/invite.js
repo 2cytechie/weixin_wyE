@@ -130,7 +130,7 @@ Page({
    */
   onShareAppMessage: function () {
     return{
-      title:'E站',
+      title:'宁工e站',
       path:"/pages/zhuli2/zhuli2",
       imageUrl:"/images/游戏.png",//自定义分享图片//
 

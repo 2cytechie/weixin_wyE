@@ -11,6 +11,7 @@ Page({
     tmp_images:[],
     takeout_data:{
       avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
+      phone:"",
       pick_location:"",
       send_location:"",
       time:"",
@@ -20,10 +21,12 @@ Page({
       count:1,
       tip:3,
       pay:3,
+      couponsId:"",
       is_payed:false,
       viewCount:0,
 
       taker_avatar:"",
+      taker_phone:"",
       taker_name:"",
       taker_send_time:"",
       profit:0,

@@ -38,26 +38,28 @@ Page({
     }
     else{
       // 已经登录加载头像等资源
-      if(UserData.avatar === "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png"){
-      console.log("不用下载头像")  
-      return;
-      }
-      if(this.data.avatar === "/images/用户.png"){
-        const that = this
-        wx.cloud.downloadFile({
-          fileID: UserData.avatar, // 单个fileID
-          success (res) {
-            that.setData({
-              avatar:res.tempFilePath
-            })
-            console.log("avatar下载成功")
-          },
-          fail: error => {
-            console.log(UserData.avatar)
-            console.error('avatarr图片下载失败', error);
-          }
-        })
-      }
+      this.setData({avatar:UserData.avatar})
+
+      // if(UserData.avatar === "cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png"){
+      // console.log("不用下载头像")  
+      // return;
+      // }
+      // if(this.data.avatar === "/images/用户.png"){
+      //   const that = this
+      //   wx.cloud.downloadFile({
+      //     fileID: UserData.avatar, // 单个fileID
+      //     success (res) {
+      //       that.setData({
+      //         avatar:res.tempFilePath
+      //       })
+      //       console.log("avatar下载成功")
+      //     },
+      //     fail: error => {
+      //       console.log(UserData.avatar)
+      //       console.error('avatarr图片下载失败', error);
+      //     }
+      //   })
+      // }
     }
   },
   selectAvatar(){

@@ -3,10 +3,6 @@
 const db = wx.cloud.database()
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     showPicker: false,      // 控制弹窗显示
     hours: Array.from({length:24}, (_,i)=>i), // 0-23小时
@@ -25,10 +21,12 @@ Page({
       count:1,
       tip:3,
       pay:0,
+      couponsId:"",
       is_payed:false,
       viewCount:0,
 
       taker_avatar:"",
+      taker_phone:"",
       taker_name:"",
       taker_send_time:"",
       profit:0,
