@@ -2,7 +2,7 @@ const db = wx.cloud.database();
 const app = getApp();
 // 获取当前时间
 const now = new Date();
-// 计算两天的毫秒数
+// 计算五天的毫秒数
 const twoDaysInMilliseconds = 5 * 24 * 60 * 60 * 1000;
 // 在当前时间的基础上加上两天的毫秒数
 const newDate = new Date(now.getTime() + twoDaysInMilliseconds);
@@ -36,9 +36,56 @@ Page({
       // 页面加载时读取存储的签到数据
       const storageData = wx.getStorageSync('signData');
       if (storageData) {
-          this.setData(storageData);
+          // 检查是否需要在周一重置签到状态
+          this.checkAndResetWeeklySign(storageData);
       }
   },
+  
+  // 检查并在周一时重置本周签到状态
+  checkAndResetWeeklySign(storageData) {
+      const today = new Date().getDay();
+      // 0表示周日，1表示周一
+      if (today === 1) { // 如果今天是周一
+          // 获取上次保存的日期
+          const lastSavedDate = new Date(storageData.lastSavedTime || 0);
+          const lastSavedDay = lastSavedDate.getDay();
+          
+          // 如果上次保存不是周一，说明需要重置本周签到
+          if (lastSavedDay!== 1) {
+              // 保留积分，重置本周签到状态
+              const newWeekDays = storageData.weekDays.map(day => ({
+                  ...day,
+                  signed: false,
+                  needbuqian: false
+              }));
+              
+              // 更新数据
+              this.setData({
+                  ...storageData,
+                  weekDays: newWeekDays,
+                  signedDays: 0,
+                  continuousSignDays: 0,
+                  lastSavedTime: Date.now()
+              });
+              
+              // 保存更新后的数据
+              wx.setStorageSync('signData', this.data);
+              
+              wx.showToast({
+                  title: '新的一周开始了，签到状态已重置！',
+                  icon: 'success'
+              });
+              return;
+          }
+      }
+      
+      // 正常加载存储的数据
+      this.setData({
+          ...storageData,
+          lastSavedTime: Date.now()
+      });
+  },
+
   signIn(e) {
       const index = e.currentTarget.dataset.index;
       const weekDays = this.data.weekDays;
@@ -67,7 +114,8 @@ Page({
           weekDays,
           points: this.data.points + 10,
           signedDays: this.data.signedDays + 1,
-          continuousSignDays: this.data.continuousSignDays + 1
+          continuousSignDays: this.data.continuousSignDays + 1,
+          lastSavedTime: Date.now()
       });
       if (this.data.continuousSignDays === 7) {
           // 连续签到七天奖励逻辑
@@ -83,13 +131,13 @@ Page({
       wx.setStorageSync('signData', this.data);
   },
 
-    
   exchange(e) {
       const index = e.currentTarget.dataset.index;
       const exchangeList = this.data.exchangeList;
       if (this.data.points >= exchangeList[index].integral) {
           this.setData({
-              points: this.data.points - exchangeList[index].integral
+              points: this.data.points - exchangeList[index].integral,
+              lastSavedTime: Date.now()
           });
           db.collection("coupons").add({
             data:{
@@ -103,6 +151,9 @@ Page({
               title: '兑换成功！',
               icon: 'success'
           });
+          
+          // 保存更新后的数据
+          wx.setStorageSync('signData', this.data);
       }
   }
 });

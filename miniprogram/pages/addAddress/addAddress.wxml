@@ -1,0 +1,65 @@
+<view class="page">
+  <!-- 智能填写区域 -->
+  <view class="intelligent-fill">
+    <input placeholder="粘贴或输入收货信息到此处"  value="{{inputContent}}" />
+    <view class="fill-ops">
+      <button class="clear-btn" size="mini" bind:tap="clearInput">清除</button>
+      <button class="recognize-btn" size="mini" bind:tap="handlePaste">粘贴</button>
+    </view>
+  </view>
+
+  <!-- 收货人信息 -->
+  <view class="receiver">
+    <view class="form-item">
+      <label class="form-label">*</label>
+      <input class="form-input" placeholder="请输入姓名" />
+    </view>
+    <view class="form-item">
+      <label class="form-label">*</label>
+      <input class="form-input" placeholder="请输入 11 位手机号" />
+    </view>
+  </view>
+
+  <!-- 地址类型切换（添加点击事件） -->
+  <view class="address-type">
+    <view class="tab-item {{currentType === '校园地址' ? 'active' : ''}}" 
+          bindtap="switchAddressType" data-type="校园地址">
+      校园地址
+    </view>
+    <view class="tab-item {{currentType === '校外地址' ? 'active' : ''}}" 
+          bindtap="switchAddressType" data-type="校外地址">
+      校外地址
+    </view>
+  </view>
+
+  <!-- 地址详情（根据类型显示不同内容） -->
+  <view class="address-detail">
+    <view wx:if="{{currentType === '校园地址'}}">
+      <view class="form-item">
+        <label class="form-label">*</label>
+        <input class="form-input" placeholder="请选择地点" />
+      </view>
+      <view class="form-item">
+        <label class="form-label">*</label>
+        <input class="form-input" placeholder="请输入门牌号信息(加密)" />
+      </view>
+    </view>
+    <view wx:if="{{currentType === '校外地址'}}">
+      <view class="form-item">
+        <label class="form-label">*</label>
+        <input class="form-input" placeholder="请选择地点" />
+      </view>
+      <view class="form-item">
+        <label class="form-label">*</label>
+        <input class="form-input" placeholder="请输入门牌号等信息(加密)" />
+      </view>
+      <view class="form-item">
+        <label class="form-label">*</label>
+        <input class="form-input" placeholder="楼层信息" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn">提交保存</button>
+</view>

@@ -34,7 +34,9 @@
     "pages/xeiyi/xeiyi",
     "pages/guize/guize",
    
-    "pages/zhuli2/zhuli2"
+    "pages/zhuli2/zhuli2",
+    "pages/addAddress/addAddress"
+
   ],
   "window": {
     "backgroundColor": "#B9FFD3",
