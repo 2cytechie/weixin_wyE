@@ -141,7 +141,7 @@ input {
   font-size: 28rpx;
   margin-left: 10rpx;
 }
-.task-status0 {
+.task-status-green {
   background: #76ff03;
   color: #000;
   padding: 10rpx 25rpx;
@@ -150,8 +150,17 @@ input {
   font-size: 30rpx;
   font-weight: bold;
 }
-.task-status1 {
+.task-status-yellow {
   background: yellow;
+  color: #000;
+  padding: 10rpx 25rpx;
+  border-radius: 30rpx;
+  margin-left: auto;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.task-status-red {
+  background: pink;
   color: #000;
   padding: 10rpx 25rpx;
   border-radius: 30rpx;

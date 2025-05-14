@@ -8,7 +8,7 @@ Page({
       { title: '全部' },
       { title: '待支付' },
       { title: '待接单' },
-      { title: '待完成' },
+      { title: '已接单' },
       { title: '已完成' }
     ],
     all_data:[],
@@ -37,7 +37,7 @@ Page({
   // 筛选订单
   filterOrders() {
     const { currentTab, all_data } = this.data;
-    const statusMap = ['全部', '待支付', '待接单', '待完成', '已完成'];
+    const statusMap = ['全部', '待支付', '待接单', '已接单', '已完成'];
     const currentStatus = statusMap[currentTab];
     
     let filtered;

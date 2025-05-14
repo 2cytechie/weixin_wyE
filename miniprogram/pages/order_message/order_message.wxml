@@ -134,5 +134,9 @@
   </view>
 
   <view bind:tap="receiveOrder" wx:if="{{takeout_data.status === '待接单'}}" class="fixed-button">一键接单</view>
-  <view bind:tap="deliver" wx:if="{{takeout_data.status === '已接单' && takeout_data.taker_phone === user_data.phone}}" class="fixed-button">确认送达</view>
+  <!-- <view bind:tap="deliver" wx:if="{{takeout_data.status === '已接单' && takeout_data.taker_phone === user_data.phone}}" class="fixed-button">确认送达</view> -->
+  <view wx:if="{{takeout_data.status === '已接单'}}">
+    <view bind:tap="undeliver" class="fixed-button-undeliver">取消订单</view>
+    <view bind:tap="deliver" class="fixed-button-deliver">确认送达</view>
+  </view>
 </view>

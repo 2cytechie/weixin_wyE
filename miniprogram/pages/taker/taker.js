@@ -3,11 +3,6 @@ const db = wx.cloud
 const _ = db.database().command;
 Page({
   data: {
-    isAgree: false,
-    pageSize: 5, // 每页加载的数据数量
-    currentPage: 1, // 当前页码
-    hasMoreData: true, // 是否还有更多数据
-
     tmp_image:"",
     takeout_data:{
       id_image:"",
@@ -16,36 +11,16 @@ Page({
       make_takerer_time:""
     },
     is_orderer:false,
-    PickOrders:[],
-    data_list: [
-      {
-        avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
-      phone:"1676934923",
-      pick_location:"东门口",
-      send_location:"三号楼",
-      time:"23:12",
-      message:"取来放门口",
-      images:[],
-      count:1,
-      tip:3,
-      pay:3,
-      is_payed:false,
-      viewCount:0,
 
-      taker_avatar:"/images/4.png",
-      taker_name:"讲究名字",
-      taker_send_time:"2025年12月12日",
-      profit:3,
+    currentTab: 0,
+    tabList: [
+      { title: '全部' },
+      { title: '待完成' },
+      { title: '已完成' }
+    ],
+    all_data:[],
+    data_list: []
 
-      outTradeNo:"937597495734759",
-      upload_time:"2025年12月11日",
-      receive_time:"2025年12月12日",
-      confirm_time:"2025年12月12日",
-      service:"食堂带饭",
-      status:"待接单",
-      },
-      // 其他任务数据...
-    ]
   },
 
   chooseImage() {
@@ -195,47 +170,42 @@ Page({
     });
   },
 
-  loadData: function () {
-    const { pageSize, currentPage,PickOrders } = this.data;
-    const skip = (currentPage - 1) * pageSize;
-
-    // 检查 PickOrders 是否有效
-    if (!PickOrders || PickOrders.length === 0) {
-      console.log("PickOrders 为空，跳过查询");
-      this.setData({ hasMoreData: false });
-      return;
-    }
-
-    console.log("接的单号",PickOrders)
-    // 构建查询条件 只能查询到已经支付的订单 测试
-    db.database().collection('takeout_data')
-      .where({
-      outTradeNo: _.in(PickOrders) // 使用 .in 操作符查询多个订单号
-      })
-      .skip(skip)
-      .limit(pageSize)
-      .get()
-      .then(res => {
-        const newData = res.data;
-        if (newData.length < pageSize) {
-            // 如果返回的数据数量小于每页加载的数量，说明没有更多数据了
-            this.setData({
-                hasMoreData: false
-            });
-        }
-        this.setData({
-            data_list: this.data.data_list.concat(newData),
-            currentPage: currentPage + 1
-        });
+  // 标签点击切换
+  switchTab(e) {
+    const current = e.currentTarget.dataset.index
+    this.setData({ currentTab: current },()=>{
+      this.filterOrders();
     })
-    .catch(err => {
-        console.error('数据加载失败', err);
-        // 给用户显示加载失败的提示
-        wx.showToast({
-            title: '数据加载失败，请稍后重试',
-            icon: 'none'
-        });
+  },
+
+  // 滑动切换
+  handleSwiperChange(e) {
+    this.setData({ currentTab: e.detail.current },()=>{
+      this.filterOrders();
+    })
+  },
+
+  onPullDownRefresh() {
+    this.onReady()
+  },
+
+  // 筛选订单
+  filterOrders() {
+    const { currentTab, all_data } = this.data;
+    const statusMap = ['全部', '已接单', '已完成'];
+    const currentStatus = statusMap[currentTab];
+    
+    let filtered;
+    if (currentStatus === '全部') {
+      filtered = all_data;
+    } else {
+      filtered = all_data.filter(order => order.status === currentStatus);
+    }
+    
+    this.setData({
+      data_list: filtered
     });
+
   },
   show_page(e) {
     const message = e.currentTarget.dataset.idx;
@@ -285,10 +255,18 @@ formatPhone(phone) {
   onReady(){
     const IsOrderer = wx.getStorageSync('user_data').is_orderer;
     const Pick_orders = wx.getStorageSync('user_data').pick_orders;
-    this.setData({
-      is_orderer:IsOrderer,
-      PickOrders:Pick_orders
+    // 从takeout_data中请求数据
+    db.database().collection("takeout_data")
+    .where({
+      outTradeNo: _.in(Pick_orders) // 使用 .in 操作符查询多个订单号
     })
-    this.loadData()
+    .get()
+    .then(res=>{
+      this.setData({
+        all_data:res.data,
+        data_list:res.data,
+        is_orderer:IsOrderer
+      })
+    })
   }
 })

@@ -161,3 +161,37 @@
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
 }
+.fixed-button-undeliver {
+  position: fixed;
+  bottom: 30px;
+  left: 25%;
+  transform: translateX(-50%);
+  width: 45%;
+  height: 40px;
+  background-color: rgb(255, 209, 209);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px; /* 设置行高等于按钮高度，实现垂直居中 */
+  display: flex; /* 使用 flex 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.fixed-button-deliver {
+  position: fixed;
+  bottom: 30px;
+  left: 75%;
+  transform: translateX(-50%);
+  width: 45%;
+  height: 40px;
+  background-color: black;
+  color: greenyellow;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px; /* 设置行高等于按钮高度，实现垂直居中 */
+  display: flex; /* 使用 flex 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}

@@ -2,7 +2,7 @@
 .container {
   background-color: #b5ffd9;
   padding: 25rpx;
-  height: 100vh; /* 占满整个屏幕高度 */
+  min-height: 100vh;
 }
 
 .header {
@@ -270,7 +270,12 @@
   right: 0;
 }
 .tab-item {
-  text-align: center;
+  display: inline-block; /* 确保横向排列 */
+  padding: 0 20rpx;
+  font-size: 32rpx;
+  color: #333;
+  line-height: 80rpx;
+  margin-left: 80rpx;
 }
 .tab-icon {
   width: 60rpx;
@@ -278,7 +283,7 @@
   margin-bottom: 10rpx;
 }
 .active {
-  color: #009688;
+  color: #2f71ff;
 }
 .text{
   margin-left: 10rpx;
@@ -287,4 +292,30 @@
   width: 35rpx;
   height: 35rpx;
   margin-right: 10rpx;
+}
+.tab-scroll {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #2f71ff;
+  overflow-x: auto; /* 强制显示滚动 */
+  -webkit-overflow-scrolling: touch; /* 优化滚动流畅度 */
+}
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx;
+}
+.empty-container image {
+  width: 400rpx;
+  margin-bottom: 40rpx;
+}
+.empty-tip {
+  font-size: 32rpx;
+  color: #999;
+  text-align: center;
+}
+.message{
+  margin-top: 20rpx;
 }

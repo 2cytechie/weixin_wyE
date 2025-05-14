@@ -238,6 +238,30 @@ deliver(){
     }
   })
 },
+undeliver(){
+  wx.showModal({
+    title: '确认取消',
+    complete: (res) => {
+      if (res.cancel) {
+        
+      }
+  
+      if (res.confirm) {
+        wx.cloud.database().collection("takeout_data").where({
+          outTradeNo:this.data.takeout_data.outTradeNo
+        }).update({
+          data:{
+            status:"待接单",
+            taker_avatar:"",
+            taker_phone:"",
+            taker_name:"",
+            profit:0,
+          }
+        })
+      }
+    }
+  })
+},
 
 onTouchEnd() {
   // 自动居中逻辑（可选）
