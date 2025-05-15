@@ -89,27 +89,38 @@
           <text class="plus-sign">+</text>
         </view>
       </view>
-    </view>    
-    <view class="form-item">
-          <image src="/images/more/性别.png" class="item-icon" />
-          <view class="gender-options">
-            <radio-group bindchange="setGender">
-              <label class="gender-label">
-                <radio value="男" checked="{{takeout_data.gender === '男'}}" /> 男
-              </label>
-              <label class="gender-label">
-                <radio value="女" checked="{{takeout_data.gender === '女'}}" /> 女
-              </label>
-              <label class="gender-label">
-                <radio value="不限" checked="{{takeout_data.gender === '不限'}}" /> 不限
-              </label>
-            </radio-group>
-          </view>
-        </view>
+    </view>
+</view>
+
+<view class="form-item">
+      <image src="/images/more/性别.png" class="item-icon" />
+      <view>
+        <radio-group bindchange="setGender">
+          <label class="gender-label">
+            <radio value="男" checked="{{takeout_data.gender === '男'}}" /> 男
+          </label>
+          <label class="gender-label">
+            <radio value="女" checked="{{takeout_data.gender === '女'}}" /> 女
+          </label>
+          <label class="gender-label">
+            <radio value="不限" checked="{{takeout_data.gender === '不限'}}" /> 不限
+          </label>
+        </radio-group>
+      </view>
+    </view>
+
+  <view class="form-item">
+    <image src="/images/more/小费.png" class="item-icon" />
+    <input bindblur="set_message_data"
+    data-type = "tip"
+    placeholder="小费"
+    confirm-type="done"
+    class="item-input" />
+  </view>
     
   <!-- 立即下单按钮 -->
   <view class="xiadan" bind:tap="order">立即下单</view>
-</view>
+
 </view>
 
 

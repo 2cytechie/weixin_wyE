@@ -119,8 +119,19 @@
     </view>
   </view>
   </view>
+
+  <view class="qvcan">
+    <image src="/images/canteen/小费.png" class="item-icon" />
+    <input bindblur="set_message_data"
+    type="digit"
+    data-takeout_type = "tip"
+    placeholder="小费"
+    confirm-type="done"
+    class="item-input" />
+  </view>
+
   </view>
 
   <!-- 立即下单按钮 -->
   <view class="xiadan" bind:tap="order">立即下单</view>
-</view>>
+</view>

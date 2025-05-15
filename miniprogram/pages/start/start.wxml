@@ -38,7 +38,7 @@
     <!-- 超市 -->
     <navigator url="/pages/supermarket/supermarket" class="function-item">
       <image src="/images/超市.png" class="item-icon"></image>
-      <text class="item-text">超市</text>
+      <text class="item-text">代购</text>
     </navigator>
     <!-- 代替服务 -->
     <navigator url="/pages/replace/replace" class="function-item">
