@@ -92,7 +92,9 @@
               <image src="/images/闹铃.png" class="task-imageclock"/>
               <text class="task-time">{{item.time}}</text>
               <text class="text">截止</text>
-              <view class="{{item.status == '待接单' ? 'task-status0' : 'task-status1'}}">{{item.status}}</view>
+              <view wx:if="{{item.status === '待接单'}}" class="task-status-green">{{item.status}}</view>
+              <view wx:elif="{{item.status === '已接单'}}" class="task-status-yellow">{{item.status}}</view>
+              <view wx:elif="{{item.status === '已完成'}}" class="task-status-red">{{item.status}}</view>
             </view>
 
             <!-- 任务详情 -->

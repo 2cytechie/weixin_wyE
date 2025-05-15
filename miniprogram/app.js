@@ -6,11 +6,12 @@ App({
       env: 'cloud1-1gm8k64i003f436e'
     })
   },
-  update_user_data(phone,type,update_data){
+  update_user_data(type,update_data){
+    const Phone = wx.getStorageSync('user_data').phone;
     wx.cloud.callFunction({
       name:"setUser_data",
       data:{
-        phone:phone,
+        phone:Phone,
         type:type,
         update_data:update_data
       }

@@ -27,7 +27,10 @@ Page({
     })
     let images = this.data.takeout_data.images
     if(images.length > 0){
-      this.setData({tmp_images:images})
+      this.setData({
+        tmp_images:images,
+        is_looding:false
+      })
       // this.downloadImages(images)
     }
     else{
@@ -167,7 +170,7 @@ if (this.data.user_data.is_orderer) {
   }).then(res => {
     let UserData = wx.getStorageSync('user_data');
     UserData.pick_orders = PickOrders;
-    let Reciive_time = new Date().toLocaleString();
+    let Receive_time = new Date().toLocaleString();
     // 同步数据
     wx.setStorageSync('user_data', UserData);
     
@@ -178,7 +181,7 @@ if (this.data.user_data.is_orderer) {
         taker_avatar:UserData.avatar,
         taker_phone:UserData.phone,
         taker_name:UserData.taker_name,
-        receive_time:Reciive_time,
+        receive_time:Receive_time,
         status: "已接单"
       }
     })
@@ -227,12 +230,17 @@ deliver(){
       }
   
       if (res.confirm) {
+        const now = new Date();
+        const ConfirmTime = now.toLocaleString();
         wx.cloud.database().collection("takeout_data").where({
           outTradeNo:this.data.takeout_data.outTradeNo
         }).update({
           data:{
-            status:"已完成"
+            status:"已完成",
+            confirm_time:ConfirmTime
           }
+        }).then(res=>{
+          wx.navigateBack();
         })
       }
     }
@@ -247,8 +255,20 @@ undeliver(){
       }
   
       if (res.confirm) {
+        const UserData = wx.getStorageSync('user_data');
+        let PickOrders = UserData.pick_orders;
+        const OutTradeNo = this.data.takeout_data.outTradeNo;
+        let newPickOrders = [];
+        for(let i in PickOrders){
+          if(PickOrders[i] !== OutTradeNo){
+            newPickOrders.push(PickOrders[i])
+          }
+        }
+        UserData.pick_orders = newPickOrders;
+        wx.setStorageSync('user_data', UserData);
+        app.update_user_data("pick_orders",newPickOrders);
         wx.cloud.database().collection("takeout_data").where({
-          outTradeNo:this.data.takeout_data.outTradeNo
+          outTradeNo:OutTradeNo
         }).update({
           data:{
             status:"待接单",
@@ -257,6 +277,8 @@ undeliver(){
             taker_name:"",
             profit:0,
           }
+        }).then(res=>{
+          wx.navigateBack();
         })
       }
     }

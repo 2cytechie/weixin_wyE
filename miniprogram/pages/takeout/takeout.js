@@ -218,7 +218,7 @@ Page({
                             send_orders:SendOrders
                           }
                         })
-                        console.log("支付成功")
+                        console.log("支付成功",this.data.takeout_data)
                       }).catch(res=>{
                         console.log("支付失败",res)
                       })

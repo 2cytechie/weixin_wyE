@@ -252,7 +252,7 @@ formatPhone(phone) {
 
   
 
-  onReady(){
+  onLoad(){
     const IsOrderer = wx.getStorageSync('user_data').is_orderer;
     const Pick_orders = wx.getStorageSync('user_data').pick_orders;
     // 从takeout_data中请求数据

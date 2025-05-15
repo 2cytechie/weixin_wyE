@@ -114,7 +114,7 @@ Page({
                   }
                 })
               })
-              app.update_user_data(that.data.user_data.phone,"avatar",fileID)
+              app.update_user_data("avatar",fileID)
             },
             fail: err => {
                 console.error('图片上传失败:', err);
@@ -173,7 +173,7 @@ Page({
       isNicknameModalShow: false
     });
     wx.setStorageSync('user_data', this.data.user_data)
-    app.update_user_data(this.data.user_data.phone,"name",newNickname)
+    app.update_user_data("name",newNickname)
     wx.showToast({ title: '昵称修改成功' });
   },
   // 显示性别选择弹窗
@@ -196,6 +196,6 @@ Page({
       showModal: false
     });
     wx.setStorageSync('user_data', this.data.user_data)
-    app.update_user_data(this.data.user_data.phone,"gender",gender)
+    app.update_user_data("gender",gender)
   },
 })

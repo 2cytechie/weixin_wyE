@@ -94,13 +94,13 @@ Page({
   confirmOptions() {
     let that = this;
     this.setData({
-        is_popup: false,
-        currentPage:1,
-        hasMoreData:true,
-        popup_type:'',
-        data_list: []
+      is_popup: false,
+      currentPage:1,
+      hasMoreData:true,
+      popup_type:'',
+      data_list: []
     }, () => {
-        that.loadData();
+      that.loadData();
     });
 },
 

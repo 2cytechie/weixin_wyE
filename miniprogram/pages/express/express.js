@@ -33,7 +33,7 @@ Page({
       upload_time:"",
       receive_time:"",
       confirm_time:"",
-      service:"送快递",
+      service:"取快递",
       status:"待接单",
     }
   },
@@ -142,7 +142,7 @@ Page({
     const requiredFields = {
       send_location:"收货地址",
       time:"送达时间",
-      message:"取件码"
+      // message:"取件码"
     }; // 需要检查的字段
     for (const field in requiredFields) {
       if (!this.data.takeout_data[field]) {
@@ -202,6 +202,8 @@ Page({
                         }
                       })
                       console.log("支付成功",res)
+                      // 测试
+                      console.log("数据",this.data.takeout_data)
                     }).catch(res=>{
                       console.log("支付失败",res)
                     })
