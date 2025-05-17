@@ -10,15 +10,17 @@
 
   <!-- 收货人信息 -->
   <view class="receiver">
-    <view class="form-item">
-      <label class="form-label">*</label>
-      <input class="form-input" placeholder="请输入姓名" />
-    </view>
-    <view class="form-item">
-      <label class="form-label">*</label>
-      <input class="form-input" placeholder="请输入 11 位手机号" />
-    </view>
+  <view class="form-item">
+    <label class="form-label">*</label>
+    <input class="form-input" placeholder="请输入姓名" 
+           value="{{name}}" bindinput="onNameInput" />
   </view>
+  <view class="form-item">
+    <label class="form-label">*</label>
+    <input class="form-input" placeholder="请输入 11 位手机号" 
+           value="{{mobile}}" bindinput="onMobileInput" />
+  </view>
+</view>
 
   <!-- 地址类型切换（添加点击事件） -->
   <view class="address-type">
@@ -34,32 +36,37 @@
 
   <!-- 地址详情（根据类型显示不同内容） -->
   <view class="address-detail">
-    <view wx:if="{{currentType === '校园地址'}}">
-      <view class="form-item">
-        <label class="form-label">*</label>
-        <input class="form-input" placeholder="请选择地点" />
-      </view>
-      <view class="form-item">
-        <label class="form-label">*</label>
-        <input class="form-input" placeholder="请输入门牌号信息(加密)" />
-      </view>
+  <view wx:if="{{currentType === '校园地址'}}">
+    <view class="form-item">
+      <label class="form-label">*</label>
+      <input class="form-input" placeholder="请选择地点" 
+             value="{{address}}" bindinput="onAddressInput" />
     </view>
-    <view wx:if="{{currentType === '校外地址'}}">
-      <view class="form-item">
-        <label class="form-label">*</label>
-        <input class="form-input" placeholder="请选择地点" />
-      </view>
-      <view class="form-item">
-        <label class="form-label">*</label>
-        <input class="form-input" placeholder="请输入门牌号等信息(加密)" />
-      </view>
-      <view class="form-item">
-        <label class="form-label">*</label>
-        <input class="form-input" placeholder="楼层信息" />
-      </view>
+    <view class="form-item">
+      <label class="form-label">*</label>
+      <input class="form-input" placeholder="请输入门牌号信息(加密)" 
+             value="{{street}}" bindinput="onStreetInput" />
     </view>
   </view>
+  <view wx:if="{{currentType === '校外地址'}}">
+    <view class="form-item">
+      <label class="form-label">*</label>
+      <input class="form-input" placeholder="请选择地点" 
+             value="{{address}}" bindinput="onAddressInput" />
+    </view>
+    <view class="form-item">
+      <label class="form-label">*</label>
+      <input class="form-input" placeholder="请输入门牌号等信息(加密)" 
+             value="{{street}}" bindinput="onStreetInput" />
+    </view>
+    <view class="form-item">
+      <label class="form-label">*</label>
+      <input class="form-input" placeholder="楼层信息" 
+             value="{{floor}}" bindinput="onFloorInput" />
+    </view>
+  </view>
+</view>
 
   <!-- 提交按钮 -->
-  <button class="submit-btn">提交保存</button>
+  <button class="submit-btn" bind:tap="retain">提交保存</button>
 </view>

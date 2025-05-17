@@ -7,31 +7,36 @@
     <view class="nav-title">我的地址</view>
   </view>
 
-  <!-- 无地址提示区域 -->
- 
-  <view wx:if="{{addresslist.length==0}}" class="no-address-container">
+  <view wx:if="{{loading}}" class="loading-tip">
+    <text>正在加载地址...</text>
+  </view>
+
+  <!-- 无地址提示区域（修正条件判断和类名拼写） -->
+  <view wx:if="{{addressList.length === 0 && loading=== false}}" class="no-address-container">
     <image src="/images/地址.png" mode="widthFix" class="no-address-img"></image>
     <view class="no-address-tip">暂无地址</view>
   </view>
 
-<!-- 地址列表 -->
-<view wx:else class="adderss-list">
-<view class="address-item" wx:for="{{addresslist}}">
- <view class="item-top">{{item.name}}  {{item.mobile}}</view>
- <view class="item-content">{{item.address}} {{item.street}}</view>
- <view class="item-bottom">
-  <view class="left">
-  <icon type="{{item.isdefault?'sucess' : 'circle'}}" size="15"/>
-  设为默认地址
+  <!-- 地址列表（修正类名拼写，添加 wx:key） -->
+  <view wx:if="{{addressList.length != 0 && loading=== false}}" class="address-list">
+    <view class="address-item" wx:for="{{addressList}}" wx:key="_id"> <!-- 使用 _id 作为唯一标识 -->
+      <view class="item-top">{{item.name}}  {{item.mobile}}</view>
+      <view class="item-content"> {{item.type}}  {{item.address}} {{item.street}}   </view>
+      <view class="item-bottom">
+       
+    <view class="left">{{item.createTime}}</view>
+        <view class="right">
+                               
+          <view class="txt" bindtap="handleDelete" data-id="{{item._id}}">删除</view> <!-- 传递 _id 用·于删除 -->
+          <view class="txt" bindtap="handleEdit" data-id="{{item._id}}">编辑</view> <!-- 传递 _id 用于编辑 -->
+        </view>
+      </view>
+    </view>
+
   </view>
-  <view class="right">
-  <view class="txt">删除</view>
-  <view class="txt">编辑</view>
-  </view>
- </view>
-</view>
-</view>
 
   <!-- 添加新地址按钮 -->
+ <view wx:if="{{loading === false}}">
   <button class="add-address-btn" bindtap="navigateToAddAddress">添加新地址</button>
+</view>
 </view>
