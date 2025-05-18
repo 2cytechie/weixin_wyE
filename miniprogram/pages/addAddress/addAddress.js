@@ -9,6 +9,7 @@ Page({
     address: '',
     street: '',
     floor: '',
+    sidenote: '',
     // 编辑模式标识和ID
     isEditMode: false,
     addressId: null
@@ -36,6 +37,7 @@ Page({
           address: addressData.address,
           street: addressData.street,
           floor: addressData.floor || '',
+          sidenote: addressData.sidenote,
           currentType: addressData.type || '校园地址'
         });
       })
@@ -61,7 +63,7 @@ Page({
       success: (res) => {
         const clipboardText = res.data || '';
         this.setData({
-          inputContent: clipboardText
+          sidenote: clipboardText
         });
         // 调用解析函数
         this.parseAddressInfo(clipboardText);
@@ -96,10 +98,11 @@ Page({
     const mobile = this.data.mobile;
     const address = this.data.address;
     const street = this.data.street;
-    const floor = this.data.floor || ''; // 楼层信息（校外地址）
+    const floor = this.data.floor || '';// 楼层信息（校外地址）
+    const sidenote = this.data.sidenote; //备注信息
     
     // 数据验证
-    if (!name || !mobile || !address || !street) {
+    if (!name || !mobile || !address || !street ) {
       wx.showToast({
         title: '请填写必填信息',
         icon: 'none'
@@ -125,7 +128,7 @@ Page({
       street,
       floor,
       type: this.data.currentType, // 地址类型（校园/校外）
-      updateTime: new Date() // 添加更新时间戳
+      sidenote,
     };
     
     // 根据是否为编辑模式选择不同的提交方式
@@ -153,7 +156,7 @@ Page({
       });
     } else {
       // 添加新地址（保持原有逻辑不变）
-      formData.createTime = new Date(); // 添加创建时间戳
+      
       
       db.collection("location").add({
         data: formData
@@ -164,9 +167,9 @@ Page({
           icon: 'success'
         });
         // 返回上一页
-        setTimeout(() => {
-          wx.navigateBack();
-        }, 1500);
+        wx.navigateTo({
+          url: '/pages/location/location' // 替换为实际添加地址页面路径 
+        });
       })
       .catch(err => {
         console.error('添加地址失败：', err);
@@ -206,6 +209,12 @@ Page({
   onFloorInput(e) {
     this.setData({
       floor: e.detail.value
+    });
+  },
+
+  onSidenoteInput(e) {
+    this.setData({
+      sidenote: e.detail.value
     });
   },
 

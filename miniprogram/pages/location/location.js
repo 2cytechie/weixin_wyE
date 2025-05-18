@@ -1,4 +1,5 @@
 const db = wx.cloud.database();
+
 Page({
   // 页面数据
   data: {
@@ -77,12 +78,30 @@ Page({
     });
   },
 
-  // 设置默认地址
+//点击插看备注
+sidenote(e){
+  const sidenote = e.currentTarget.dataset.sidenote;
+ console.log(sidenote)
+wx.showModal({
+  showCancel:false,
+  title: '备注信息',
+  content: sidenote || '暂无备注',
+  complete: (res) => {
+   
+    if (res.confirm) {
+      
+    }
+  }
+})
+
+},
+
   
 
   // 删除地址
   handleDelete(e){
   let id=e.currentTarget.dataset.id
+  console.log(id)
   wx.showModal({
     title: '是否删除',
     content: '',
@@ -118,19 +137,6 @@ Page({
   wx.navigateTo({
       url: `/pages/addAddress/addAddress?id=${addressId}`
   });
-},
-fetchAddressList() {
-  const db = wx.cloud.database();
-  db.collection("location")
-    .get()
-    .then(res => {
-      this.setData({
-        addressList: res.data // 更新地址列表
-      });
-    })
-    .catch(err => {
-      console.error("获取地址列表失败:", err);
-    });
 }
 
 })

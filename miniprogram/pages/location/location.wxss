@@ -76,7 +76,7 @@ color:#333;
 }
 .item-content{
 font-size: 24rpx;
-color: #999;
+color: #333;
 padding-bottom: 20rpx;
 margin-bottom: 20rpx;
 border-bottom: 1rpx solid #dcdcdc;
@@ -86,7 +86,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 font-size: 24rpx;
-color: #999;
+color:#333;
 
 }
 .item-bottom .right{
@@ -97,4 +97,7 @@ color: #999;
 
 .item-bottom .right .txt{
  padding: 0 10rpx;
+}
+.left{
+  font-size:29rpx;
 }
