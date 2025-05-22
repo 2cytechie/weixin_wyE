@@ -8,10 +8,12 @@
   <view class="form-item">
     <image src="/images/express/地址.png" class="item-icon" />
     <input bindblur="set_message_data"
-    data-type = "send_location"
+   
+    value="{{takeout_data.pick_location}}"
     placeholder="送到哪里"
     confirm-type="done"
     class="item-input" />
+    <view bind:tap="chooseAddress" class="icon" >></view>
   </view>
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
@@ -102,8 +104,9 @@
   <view class="qvcan">
     <image src="/images/express/备注.png" class="item-icon" />
     <input bindblur="set_message_data"
-    data-type = "message"
-    placeholder="备注  (取件码)"
+    value="{{takeout_data.notes}}"
+  
+    placeholder="备注  "
     confirm-type="done"
     class="item-input" />
   </view>

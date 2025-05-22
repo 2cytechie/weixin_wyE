@@ -38,7 +38,7 @@ Page({
     if (prevPage) {
       const prevPagePath = prevPage.route;
       console.log('来源页面路径:', prevPagePath);
-      isFromTakeout = /takeout/i.test(prevPagePath);
+      isFromTakeout = /takeout/i.test(prevPagePath)||/express/i.test(prevPagePath)||/canteen/i.test(prevPagePath)||/supermarket/i.test(prevPagePath)||/replace/i.test(prevPagePath)||/ershou/i.test(prevPagePath)||/more/i.test(prevPagePath);
     } else {
       console.warn('没有上一页信息');
     }

@@ -269,5 +269,34 @@ Page({
             });
         });
     });
+  },
+  setSelectedAddress(address) {
+    this.setData({
+     
+      // 新增：将地址的 sidenote 赋值给备注字段
+      'takeout_data.notes': address.sidenote, // 假设地址对象包含 sidenote 字段
+      // 原有地址字段（根据实际结构调整）
+      'takeout_data.pick_location': address.detailAddress || address.address 
+    });
+
+   
+    wx.removeStorageSync('selectedAddress'); // 清除本地存储
+  },
+  chooseAddress(e){
+    console.log("选择地址")
+    wx.navigateTo({
+      url: '/pages/location/location'
+       // 替换为实际添加地址页面路径 
+    });
+   
+    
+  },
+  onShow() {
+    const address = wx.getStorageSync('selectedAddress');
+    if (address) {
+      this.setSelectedAddress(address);
+      wx.removeStorageSync('selectedAddress');
+       // 清除临时存储
+    }
   }
 });

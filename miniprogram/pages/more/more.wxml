@@ -8,11 +8,11 @@
   <view class="form-item">
     <image src="/images/more/地点.png" class="item-icon" />
     <input bindblur="set_message_data"
-    data-takeout_type = "send_location"
+    value="{{takeout_data.pick_location}}"
     placeholder="帮助地点"
     confirm-type="done"                                                   
     class="item-input" />
-
+    <view bind:tap="chooseAddress" class="icon" >></view>
     <!-- 打开地图 -->  
 
 
@@ -108,6 +108,17 @@
         </radio-group>
       </view>
     </view>
+      <!-- 备注 -->
+      <view class="form-item">
+  <view class="qvcan">
+    <image src="/images/more/备注.png" class="item-icon" />
+    <input bindblur="set_message_data"
+    value="{{takeout_data.notes}}"
+    placeholder="备注"
+    confirm-type="done"
+    class="item-input" />
+  </view>
+</view>
 
   <view class="form-item">
     <image src="/images/more/小费.png" class="item-icon" />

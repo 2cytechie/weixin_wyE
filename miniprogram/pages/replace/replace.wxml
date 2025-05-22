@@ -8,15 +8,13 @@
   <view class="form-item">
     <image src="/images/replace/地址.png" class="item-icon" />
     <input bindblur="set_message_data"
-    data-takeout_type = "send_location"
+    value="{{takeout_data.pick_location}}"
     placeholder="填写一个地址"
     confirm-type="done"
     class="item-input" />
-
-    <!-- 打开地图 -->  
-
-
+    <view bind:tap="chooseAddress" class="icon" >></view>
   </view>
+  
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">
     <image src="/images/replace/时间.png" class="item-icon" />
@@ -92,7 +90,17 @@
     </view>
   </view>
   <view class="form-item">
-    <image src="/images/more/小费.png" class="item-icon" />
+  <view class="qvcan">
+    <image src="/images/replace/备注.png" class="item-icon" />
+    <input bindblur="set_message_data"
+    value="{{takeout_data.notes}}"
+    placeholder="备注"
+    confirm-type="done"
+    class="item-input" />
+  </view>
+</view>
+  <view class="form-item">
+    <image src="/images/replace/小费.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-type = "tip"
     placeholder="小费"

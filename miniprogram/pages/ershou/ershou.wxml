@@ -8,11 +8,11 @@
   <view class="form-item">
     <image src="/images/shop/地址.png" class="item-icon" />
     <input bindinput="set_message_data"
-    data-takeout_type = "pick_location"
+    value="{{takeout_data.pick_location}}"
     placeholder="交易地点"
     confirm-type="done"
     class="item-input" />
-
+    <view bind:tap="chooseAddress" class="icon" >></view>
     <!-- 打开地图 -->  
 
 
@@ -123,7 +123,7 @@
   <view class="qvcan">
     <image src="/images/shop/备注.png" class="item-icon" />
     <input bindblur="set_message_data"
-    data-takeout_type = "notes"
+    value="{{takeout_data.notes}}"
     placeholder="备注"
     confirm-type="done"
     class="item-input" />

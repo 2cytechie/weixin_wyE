@@ -133,7 +133,7 @@
   </view>
 
   <view class="qvcan">
-    <image src="/images/more/小费.png" class="item-icon" />
+    <image src="/images/supermarket/小费.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-type = "tip"
     placeholder="小费（一份2元）"
