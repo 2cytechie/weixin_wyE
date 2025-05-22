@@ -20,8 +20,6 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -34,11 +32,9 @@
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "ignoreUploadUnusedFiles": true
   },
-  "appid": "wx90506d67ae642335",
-  "projectname": "quickstart-wx-cloud",
-  "libVersion": "2.20.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "condition": {
     "miniprogram": {
@@ -53,12 +49,13 @@
   },
   "compileType": "miniprogram",
   "srcMiniprogramRoot": "miniprogram/",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
   "packOptions": {
     "ignore": [],
     "include": []
   },
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  }
+  "appid": "wx90506d67ae642335"
 }

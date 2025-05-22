@@ -1,7 +1,7 @@
 <view class="page">
   <!-- 智能填写区域 -->
   <view class="intelligent-fill">
-    <input placeholder="粘贴或输入收货信息到此处"  value="{{sidenote}}" bindinput="onSidenoteInput" />
+    <input placeholder="粘贴或输入备注等细节信息到此处"  value="{{sidenote}}" bindinput="onSidenoteInput" />
     <view class="fill-ops">
       <button class="clear-btn" size="mini" bind:tap="clearInput">清除</button>
       <button class="recognize-btn" size="mini" bind:tap="handlePaste">粘贴</button>

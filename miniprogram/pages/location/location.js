@@ -5,7 +5,9 @@ Page({
   data: {
     addressList: [], // 地址列表
     loading: true,  // 加载状态
-    error: null      // 错误信息
+    error: null ,     // 错误信息
+    canSelectAddress: false, // 是否允许选择地址（默认不允许）
+    fromIndex: false // 是否来自 index 页面
   },
 
   // 返回上一页
@@ -17,15 +19,49 @@ Page({
 
   // 跳转到添加地址页面
   navigateToAddAddress() {
-    wx.navigateTo({
-      url: '/pages/addAddress/addAddress' // 替换为实际添加地址页面路径 
-    });
+  wx.redirectTo({
+    url: '/pages/addAddress/addAddress'
+  })
   },
 
   // 页面加载时获取地址数据
   onLoad: function() {
     this.getAddressList();
+    
+    // 获取当前页面栈
+    const pages = getCurrentPages();
+    // 获取上一个页面（来源页面）
+    const prevPage = pages[pages.length - 2];
+    
+    // 检查是否有来源页面
+    let isFromTakeout = false;
+    if (prevPage) {
+      const prevPagePath = prevPage.route;
+      console.log('来源页面路径:', prevPagePath);
+      isFromTakeout = /takeout/i.test(prevPagePath);
+    } else {
+      console.warn('没有上一页信息');
+    }
+    
+    this.setData({
+      fromTakeout: isFromTakeout,
+      canSelectAddress: isFromTakeout
+    });
+     console.log(this.data.canSelectAddress)
+    if (isFromTakeout) {
+      wx.showToast({
+        title: '请选择地址',
+        icon: 'none',
+        duration: 2000
+      });
+    }
   },
+    
+  
+  
+
+
+
 
   // 页面显示时刷新数据
   onShow: function() {
@@ -134,9 +170,41 @@ wx.showModal({
  handleEdit: function (e) {
   const addressId = e.currentTarget.dataset.id;
   // 跳转到编辑地址页面，并通过 URL 参数传递地址 ID
-  wx.navigateTo({
-      url: `/pages/addAddress/addAddress?id=${addressId}`
-  });
-}
+wx.redirectTo({
+  url: `/pages/addAddress/addAddress?id=${addressId}`
+})
+},
+
+chooseAddress: function(e) { // 添加事件参数 e
+  if (this.data.canSelectAddress) {
+    console.log('选择成功');
+    
+    // 从事件中获取选中的地址数据（假设WXML中绑定了 data-item="{{item}}"）
+    const selectedAddress = e.currentTarget.dataset.item;
+    
+    if (!selectedAddress) {
+      console.error('未获取到地址数据');
+      return;
+    }
+
+    // **关键修改**：通过 `wx.navigateBack` 返回上一页，并传递地址数据
+    const pages = getCurrentPages();
+    const prevPage = pages[pages.length - 2]; // 上一个页面（takeout页面）
+    
+    if (prevPage && prevPage.setSelectedAddress) {
+      // 直接调用上一页的方法传递地址数据（更高效的跨页面通信）
+      prevPage.setSelectedAddress(selectedAddress);
+    } else {
+      // 备用方案：使用本地存储传递数据
+      wx.setStorageSync('selectedAddress', selectedAddress);
+    }
+
+    // 返回上一页（非重定向，保留页面栈）
+    wx.navigateBack({ delta: 1 });
+  }
+},
+
 
 })
+
+

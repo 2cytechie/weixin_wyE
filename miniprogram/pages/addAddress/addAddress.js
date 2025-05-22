@@ -143,9 +143,10 @@ Page({
           icon: 'success'
         });
         // 返回上一页
-        wx.navigateTo({
-          url: '/pages/location/location' // 替换为实际添加地址页面路径 
-        });
+       
+        wx.redirectTo({
+          url: '/pages/location/location',
+        })
       })
       .catch(err => {
         console.error('更新地址失败：', err);
@@ -167,9 +168,9 @@ Page({
           icon: 'success'
         });
         // 返回上一页
-        wx.navigateTo({
-          url: '/pages/location/location' // 替换为实际添加地址页面路径 
-        });
+        wx.redirectTo({
+          url: '/pages/location/location',
+        })
       })
       .catch(err => {
         console.error('添加地址失败：', err);
@@ -220,7 +221,7 @@ Page({
 
   clearInput() {
     this.setData({
-      inputContent: '', // 智能填写区域内容
+      sidenote: '', // 智能填写区域内容
     });
   }
 });

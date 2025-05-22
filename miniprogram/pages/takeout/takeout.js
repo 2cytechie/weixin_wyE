@@ -7,7 +7,7 @@ Page({
     hours: Array.from({length:24}, (_,i)=>i), // 0-23小时
     minutes: Array.from({length:60}, (_,i)=>i), // 0-59分钟
     timeIndex: [0, 0],       // 当前选中索引
-
+    selectedAddress: null, // 添加选中的地址数据
     tmp_images:[],
     takeout_data:{
       avatar:"cloud://cloud1-1gm8k64i003f436e.636c-cloud1-1gm8k64i003f436e-1355812926/avatar/默认头像.png",
@@ -139,14 +139,34 @@ Page({
       'takeout_data.count': this.data.takeout_data.count + 1
     })
   },
-  chooseAddress(){
+  setSelectedAddress(address) {
+    this.setData({
+     
+      // 新增：将地址的 sidenote 赋值给备注字段
+      'takeout_data.notes': address.sidenote, // 假设地址对象包含 sidenote 字段
+      // 原有地址字段（根据实际结构调整）
+      'takeout_data.pick_location': address.detailAddress || address.address 
+    });
+
+   
+    wx.removeStorageSync('selectedAddress'); // 清除本地存储
+  },
+  chooseAddress(e){
     console.log("选择地址")
-    // wx.chooseAddress({
-    //   success:res=>{
-    //     console.log(res)
-    //   }
-      
-    // })
+    wx.navigateTo({
+      url: '/pages/location/location'
+       // 替换为实际添加地址页面路径 
+    });
+   
+    
+  },
+  onShow() {
+    const address = wx.getStorageSync('selectedAddress');
+    if (address) {
+      this.setSelectedAddress(address);
+      wx.removeStorageSync('selectedAddress');
+       // 清除临时存储
+    }
   },
   order() {
     // 检查信息是否为空
