@@ -1,4 +1,5 @@
 const db = wx.cloud.database();
+const app = getApp();
 Page({
   data: {
     currentType: '校园地址', // 默认选中校园地址
@@ -28,26 +29,18 @@ Page({
 
   // 加载地址数据（编辑模式下使用）
   loadAddressData(id) {
-    db.collection("location").doc(id).get()
-      .then(res => {
-        const addressData = res.data;
-        this.setData({
-          name: addressData.name,
-          mobile: addressData.mobile,
-          address: addressData.address,
-          street: addressData.street,
-          floor: addressData.floor || '',
-          sidenote: addressData.sidenote,
-          currentType: addressData.type || '校园地址'
-        });
-      })
-      .catch(err => {
-        console.error('获取地址数据失败：', err);
-        wx.showToast({
-          title: '加载地址失败，请重试',
-          icon: 'none'
-        });
-      });
+    const Locations = wx.getStorageSync('user_data').locations;
+    const addressData = Locations.filter(item => item.id === id)[0];
+
+    this.setData({
+      name: addressData.name,
+      mobile: addressData.mobile,
+      address: addressData.address,
+      street: addressData.street,
+      floor: addressData.floor || '',
+      sidenote: addressData.sidenote,
+      currentType: addressData.type || '校园地址'
+    });
   },
 
   // 切换地址类型的函数
@@ -94,6 +87,7 @@ Page({
 
   retain() {
     // 获取表单数据
+    const id = new Date().getTime().toString();
     const name = this.data.name;
     const mobile = this.data.mobile;
     const address = this.data.address;
@@ -122,6 +116,7 @@ Page({
     
     // 构建提交数据
     const formData = {
+      id,
       name,
       mobile,
       address,
@@ -133,11 +128,15 @@ Page({
     
     // 根据是否为编辑模式选择不同的提交方式
     if (this.data.isEditMode) {
-      // 更新现有地址
-      db.collection("location").doc(this.data.addressId).update({
-        data: formData
-      })
-      .then(() => {
+      let Locations = wx.getStorageSync('user_data').locations;
+      for(let i = 0;Locations.length;i++){
+        if(locatons[i].id === this.data.id){
+          locatons[i] = formData
+          break;
+        }
+      }
+      app.update_user_data("locations",Locations);
+      setTimeout(() => {
         wx.showToast({
           title: '地址已成功更新',
           icon: 'success'
@@ -147,38 +146,31 @@ Page({
         wx.redirectTo({
           url: '/pages/location/location',
         })
-      })
-      .catch(err => {
-        console.error('更新地址失败：', err);
-        wx.showToast({
-          title: '更新地址失败，请重试',
-          icon: 'none'
-        });
-      });
+      }, 1500);
+
+      const UserData = wx.getStorageSync('user_data');
+      UserData.locations = Locations;
+      wx.setStorageSync('user_data', UserData);
     } else {
       // 添加新地址（保持原有逻辑不变）
-      
-      
-      db.collection("location").add({
-        data: formData
-      })
-      .then(() => {
+      let Locations = wx.getStorageSync('user_data').locations;
+      Locations.push(formData)
+      app.update_user_data("locations",Locations)
+      setTimeout(() => {
         wx.showToast({
           title: '地址已成功添加',
           icon: 'success'
         });
         // 返回上一页
+       
         wx.redirectTo({
           url: '/pages/location/location',
         })
-      })
-      .catch(err => {
-        console.error('添加地址失败：', err);
-        wx.showToast({
-          title: '添加地址失败，请重试',
-          icon: 'none'
-        });
-      });
+      }, 1500);
+
+      const UserData = wx.getStorageSync('user_data');
+      UserData.locations = Locations;
+      wx.setStorageSync('user_data', UserData);
     }
   },
 

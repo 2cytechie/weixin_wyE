@@ -1,4 +1,5 @@
 const db = wx.cloud.database();
+const app = getApp();
 
 Page({
   // 页面数据
@@ -57,12 +58,6 @@ Page({
     }
   },
     
-  
-  
-
-
-
-
   // 页面显示时刷新数据
   onShow: function() {
     // 检查是否需要刷新数据（例如从添加/编辑页面返回时）
@@ -74,43 +69,10 @@ Page({
 
   // 获取地址列表
   getAddressList: function() {
- 
-    
-    // 调用云函数获取地址列表
-    wx.cloud.callFunction({
-      name: 'getlocation', // 云函数名称，需与实际云函数名称一致
-      data: {
-        // 可传递参数到云函数，例如分页信息
-        page: 1,
-        pageSize: 20
-      },
-      success: res => {
-        // 成功获取数据
-        console.log('[云函数] [getAddressList] 成功:', res);
-        
-        // 更新地址列表数据
-       
-        this.setData({
-          addressList: res.result || [],
-          loading: false
-        });
-      },
-      fail: err => {
-        // 调用云函数失败
-        console.error('[云函数] [getAddressList] 失败:', err);
-        this.setData({
-          error: '获取地址列表失败，请稍后重试'
-        });
-        wx.showToast({
-          title: '加载失败',
-          icon: 'none',
-          duration: 2000
-        });
-      },
-      complete: () => {
-        // 隐藏加载提示
-        this.setData({ loading: false });
-      }
+    const Locations = wx.getStorageSync('user_data').locations;
+    this.setData({
+      addressList: Locations,
+      loading: false
     });
   },
 
@@ -137,7 +99,6 @@ wx.showModal({
   // 删除地址
   handleDelete(e){
   let id=e.currentTarget.dataset.id
-  console.log(id)
   wx.showModal({
     title: '是否删除',
     content: '',
@@ -145,21 +106,23 @@ wx.showModal({
       if (res.cancel) {
         
       }
-  
       if (res.confirm) {
         wx.showLoading({
           title: '正在删除',
         })
-        db.collection("location").doc(id).remove()
-        .then(res=>{
-              wx.hideLoading()
-              wx.showToast({
+        const Locations = wx.getStorageSync('user_data').locations;
+        const newLocations = Locations.filter(item => item.id !== id);
+        app.update_user_data("locations",newLocations);
+        let UserData = wx.getStorageSync('user_data');
+        UserData.locations = newLocations;
+        wx.setStorageSync('user_data', UserData);
+        setTimeout(() => {
+          wx.hideLoading()
+            wx.showToast({
                 title: '删除成功',
-              })
-         
-        this.getAddressList()
-
-        })
+            })
+        }, 1000);
+        this.getAddressList();
       }
     }
   })
@@ -170,9 +133,9 @@ wx.showModal({
  handleEdit: function (e) {
   const addressId = e.currentTarget.dataset.id;
   // 跳转到编辑地址页面，并通过 URL 参数传递地址 ID
-wx.redirectTo({
-  url: `/pages/addAddress/addAddress?id=${addressId}`
-})
+  wx.redirectTo({
+    url: `/pages/addAddress/addAddress?id=${addressId}`
+  })
 },
 
 chooseAddress: function(e) { // 添加事件参数 e

@@ -175,9 +175,9 @@ Page({
     });
 
     wx.setStorageSync('show_order_data', message);
-    wx.navigateTo({
-        url: '/pages/order_message/order_message',
-    });
+    wx.redirectTo({
+      url: '/pages/order_message/order_message',
+    })
 },
 
 // 电话号码脱敏函数

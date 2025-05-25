@@ -184,18 +184,20 @@ if (this.data.user_data.is_orderer) {
         receive_time:Receive_time,
         status: "已接单"
       }
+    }).then(res=>{
+      wx.showToast({
+        title: '接单成功',
+        icon: 'success'
+      });
+  
+      // 跳转到订单页面
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pages/taker/taker',
+        })
+      }, 1500);
     })
-    wx.showToast({
-      title: '接单成功',
-      icon: 'success'
-    });
-
-    // 跳转到订单页面
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '/pages/taker/taker',
-      })
-    }, 1500);
+    
   }).catch(err => {
       console.error('更新云端数据失败:', err);
       wx.showToast({
@@ -240,7 +242,9 @@ deliver(){
             confirm_time:ConfirmTime
           }
         }).then(res=>{
-          wx.navigateBack();
+          wx.redirectTo({
+            url: '/pages/taker/taker',
+          })
         })
       }
     }
@@ -278,7 +282,9 @@ undeliver(){
             profit:0,
           }
         }).then(res=>{
-          wx.navigateBack();
+          wx.redirectTo({
+            url: '/pages/taker/taker',
+          })
         })
       }
     }
