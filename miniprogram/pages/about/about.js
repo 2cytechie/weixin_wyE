@@ -1,5 +1,10 @@
 Page({
 
+  
+    "navigationBarTitleText": "接单员工作内容与职责",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+  
   /**
    * 页面的初始数据
    */

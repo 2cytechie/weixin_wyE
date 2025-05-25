@@ -51,15 +51,19 @@
       <text class="btn-text">提交审核</text>
     </view>
 
+   
     <view class="agreement-section">
-      <checkbox checked="{{isAgree}}" bind:tap="handleAgreeChange" class="agree-checkbox" />
-      <text class="agree-text">我已同意并阅读</text>
-      <navigator url="/pages/xeiyi/xeiyi">
-      <text class="link-text">《申请接单员协议》</text>
-    </navigator>
-    </view>
-  </view>
+  <!-- 使用 checked 绑定状态，移除无用的 value -->
+  <checkbox checked="{{isAgree}}" bindtap="handleAgreeChange" class="agree-checkbox" />
+  <text class="agree-text">我已同意并阅读</text>
+  <navigator url="/pages/xeiyi/xeiyi" class="link-text">
+    《申请接单员协议》
+  </navigator> 
 </view>
+<!-- 确保外层 view 闭合正确，避免多余标签 -->
+</view>
+</view>
+
 
 <view wx:else="" class="container">
   <scroll-view class="tab-scroll" scroll-x="true" style="white-space: nowrap;">

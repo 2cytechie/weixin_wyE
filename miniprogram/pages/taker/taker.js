@@ -3,6 +3,7 @@ const db = wx.cloud
 const _ = db.database().command;
 Page({
   data: {
+    isAgree: false, 
     tmp_image:"",
     takeout_data:{
       id_image:"",
@@ -164,11 +165,27 @@ Page({
     });
   },
 
-  handleAgreeChange() {
-    this.setData({
-      isAgree: !this.data.isAgree
-    });
+  
+  loadOrderData() {
+    try {
+      const { is_orderer, pick_orders } = wx.getStorageSync('user_data') || {};
+      if (!pick_orders || pick_orders.length === 0) return;
+
+      db.database().collection("takeout_data")
+        .where({ outTradeNo: _.in(pick_orders) })
+        .get()
+        .then(res => {
+          this.setData({
+            all_data: res.data,
+            data_list: res.data,
+            is_orderer: !!is_orderer // 确保为布尔值
+          });
+        });
+    } catch (error) {
+      console.error('用户数据获取失败:', error);
+    }
   },
+
 
   // 标签点击切换
   switchTab(e) {
@@ -240,6 +257,12 @@ Page({
         url: '/pages/order_message/order_message',
     });
 },
+handleAgreeChange(){
+  this.setData({
+    isAgree: !this.data.isAgree // 翻转状态
+  }); 
+
+},
 // 电话号码脱敏函数
 formatPhone(phone) {
   // 转为字符串（处理可能的数字类型输入）
@@ -252,7 +275,18 @@ formatPhone(phone) {
 
   
 
-  onLoad(){
+  onLoad(options){
+    const pages = getCurrentPages();
+    if (pages.length >= 2) {
+      const prevPageRoute = pages[pages.length - 2].route;
+      console.log('上一页面路径:', prevPageRoute);
+      if (prevPageRoute === 'pages/xeiyi/xeiyi') {
+        this.setData({ isAgree: true }); // 自动勾选
+      }
+    }
+    
+    this.loadOrderData();
+    
     const IsOrderer = wx.getStorageSync('user_data').is_orderer;
     const Pick_orders = wx.getStorageSync('user_data').pick_orders;
     // 从takeout_data中请求数据

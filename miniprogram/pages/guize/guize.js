@@ -1,6 +1,10 @@
 // pages/guize/guize.js
 Page({
-
+  
+    "navigationBarTitleText": "推广员规则",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+  
   /**
    * 页面的初始数据
    */

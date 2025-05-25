@@ -4,10 +4,21 @@ Page({
   /**
    * 页面的初始数据
    */
+  
+    "navigationBarTitleText": "申请接单员电子协议书",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+  
   data: {
 
   },
 
+  onAgree(e)
+  {
+wx.navigateTo({
+  url: '/pages/taker/taker',
+})
+  },
   /**
    * 生命周期函数--监听页面加载
    */

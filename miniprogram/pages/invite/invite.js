@@ -84,7 +84,7 @@ Page({
        
       },
       
-      fail: (err) => {
+       fail: (err) => {
         console.error('获取邀请计数失败:', err);
         // 设置默认值
         this.setData({

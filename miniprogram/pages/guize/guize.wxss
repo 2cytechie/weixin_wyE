@@ -1,1 +1,20 @@
 /* pages/guize/guize.wxss */
+.page-container {
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  border-bottom: 4rpx solid #f5f5f5;
+  padding-bottom: 20rpx;
+}
+
+.rule-content {
+  font-size: 32rpx;
+  line-height: 50rpx;
+  color: #333;
+  text-align: justify;
+}
