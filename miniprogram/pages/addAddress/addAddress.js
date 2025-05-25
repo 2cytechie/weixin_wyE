@@ -4,7 +4,7 @@ Page({
   data: {
     currentType: '校园地址', // 默认选中校园地址
     inputContent: '', // 智能填写区域内容
-    // 表单数据
+    id:'',
     name: '',
     mobile: '',
     address: '',
@@ -33,6 +33,7 @@ Page({
     const addressData = Locations.filter(item => item.id === id)[0];
 
     this.setData({
+      id:addressData.id,
       name: addressData.name,
       mobile: addressData.mobile,
       address: addressData.address,
@@ -130,8 +131,8 @@ Page({
     if (this.data.isEditMode) {
       let Locations = wx.getStorageSync('user_data').locations;
       for(let i = 0;Locations.length;i++){
-        if(locatons[i].id === this.data.id){
-          locatons[i] = formData
+        if(Locations[i].id === this.data.id){
+          Locations[i] = formData
           break;
         }
       }
