@@ -9,10 +9,11 @@
     <image src="/images/supermarket/取餐地.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "pick_location"
-    
+    value="{{takeout_data.pick_location}}"
     placeholder="取餐地"
     confirm-type="done"
     class="item-input" />
+    <view bind:tap="chooseAddress" class="icon" >></view>
 
     <!-- 打开地图 -->  
 
@@ -22,12 +23,11 @@
   <view class="form-item">
     <image src="/images/supermarket/位置.png" class="item-icon" />
     <input bindblur="set_message_data"
-    value="{{takeout_data.pick_location}}"
-    
+    data-takeout_type = "send_location"
+    value="{{takeout_data.send_location}}"
     placeholder="收货地址"
     confirm-type="done"
     class="item-input" />
-    <view bind:tap="chooseAddress" class="icon" >></view>
   </view>
 <!-- 时间展示区域 -->
   <view class="form-item" bindtap="showTimePicker">

@@ -140,15 +140,13 @@ Page({
     })
   },
   setSelectedAddress(address) {
+    console.log(address)
     this.setData({
-     
-      // 新增：将地址的 sidenote 赋值给备注字段
-      'takeout_data.notes': address.sidenote, // 假设地址对象包含 sidenote 字段
-      // 原有地址字段（根据实际结构调整）
-      'takeout_data.pick_location': address.detailAddress || address.address 
+      'takeout_data.pick_location': address.address,
+      'takeout_data.send_location':address.street,
+      'takeout_data.notes': address.sidenote
     });
 
-   
     wx.removeStorageSync('selectedAddress'); // 清除本地存储
   },
   chooseAddress(e){
@@ -165,7 +163,6 @@ Page({
     if (address) {
       this.setSelectedAddress(address);
       wx.removeStorageSync('selectedAddress');
-       // 清除临时存储
     }
   },
   order() {
@@ -202,7 +199,7 @@ Page({
               let phone = UserData.phone;
               // 测试
               // 优惠劵返回优惠数值或优惠倍数
-              let coupons = 1;
+              let coupons = 0;
               let Pay = this.data.takeout_data.tip * this.data.takeout_data.count - coupons;
               
               this.setData({
@@ -219,7 +216,7 @@ Page({
                         data: this.data.takeout_data
                     }).then(res=>{
                       // 支付  测试
-                      app.Pay("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
+                      app.Test("取外卖",this.data.takeout_data.pay*1000,OutTradeNo,'/pages/start/start').then(res=>{
                         // 更新支付状态
                         db.collection("takeout_data").where({
                           OutTradeNo

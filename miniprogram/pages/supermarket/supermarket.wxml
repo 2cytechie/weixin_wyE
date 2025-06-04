@@ -11,7 +11,7 @@
     <image src="/images/取餐地.png" class="item-icon" />
     <input bindblur="set_message_data"
     data-takeout_type = "pick_location"
-    placeholder="超市位置"
+    placeholder="超市位置（学校超市，药店，校外超市）"
     confirm-type="done"
     class="item-input" />
 

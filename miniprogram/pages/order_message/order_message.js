@@ -26,7 +26,7 @@ Page({
       user_data:UserData
     })
     let images = this.data.takeout_data.images
-    if(images.length > 0){
+    if(images){
       this.setData({
         tmp_images:images,
         is_looding:false
